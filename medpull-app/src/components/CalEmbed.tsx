@@ -28,10 +28,6 @@ export function CalEmbed({ url }: { url: string | null }) {
         >
           Request a time
         </button>
-        <p className="mt-4 text-xs text-ink-600/70">
-          TODO(steve): set <code className="font-mono">CAL_COM_URL</code> (checklist p2-5) to
-          enable the embedded calendar.
-        </p>
       </div>
     );
   }

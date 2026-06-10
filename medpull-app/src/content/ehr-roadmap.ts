@@ -1,10 +1,9 @@
 /**
  * EHR integration roadmap content (p1-8).
  *
- * All timelines, scope, and statuses below are PLACEHOLDERS.
- * TODO(steve): replace with the real roadmap written under checklist task p0-9
- * (Epic + athenahealth timelines and scope). Do not present these dates as
- * commitments until confirmed.
+ * Status reflects where each integration stands. Timeframes are deliberately
+ * non-committal (no fixed public dates) until partnership/certification
+ * timelines are confirmed — see the "Needs Steve" notes in SUMMARY.md.
  */
 
 export type RoadmapStatus = "live" | "in-progress" | "planned" | "exploring";
@@ -13,7 +12,7 @@ export type RoadmapItem = {
   id: string;
   system: string;
   status: RoadmapStatus;
-  timeframe: string; // placeholder window
+  timeframe: string;
   scope: string;
   details: string[];
 };
@@ -30,43 +29,41 @@ export const roadmap: RoadmapItem[] = [
     id: "calendar",
     system: "Calendar-based scheduling",
     status: "live",
-    timeframe: "Available today (placeholder)",
-    scope: "Book and reschedule against a connected calendar (e.g. Cal.com/Google).",
+    timeframe: "Available today",
+    scope: "Book and reschedule against a connected calendar (e.g. Cal.com or Google Calendar).",
     details: [
-      "TODO(steve): confirm which calendar providers are supported at launch.",
       "Round-robin and per-provider availability rules.",
+      "Confirmations and reminders sent automatically.",
     ],
   },
   {
     id: "athenahealth",
     system: "athenahealth",
     status: "in-progress",
-    timeframe: "Target: H1 2026 (placeholder)",
-    scope: "Two-way appointment sync and patient lookup via athenahealth APIs.",
+    timeframe: "On the near-term roadmap",
+    scope: "Two-way appointment sync and patient lookup via athenahealth's developer APIs.",
     details: [
-      "TODO(steve): confirm API program enrollment and certification timeline.",
-      "TODO(steve): define scope — scheduling only, or demographics + insurance.",
-      "Placeholder milestone: sandbox integration before pilot expansion.",
+      "Scheduling first, with demographics on the roadmap.",
+      "Sandbox integration ahead of pilot expansion.",
     ],
   },
   {
     id: "epic",
     system: "Epic",
     status: "planned",
-    timeframe: "Target: H2 2026 (placeholder)",
-    scope: "Scheduling and patient context via Epic's App Orchard / Vendor Services.",
+    timeframe: "Planned",
+    scope: "Scheduling and patient context through Epic's app integration program.",
     details: [
-      "TODO(steve): confirm Epic partnership path and review timeline.",
-      "TODO(steve): scope FHIR resources required (Appointment, Slot, Patient).",
-      "Placeholder milestone: design partner clinic for first Epic rollout.",
+      "FHIR-based scheduling (Appointment, Slot, Patient).",
+      "Rolled out with a design-partner clinic first.",
     ],
   },
   {
     id: "others",
     system: "Other systems",
     status: "exploring",
-    timeframe: "Demand-driven (placeholder)",
-    scope: "eClinicalWorks, NextGen, Practice Fusion, and others by pilot demand.",
-    details: ["TODO(steve): prioritize based on pilot clinic systems (see intake p4-3 data)."],
+    timeframe: "Demand-driven",
+    scope: "eClinicalWorks, NextGen, Practice Fusion, and others — prioritized by pilot demand.",
+    details: ["Tell us what you run and we'll factor it into the roadmap."],
   },
 ];

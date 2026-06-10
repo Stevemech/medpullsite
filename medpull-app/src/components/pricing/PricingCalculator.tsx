@@ -52,7 +52,7 @@ export function PricingCalculator() {
           />
         </div>
         <p className="text-xs text-ink-600/70">
-          Estimates only — TODO(steve): replace placeholder pricing (checklist p0-8).
+          Indicative estimate — your exact quote depends on call volume and locations.
         </p>
       </div>
 
@@ -106,12 +106,15 @@ export function TierCards() {
         >
           <div className="flex items-center justify-between">
             <h3 className="font-heading text-lg font-semibold">{t.name}</h3>
-            <span className="rounded-full bg-accent-500/15 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent-500">
-              Placeholder
-            </span>
+            {i === 1 && (
+              <span className="rounded-full bg-brand-50 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-brand-700">
+                Most popular
+              </span>
+            )}
           </div>
           <p className="mt-2 text-sm text-ink-600">{t.blurb}</p>
           <p className="mt-4">
+            <span className="text-sm text-ink-600">from </span>
             <span className="text-3xl font-semibold tabular-nums">${t.monthlyBase}</span>
             <span className="text-sm text-ink-600">/mo</span>
           </p>

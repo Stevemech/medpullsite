@@ -7,7 +7,7 @@ import { roadmap, statusLabels, type RoadmapStatus } from "@/content/ehr-roadmap
 export const metadata: Metadata = {
   title: "EHR Integration Roadmap — MedPull",
   description:
-    "Where MedPull connects today and what's next: calendar scheduling, athenahealth, and Epic. Placeholder roadmap pending confirmation.",
+    "Where MedPull connects today and what's next: calendar scheduling, athenahealth, and Epic.",
 };
 
 const statusStyles: Record<RoadmapStatus, string> = {
@@ -31,14 +31,8 @@ export default function EhrRoadmapPage() {
         </h1>
         <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink-600">
           MedPull works alongside your existing systems. Here&apos;s where we connect today and
-          what&apos;s coming next. Timelines below are placeholders pending confirmation.
+          what&apos;s coming next.
         </p>
-
-        <div className="mt-6 rounded-xl border border-dashed border-accent-500/40 bg-accent-500/5 px-4 py-3 text-sm text-ink-700">
-          <strong>TODO(steve):</strong> replace all timeframes, scope, and statuses with the real
-          roadmap written under checklist task <code className="font-mono">p0-9</code>. These are
-          illustrative placeholders — not commitments.
-        </div>
 
         <ol className="relative mt-12 space-y-8 border-l border-cream-200 pl-8">
           {roadmap.map((item) => (

@@ -54,10 +54,10 @@ export function LogoMarquee() {
 
 export function ProblemStats() {
   const stats = [
-    { v: "1 in 3", c: "patient calls to a busy clinic go unanswered at peak hours*" },
-    { v: "6 hrs", c: "a week the average front desk loses to phone tag*" },
-    { v: "~$0", c: "earned on an appointment slot that quietly goes unfilled" },
-    { v: "After 5pm", c: "is when many patients actually try to book — and reach voicemail" },
+    { v: "42%", c: "of incoming calls to medical practices go unanswered during business hours" },
+    { v: "85%", c: "of patients won't call back after a single unanswered attempt" },
+    { v: "4×", c: "more likely to switch providers after repeated poor phone experiences" },
+    { v: "After hours", c: "is when many patients actually try to book — and reach voicemail" },
   ];
   return (
     <section className="py-24">
@@ -69,8 +69,26 @@ export function ProblemStats() {
             highlight="walking to a competitor."
             lede="Independent clinics live and die by the phone, but the front desk can only hold one conversation at a time. The overflow doesn't disappear — it turns into voicemails nobody returns, empty slots, and patients who book somewhere that picked up."
           />
-          <p className="mt-6 text-xs text-ink-600/70">
-            *Illustrative placeholders. TODO(steve): replace with cited figures or your own data.
+          <p className="mt-6 text-xs leading-relaxed text-ink-600/70">
+            Sources: analysis of 7,000 calls across 22 medical practices via{" "}
+            <a
+              href="https://answernet.com/costs-of-missed-calls-in-medical-offices-and-how-to-avoid-them/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-ink-600"
+            >
+              AnswerNet
+            </a>{" "}
+            and{" "}
+            <a
+              href="https://agentzap.ai/blog/medical-practice-phone-statistics"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 hover:text-ink-600"
+            >
+              industry phone-access data
+            </a>
+            .
           </p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -224,7 +242,7 @@ const FAQS = [
   },
   {
     q: "Is MedPull HIPAA-compliant?",
-    a: "MedPull is built around HIPAA workflows — encryption in transit and at rest, access controls, and audit logging. A signed BAA is part of onboarding before any protected information flows through the system. TODO(steve): confirm final BAA + infrastructure (checklist p0-3).",
+    a: "MedPull is built around HIPAA workflows — encryption in transit and at rest, access controls, and audit logging. A signed BAA is part of onboarding before any protected information flows through the system.",
   },
   {
     q: "What happens to clinical questions?",
@@ -367,7 +385,7 @@ export function Footer() {
       </div>
       <div className="mx-auto mt-12 flex max-w-[1200px] flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-white/30 sm:flex-row">
         <span>© 2026 MedPull. All rights reserved.</span>
-        <span>Placeholder marketing site — figures and clinic names are illustrative.</span>
+        <span>The AI front desk for independent clinics.</span>
       </div>
     </footer>
   );

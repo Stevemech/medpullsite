@@ -10,6 +10,32 @@ schema and all data access are written so switching to Postgres is a
 connection-string change (no SQLite-only features; statuses are app-validated
 strings, money is integer cents). Everything runs via `npm run dev` — no deploy.
 
+## To restore the suppressed sections (without faking it)
+
+Two homepage sections are intentionally **suppressed** (commented out in
+`src/app/page.tsx`, code kept) because they require real, verifiable content:
+
+1. **"Trusted by" logo strip** (`<LogoMarquee />`). To restore, you need:
+   - A handful of real pilot/customer clinics willing to be named.
+   - Written permission to display each clinic's name and/or logo.
+   - The logo image assets (drop into `public/`, wire into `LogoMarquee`).
+
+2. **Testimonials + case studies** (`<SocialProof />`, content in
+   `src/content/social-proof.ts`). To restore, you need:
+   - Real quotes from named clients, with **written consent** to publish their
+     name, role, and words (FTC requires endorsements be genuine — current
+     entries are representative samples, not real customers).
+   - For case studies: verified, clinic-approved metrics (calls recovered,
+     booking lift, time-to-live), ideally with the clinic's sign-off.
+   - Then set each entry's `placeholder: false` is already done — just replace
+     the sample copy/names with the real, consented content and re-add
+     `<SocialProof />` (and `<LogoMarquee />`) to `page.tsx`.
+
+The on-page stats are now **cited**: the "why it matters" band uses McQueenie et
+al., *BMC Medicine* 2019 (missed appointments & mortality); the problem band
+cites industry phone-access analyses. To strengthen further, confirm those
+industry figures against primary sources or substitute your own pilot data.
+
 ---
 
 ## Check these off manually on the artifact

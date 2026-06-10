@@ -25,7 +25,6 @@ const COMMANDS: Command[] = [
   { id: "how", label: "How it works", hint: "Section", keywords: "steps onboarding setup", run: go("/#how") },
   { id: "platform", label: "Platform & features", hint: "Section", keywords: "capabilities what it does", run: go("/#platform") },
   { id: "roi", label: "ROI calculator", hint: "Section", keywords: "savings cost estimate", run: go("/#roi") },
-  { id: "proof", label: "Reviews & case studies", hint: "Section", keywords: "testimonials customers social proof", run: go("/#proof") },
   { id: "faq", label: "FAQ", hint: "Section", keywords: "questions answers hipaa", run: go("/#faq") },
   { id: "pricing", label: "Pricing", hint: "Page", keywords: "plans tiers cost", run: go("/pricing") },
   { id: "ehr", label: "EHR integrations roadmap", hint: "Page", keywords: "epic athenahealth", run: go("/ehr-roadmap") },

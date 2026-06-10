@@ -25,10 +25,36 @@ const outfit = Outfit({
   display: "swap",
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://medpull.org";
+const DESCRIPTION =
+  "MedPull answers every patient call, fills your schedule, and gives your front desk hours back — purpose-built for independent clinics.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "MedPull — AI Front Desk for Clinics",
-  description:
-    "MedPull answers every patient call, fills your schedule, and gives your front desk hours back — purpose-built for independent clinics.",
+  description: DESCRIPTION,
+  applicationName: "MedPull",
+  keywords: [
+    "AI front desk",
+    "medical answering service",
+    "clinic phone automation",
+    "patient scheduling",
+    "appointment booking AI",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "MedPull",
+    title: "MedPull — AI Front Desk for Clinics",
+    description: DESCRIPTION,
+    url: SITE_URL,
+    images: [{ url: "/medpull-logo.png", width: 481, height: 459, alt: "MedPull" }],
+  },
+  twitter: {
+    card: "summary",
+    title: "MedPull — AI Front Desk for Clinics",
+    description: DESCRIPTION,
+    images: ["/medpull-logo.png"],
+  },
 };
 
 export default function RootLayout({

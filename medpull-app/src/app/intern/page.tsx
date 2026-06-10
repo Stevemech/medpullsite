@@ -81,9 +81,6 @@ export default async function InternDashboard() {
         </div>
       )}
 
-      <p className="mt-8 text-xs text-ink-600/70">
-        Commission rates are placeholders — TODO(steve): finalize the structure (checklist p0-7).
-      </p>
     </div>
   );
 }

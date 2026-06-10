@@ -232,8 +232,8 @@ export function IntakeForm() {
             <label className="flex items-start gap-3 rounded-xl bg-cream-100 p-3">
               <input type="checkbox" checked={form.consent === true} onChange={(e) => set("consent", e.target.checked)} className="mt-0.5 h-4 w-4 accent-brand-600" />
               <span className="text-xs leading-relaxed text-ink-600">
-                I consent to MedPull contacting me about a pilot and storing this information.{" "}
-                TODO(steve): finalize intake consent + privacy language.
+                I consent to MedPull contacting me about a pilot and securely storing the
+                information I&apos;ve provided.
               </span>
             </label>
             {fieldError("consent")}

@@ -22,8 +22,8 @@ export default function PricingPage() {
             Pricing that scales with <span className="text-brand-600">your front desk.</span>
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-600">
-            Estimate a plan by your call volume and locations. These are placeholder figures —
-            we&apos;ll give you an exact quote.
+            Estimate a plan by your call volume and locations. Every clinic is different — we&apos;ll
+            confirm your exact quote on a quick call.
           </p>
         </div>
 

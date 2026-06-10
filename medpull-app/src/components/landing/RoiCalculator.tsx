@@ -72,7 +72,7 @@ export function RoiCalculator() {
           eyebrow="ROI"
           title="What does a missed call"
           highlight="actually cost you?"
-          lede="Drag the sliders to your clinic's reality. This is a rough, illustrative estimate — not a quote."
+          lede="Drag the sliders to match your clinic — a quick estimate of what unanswered calls may be costing you, not a quote."
         />
         <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-2">
           <div className="space-y-6 rounded-2xl border border-cream-200 bg-white p-6">
@@ -97,9 +97,6 @@ export function RoiCalculator() {
               <CtaButton source="roi" className="w-full py-3 text-base">
                 See it on your numbers
               </CtaButton>
-              <p className="mt-3 text-center text-xs text-ink-600/70">
-                TODO(steve): calibrate the model assumptions.
-              </p>
             </div>
           </div>
         </div>

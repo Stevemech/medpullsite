@@ -1,7 +1,6 @@
 import { AnnouncementBar, Nav } from "@/components/landing/Nav";
 import { Hero } from "@/components/landing/Hero";
 import {
-  LogoMarquee,
   ProblemStats,
   Features,
   HowItWorks,
@@ -9,8 +8,9 @@ import {
   FinalCta,
   Footer,
 } from "@/components/landing/Sections";
+// LogoMarquee and SocialProof are intentionally not imported while their
+// sections are suppressed (see comments in the JSX below) — re-add when restoring.
 import { RoiCalculator } from "@/components/landing/RoiCalculator";
-import { SocialProof } from "@/components/landing/SocialProof";
 import { CallDemo } from "@/components/landing/CallDemo";
 import { ImpactMetrics } from "@/components/landing/ImpactMetrics";
 import { Reveal } from "@/components/Reveal";
@@ -22,7 +22,9 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <LogoMarquee />
+        {/* Suppressed until we have real client logos + permission to display them.
+            Re-enable by restoring <LogoMarquee /> here. */}
+        {/* <LogoMarquee /> */}
         <CallDemo />
         <Reveal>
           <ProblemStats />
@@ -37,9 +39,9 @@ export default function Home() {
           <HowItWorks />
         </Reveal>
         <ImpactMetrics />
-        <Reveal>
-          <SocialProof />
-        </Reveal>
+        {/* Suppressed until we have real, consented testimonials + case studies.
+            Re-enable by restoring <SocialProof /> here. */}
+        {/* <Reveal><SocialProof /></Reveal> */}
         <Reveal>
           <Faq />
         </Reveal>
