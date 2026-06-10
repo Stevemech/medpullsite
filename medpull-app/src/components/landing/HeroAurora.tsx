@@ -53,7 +53,7 @@ export function HeroAurora() {
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(420px 420px at var(--mx) var(--my), rgba(37,99,235,0.10), transparent 70%)",
+            "radial-gradient(420px 420px at var(--mx) var(--my), rgba(15,118,110,0.12), transparent 70%)",
         }}
       />
       {/* drifting brand blobs */}

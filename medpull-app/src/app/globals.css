@@ -1,17 +1,18 @@
 @import "tailwindcss";
 
 @theme {
-  /* MedPull brand — blue primary (#2563eb), with a purple→cyan accent. */
-  --color-brand-50: #eff5ff;
-  --color-brand-100: #dbe8fe;
-  --color-brand-200: #bfd7fe;
-  --color-brand-300: #93bbfd;
-  --color-brand-400: #6098fa;
-  --color-brand-500: #3b82f6;
-  --color-brand-600: #2563eb; /* primary */
-  --color-brand-700: #1d4ed8;
-  --color-brand-800: #1e40af;
-  --color-brand-900: #1e3a8a;
+  /* MedPull brand — teal, taken from the logo (#a7ece5 lives at the 200 step);
+     deeper teals at 600+ keep white text accessible on buttons/dark sections. */
+  --color-brand-50: #effbf8;
+  --color-brand-100: #d2f4ee;
+  --color-brand-200: #a7ece5; /* the logo teal */
+  --color-brand-300: #74d8cd;
+  --color-brand-400: #3cbfb3;
+  --color-brand-500: #18a497;
+  --color-brand-600: #0f766e; /* primary */
+  --color-brand-700: #115e57;
+  --color-brand-800: #0c4a45;
+  --color-brand-900: #08312e;
 
   /* Neutrals: clean slate/white to sit under a blue brand. */
   --color-ink-900: #0f172a;

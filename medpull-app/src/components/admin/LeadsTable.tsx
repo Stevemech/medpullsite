@@ -20,7 +20,7 @@ export type LeadRow = {
 const STATUS_STYLES: Record<string, string> = {
   new: "bg-brand-500/15 text-brand-700",
   contacted: "bg-accent-500/15 text-accent-500",
-  scheduled: "bg-blue-500/15 text-blue-700",
+  scheduled: "bg-emerald-500/15 text-emerald-700",
   closed: "bg-cream-200 text-ink-600",
 };
 
