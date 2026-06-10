@@ -11,6 +11,8 @@ import {
 } from "@/components/landing/Sections";
 import { RoiCalculator } from "@/components/landing/RoiCalculator";
 import { SocialProof } from "@/components/landing/SocialProof";
+import { CallDemo } from "@/components/landing/CallDemo";
+import { ImpactMetrics } from "@/components/landing/ImpactMetrics";
 import { Reveal } from "@/components/Reveal";
 
 export default function Home() {
@@ -21,6 +23,7 @@ export default function Home() {
       <main>
         <Hero />
         <LogoMarquee />
+        <CallDemo />
         <Reveal>
           <ProblemStats />
         </Reveal>
@@ -33,6 +36,7 @@ export default function Home() {
         <Reveal>
           <HowItWorks />
         </Reveal>
+        <ImpactMetrics />
         <Reveal>
           <SocialProof />
         </Reveal>

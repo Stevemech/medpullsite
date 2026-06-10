@@ -2,6 +2,7 @@
 
 import { CtaButton, ArrowLink } from "./primitives";
 import { Logo } from "@/components/Brand";
+import { HeroAurora } from "./HeroAurora";
 
 const TRUST = [
   { label: "Built for HIPAA workflows" },
@@ -79,6 +80,7 @@ function MockDashboard() {
 export function Hero() {
   return (
     <section className="relative overflow-hidden px-6 pb-16 pt-20">
+      <HeroAurora />
       <div className="mx-auto max-w-3xl text-center fade-up">
         <h1 className="text-4xl font-semibold leading-[1.1] tracking-tight text-ink-900 sm:text-5xl md:text-6xl">
           Your front desk, <span className="text-brand-600">never on hold.</span>

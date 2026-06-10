@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { EB_Garamond, Inter, Outfit } from "next/font/google";
 import LeadPopup from "@/components/LeadPopup";
 import { AnalyticsProvider } from "@/components/AnalyticsProvider";
+import { CommandPalette } from "@/components/CommandPalette";
 import "./globals.css";
 
 // MedPull fonts: Inter (body/UI), EB Garamond (editorial headings),
@@ -41,6 +42,7 @@ export default function RootLayout({
         <AnalyticsProvider />
         {children}
         <LeadPopup />
+        <CommandPalette />
       </body>
     </html>
   );

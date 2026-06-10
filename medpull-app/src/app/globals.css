@@ -156,13 +156,60 @@ h3,
   animation: medpull-dialog-out 0.2s ease-in both;
 }
 
+/* Ambient aurora blobs behind the hero (slow drift). */
+@keyframes medpull-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, 8%) scale(1.12); }
+}
+@keyframes medpull-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50% { transform: translate(-8%, -6%) scale(0.95); }
+}
+.aurora-a { animation: medpull-drift-a 18s ease-in-out infinite; }
+.aurora-b { animation: medpull-drift-b 22s ease-in-out infinite; }
+
+/* Typing indicator dots for the live call demo. */
+@keyframes medpull-typing {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+.typing-dot { animation: medpull-typing 1.2s ease-in-out infinite; }
+
+/* Soft "live" pulse ring. */
+@keyframes medpull-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+  70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+.live-pulse { animation: medpull-pulse 2s ease-out infinite; }
+
+/* Chat bubble entrance for the call demo. */
+@keyframes medpull-bubble-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.bubble-in { animation: medpull-bubble-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Animated voice waveform bars. */
+@keyframes medpull-wave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+.wave-bar { animation: medpull-wave 0.9s ease-in-out infinite; transform-origin: center; }
+
 @media (prefers-reduced-motion: reduce) {
   .animate-marquee,
   .fade-up,
   .backdrop-enter,
   .backdrop-exit,
   .dialog-enter,
-  .dialog-exit {
+  .dialog-exit,
+  .aurora-a,
+  .aurora-b,
+  .typing-dot,
+  .live-pulse,
+  .bubble-in,
+  .wave-bar {
     animation: none;
   }
   .reveal {
