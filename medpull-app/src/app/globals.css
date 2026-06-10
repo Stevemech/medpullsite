@@ -1,0 +1,220 @@
+@import "tailwindcss";
+
+@theme {
+  /* MedPull brand — blue primary (#2563eb), with a purple→cyan accent. */
+  --color-brand-50: #eff5ff;
+  --color-brand-100: #dbe8fe;
+  --color-brand-200: #bfd7fe;
+  --color-brand-300: #93bbfd;
+  --color-brand-400: #6098fa;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb; /* primary */
+  --color-brand-700: #1d4ed8;
+  --color-brand-800: #1e40af;
+  --color-brand-900: #1e3a8a;
+
+  /* Neutrals: clean slate/white to sit under a blue brand. */
+  --color-ink-900: #0f172a;
+  --color-ink-700: #334155;
+  --color-ink-600: #64748b;
+
+  --color-cream-50: #f8fafc;
+  --color-cream-100: #f1f5f9;
+  --color-cream-200: #e2e8f0;
+
+  --color-accent-500: #7c3aed; /* MedPull accent (purple); pairs to cyan #06b6d4 */
+  --color-success-500: #10b981;
+
+  --font-heading: var(--font-eb-garamond), ui-serif, Georgia, serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-brand: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-cream-50);
+  color: var(--color-ink-900);
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+/* The MedPull logo wordmark uses a modern geometric sans (Outfit). */
+.font-brand {
+  font-family: var(--font-brand);
+}
+
+/* MedPull accent gradient (purple → cyan), available as a utility. */
+.brand-gradient {
+  background-image: linear-gradient(90deg, #7c3aed, #06b6d4);
+}
+.brand-gradient-text {
+  background-image: linear-gradient(90deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Infinite logo marquee for the social-proof strip. */
+@keyframes medpull-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: medpull-marquee 38s linear infinite;
+}
+
+/* Staggered fade-up entrance used across sections. */
+@keyframes medpull-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: medpull-fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Scroll-reveal: elements start hidden and ease up when they enter the
+   viewport (toggled by the Reveal component's IntersectionObserver). */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Invite popup: backdrop fade + dialog spring-in / fade-out. */
+@keyframes medpull-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes medpull-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+@keyframes medpull-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes medpull-dialog-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(10px) scale(0.97);
+  }
+}
+.backdrop-enter {
+  animation: medpull-backdrop-in 0.25s ease-out both;
+}
+.backdrop-exit {
+  animation: medpull-backdrop-out 0.2s ease-in both;
+}
+.dialog-enter {
+  animation: medpull-dialog-in 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.dialog-exit {
+  animation: medpull-dialog-out 0.2s ease-in both;
+}
+
+/* Ambient aurora blobs behind the hero (slow drift). */
+@keyframes medpull-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, 8%) scale(1.12); }
+}
+@keyframes medpull-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1.05); }
+  50% { transform: translate(-8%, -6%) scale(0.95); }
+}
+.aurora-a { animation: medpull-drift-a 18s ease-in-out infinite; }
+.aurora-b { animation: medpull-drift-b 22s ease-in-out infinite; }
+
+/* Typing indicator dots for the live call demo. */
+@keyframes medpull-typing {
+  0%, 60%, 100% { opacity: 0.25; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-3px); }
+}
+.typing-dot { animation: medpull-typing 1.2s ease-in-out infinite; }
+
+/* Soft "live" pulse ring. */
+@keyframes medpull-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.45); }
+  70% { box-shadow: 0 0 0 7px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+.live-pulse { animation: medpull-pulse 2s ease-out infinite; }
+
+/* Chat bubble entrance for the call demo. */
+@keyframes medpull-bubble-in {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.bubble-in { animation: medpull-bubble-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+/* Animated voice waveform bars. */
+@keyframes medpull-wave {
+  0%, 100% { transform: scaleY(0.35); }
+  50% { transform: scaleY(1); }
+}
+.wave-bar { animation: medpull-wave 0.9s ease-in-out infinite; transform-origin: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .fade-up,
+  .backdrop-enter,
+  .backdrop-exit,
+  .dialog-enter,
+  .dialog-exit,
+  .aurora-a,
+  .aurora-b,
+  .typing-dot,
+  .live-pulse,
+  .bubble-in,
+  .wave-bar {
+    animation: none;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
