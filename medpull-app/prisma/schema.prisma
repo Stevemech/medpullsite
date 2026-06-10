@@ -1,16 +1,16 @@
 // MedPull data model.
 //
-// Local dev uses SQLite. To move to Postgres later, change `provider` to
-// "postgresql" and point DATABASE_URL at the new database — models below
-// deliberately avoid SQLite-only or Postgres-only features (e.g. enums are
-// strings validated in application code with zod).
+// Postgres in every environment (local + production). DATABASE_URL is the
+// connection string — use a pooled URL in serverless (Vercel). Models avoid
+// SQLite/Postgres-specific features (enums are strings validated in app code),
+// so the schema stays portable.
 
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
