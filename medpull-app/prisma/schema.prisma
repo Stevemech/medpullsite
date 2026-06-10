@@ -1,0 +1,184 @@
+// MedPull data model.
+//
+// Local dev uses SQLite. To move to Postgres later, change `provider` to
+// "postgresql" and point DATABASE_URL at the new database — models below
+// deliberately avoid SQLite-only or Postgres-only features (e.g. enums are
+// strings validated in application code with zod).
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// p1-3: popup lead submissions.
+// Lead "status" lifecycle (validated in app code): new | contacted | scheduled | closed
+model Lead {
+  id          String   @id @default(cuid())
+  clinicName  String
+  contactName String
+  email       String
+  phone       String
+  consent     Boolean  @default(false)
+  consentAt   DateTime?
+  source      String   @default("popup")
+  status      String   @default("new")
+  // p5-1: referral attribution
+  referralCode String?
+  internId     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  intern      Intern?  @relation(fields: [internId], references: [id], onDelete: SetNull)
+
+  @@index([email])
+  @@index([status])
+  @@index([createdAt])
+  @@index([internId])
+}
+
+// p5-1 / p5-2: interns who refer clinics. Each has a unique referral code used
+// in ?ref=CODE links; conversions accrue commission entries.
+model Intern {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  referralCode String   @unique
+  active       Boolean  @default(true)
+  createdAt    DateTime @default(now())
+
+  leads       Lead[]
+  commissions CommissionEntry[]
+
+  @@index([referralCode])
+}
+
+// p5-1: commission ledger. Amounts are integer cents to avoid float drift.
+// kind: signup | conversion   status: pending | approved | paid
+model CommissionEntry {
+  id         String   @id @default(cuid())
+  internId   String
+  leadId     String?
+  kind       String
+  amountCents Int
+  currency   String   @default("USD")
+  status     String   @default("pending")
+  note       String?
+  createdAt  DateTime @default(now())
+
+  intern Intern @relation(fields: [internId], references: [id], onDelete: Cascade)
+
+  // One commission per (lead, kind) so re-runs don't double-credit.
+  @@unique([leadId, kind])
+  @@index([internId])
+  @@index([status])
+}
+
+// p3-1: every SMS attempt is logged here, whether actually sent or dry-run.
+// status: dry_run | sent | failed | skipped_suppressed | skipped_quiet_hours
+// direction: outbound | inbound
+model Message {
+  id          String   @id @default(cuid())
+  leadId      String?
+  to          String
+  fromNumber  String?
+  body        String
+  direction   String   @default("outbound")
+  status      String
+  provider    String   @default("twilio")
+  providerSid String?
+  error       String?
+  sequenceStep String? // which follow-up step produced this (p3-2), if any
+  createdAt   DateTime @default(now())
+  sentAt      DateTime?
+
+  @@index([leadId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+// p4-3 / p4-4: comprehensive clinic pilot intake, stored in its own tables,
+// separate from marketing leads. Sensitive contact fields are encrypted at rest
+// (field-level AES-256-GCM, key from INTAKE_ENCRYPTION_KEY) — see src/lib/crypto.
+model IntakeSubmission {
+  id               String   @id @default(cuid())
+  // Practice details (non-sensitive)
+  practiceName     String
+  website          String?
+  specialty        String
+  city             String?
+  state            String?
+  locations        Int      @default(1)
+  // Systems in use
+  ehrSystem        String?
+  schedulingSystem String?
+  phoneSystem      String?
+  // Volume
+  monthlyVisits    Int?
+  weeklyCalls      Int?
+  providers        Int?
+  missedPctEstimate Int?
+  // Sensitive contact fields — stored ENCRYPTED (ciphertext strings).
+  contactNameEnc   String?
+  contactEmailEnc  String?
+  contactPhoneEnc  String?
+  contactRoleEnc   String?
+  bestTime         String?
+  notes            String?
+  consent          Boolean  @default(false)
+  status           String   @default("new") // new | reviewing | qualified | declined
+  source           String   @default("intake")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  audits IntakeAudit[]
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+// p4-4: append-only audit trail for intake records.
+// action: created | viewed | exported | status_changed
+model IntakeAudit {
+  id           String   @id @default(cuid())
+  submissionId String
+  action       String
+  actor        String   @default("system")
+  detail       String?
+  ip           String?
+  createdAt    DateTime @default(now())
+
+  submission IntakeSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([submissionId])
+  @@index([createdAt])
+}
+
+// p4-6: lightweight server-side funnel events so the reporting dashboard can
+// compute form completion / drop-off rates locally without an external
+// analytics provider. Mirrors (does not replace) the PostHog instrumentation.
+// form: popup | intake   event: viewed | started | submitted
+model FormEvent {
+  id        String   @id @default(cuid())
+  form      String
+  event     String
+  sessionId String?
+  createdAt DateTime @default(now())
+
+  @@index([form, event])
+  @@index([createdAt])
+}
+
+// p3-3: phone numbers that have opted out (STOP) or been manually suppressed.
+// The SMS module refuses to message any number present here.
+model Suppression {
+  id        String   @id @default(cuid())
+  phone     String   @unique
+  reason    String   @default("opt_out") // opt_out | manual | bounce
+  createdAt DateTime @default(now())
+
+  @@index([phone])
+}
