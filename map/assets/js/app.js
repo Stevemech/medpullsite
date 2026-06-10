@@ -141,36 +141,6 @@
     // TODO: Integrate with your email provider (e.g., SES via API Gateway/Lambda or a form service)
   });
 
-  // Contact form (client-side demo only)
-  $('#contactForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const fd = new FormData(e.target);
-    const data = Object.fromEntries(fd.entries());
-    const out = $('#contactFeedback');
-
-    // simple validation
-    if (!data.name || !data.email || !data.message || !$('#consent').checked) {
-      out.textContent = 'Please complete all required fields and consent.';
-      out.className = 'text-danger';
-      return;
-    }
-
-    // Simulate async submit
-    out.textContent = 'Sending…';
-    out.className = 'text-muted';
-    try {
-      await new Promise(r => setTimeout(r, 900));
-      // Example for future integration:
-      // await fetch('https://api.example.com/contact', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
-      out.textContent = 'Thanks! We\'ll be in touch shortly.';
-      out.className = 'text-success';
-      e.target.reset();
-      $('#consent').checked = false;
-    } catch (err) {
-      out.textContent = 'Something went wrong. Please try again later.';
-      out.className = 'text-danger';
-    }
-  });
   // Accent color cycle
   // Tilt effect
   function bindTilt(el){

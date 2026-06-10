@@ -86,6 +86,16 @@
     '              <input type="tel" class="form-control" id="ip_phone" name="phone" />',
     '            </div>',
     '            <div class="col-12">',
+    '              <label for="ip_comments" class="form-label fw-semibold">Additional comments <span class="text-muted fw-normal">(optional)</span></label>',
+    '              <textarea class="form-control" id="ip_comments" name="comments" rows="3" placeholder="Anything else you\'d like us to know?"></textarea>',
+    '            </div>',
+    '            <div class="col-12">',
+    '              <div class="form-check">',
+    '                <input class="form-check-input" type="checkbox" id="ip_tcpa" name="tcpa_consent" required />',
+    '                <label class="form-check-label small text-muted" for="ip_tcpa">By checking this box, I agree to receive calls and text messages from MedPull at the phone number provided, including via automated technology. Consent is not a condition of purchase. Message and data rates may apply. <span class="text-danger">*</span></label>',
+    '              </div>',
+    '            </div>',
+    '            <div class="col-12">',
     '              <div id="interestFeedback" class="small"></div>',
     '            </div>',
     '            <div class="col-12">',
@@ -158,6 +168,8 @@
       contact_name: form.contact_name.value.trim(),
       email: form.email.value.trim(),
       phone: form.phone.value.trim(),
+      comments: form.comments.value.trim(),
+      tcpa_consent: form.tcpa_consent.checked,
       botcheck: form.botcheck.value
     };
 
@@ -208,6 +220,8 @@
         contact_name: data.contact_name,
         email: data.email,
         phone: data.phone || '(not provided)',
+        comments: data.comments || '(none)',
+        tcpa_consent: data.tcpa_consent ? 'Yes — consented to calls/texts' : 'No',
         botcheck: data.botcheck
       })
     })
