@@ -1,6 +1,6 @@
 "use client";
 
-import { CtaButton, ArrowLink } from "./primitives";
+import { CtaButton } from "./primitives";
 import { Logo } from "@/components/Brand";
 import { HeroAurora } from "./HeroAurora";
 
@@ -90,11 +90,10 @@ export function Hero() {
           so your team stops chasing voicemails and your schedule stays full. Purpose-built for
           independent clinics.
         </p>
-        <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <div className="mt-8 flex justify-center">
           <CtaButton source="hero" className="px-6 py-3 text-base">
             Request a demo
           </CtaButton>
-          <ArrowLink>See how it works</ArrowLink>
         </div>
         <p className="mt-4 text-sm text-ink-600/80">
           No new phone system. No long contract. Cancel anytime during the pilot.
