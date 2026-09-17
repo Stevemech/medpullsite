@@ -9,12 +9,15 @@
     <meta name="theme-color" content="#fbfbf9" />
     <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
     <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
-    <script>document.documentElement.classList.add('js')</script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/site.css?v=5" />
+    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/img/medpull-mark.png" as="image" />
+    <script>
+      // Animations start hidden; if site.js never runs, show everything anyway.
+      document.documentElement.classList.add('js');
+      setTimeout(function () { if (!window.MEDPULL_SITE) document.documentElement.classList.remove('js'); }, 3500);
+    </script>
+    <link rel="stylesheet" href="assets/css/site.css?v=6" />
   </head>
   <body data-interest-auto="off">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -29,7 +32,7 @@
         <nav class="nav-links" id="navLinks" aria-label="Primary">
           <a href="index.html#product">Product</a>
           <a href="index.html#how">How it works</a>
-          <a href="index.html#trust">Security</a>
+          <a href="index.html#trust">Trust</a>
           <a href="index.html#faq">FAQ</a>
           <a href="demo.html">Live demo</a>
         </nav>
@@ -50,7 +53,7 @@
             <ul class="checklist">
               <li>
                 <span class="glyph g-sage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 12.5 4 4 8-9"/></svg></span>
-                <span><b>Full platform access</b>Adaptive check-ins, the daily list, AI summaries, and RTM readiness tracking.</span>
+                <span><b>Full platform access</b>Wearable monitoring, check-ins, the daily worklist, and AI summaries.</span>
               </li>
               <li>
                 <span class="glyph g-clay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></span>
@@ -58,11 +61,11 @@
               </li>
               <li>
                 <span class="glyph g-lilac" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
-                <span><b>First access to new features</b>Early wearable and EMR integrations, plus a say in what we build next.</span>
+                <span><b>First access to new features</b>New integrations as they land, plus a say in what we build next.</span>
               </li>
               <li>
                 <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3 5.5 5.5v5c0 4.3 2.8 7.4 6.5 9 3.7-1.6 6.5-4.7 6.5-9v-5Z"/></svg></span>
-                <span><b>HIPAA-aligned</b>Secure handling of patient data, with business associate agreements available.</span>
+                <span><b>Security walkthrough</b>We cover HIPAA and BAA requirements with your team before any patient data is shared.</span>
               </li>
             </ul>
             <p class="aside-note">Rather talk it through? <a class="link" href="book-demo.html">Book a demo</a></p>
@@ -112,7 +115,7 @@
                 </div>
                 <div class="field-full">
                   <label for="primaryProcedures" class="form-label">Procedures you'd want covered first <span class="opt">(optional)</span></label>
-                  <input type="text" class="form-control" id="primaryProcedures" name="primaryProcedures" placeholder="Knee and hip replacement, ACL, rotator cuff" />
+                  <input type="text" class="form-control" id="primaryProcedures" name="primaryProcedures" placeholder="Knee and hip replacement, ACL, rotator cuff, spine" />
                 </div>
                 <div class="field-full">
                   <label for="interestReason" class="form-label">How do you handle post-op follow-up today?</label>
@@ -142,7 +145,7 @@
               <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="20" height="20" /></span>
               MedPull
             </a>
-            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
+            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Wearable monitoring, quick check-ins, and a short daily list.</p>
           </div>
           <div>
             <h2>Product</h2>
@@ -157,7 +160,7 @@
             <h2>Company</h2>
             <ul>
               <li><a href="index.html#proof">Our background</a></li>
-              <li><a href="index.html#trust">Security</a></li>
+              <li><a href="index.html#trust">Trust</a></li>
             </ul>
           </div>
           <div>
@@ -175,9 +178,9 @@
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=5"></script>
-    <script src="assets/js/forms.js?v=5"></script>
-    <script src="assets/js/interest-popup.js?v=5"></script>
+    <script src="assets/js/site.js?v=6"></script>
+    <script src="assets/js/forms.js?v=6"></script>
+    <script src="assets/js/interest-popup.js?v=6"></script>
     <script>
       // Waitlist form: posts through the shared helper in assets/js/forms.js.
       (function () {

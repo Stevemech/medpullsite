@@ -4,17 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Live demo | MedPull Recovery Copilot</title>
-    <meta name="description" content="Walk through an adaptive post-op check-in and watch it turn into a provider worklist entry, an AI recovery summary, and RTM billing status." />
+    <meta name="description" content="Answer a post-op check-in as a patient and watch it become a worklist entry, an AI recovery summary, and headline care metrics." />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#fbfbf9" />
     <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
     <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
-    <script>document.documentElement.classList.add('js')</script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/site.css?v=5" />
+    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/img/medpull-mark.png" as="image" />
+    <script>
+      // Animations start hidden; if site.js never runs, show everything anyway.
+      document.documentElement.classList.add('js');
+      setTimeout(function () { if (!window.MEDPULL_SITE) document.documentElement.classList.remove('js'); }, 3500);
+    </script>
+    <link rel="stylesheet" href="assets/css/site.css?v=6" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -29,7 +32,7 @@
         <nav class="nav-links" id="navLinks" aria-label="Primary">
           <a href="index.html#product">Product</a>
           <a href="index.html#how">How it works</a>
-          <a href="index.html#trust">Security</a>
+          <a href="index.html#trust">Trust</a>
           <a href="index.html#faq">FAQ</a>
           <a href="demo.html" aria-current="page">Live demo</a>
         </nav>
@@ -44,7 +47,7 @@
     <main id="main">
       <section class="canvas page-top">
         <h1 class="display">Try it yourself</h1>
-        <p class="lede">Answer a post-op check-in the way a patient would, and watch your team's view update as you go.</p>
+        <p class="lede">Answer a check-in the way a patient would, and watch your team's view update.</p>
       </section>
 
       <section class="band fog-a" style="padding-top:clamp(40px,6vw,64px)" aria-label="Interactive demo">
@@ -59,8 +62,8 @@
               <span class="avatar av-1">MA</span>
               <span class="scenario-body">
                 <span class="scenario-top"><span class="wl-name">Maria Alvarez</span><span class="pill pill-neutral">Day 14</span></span>
-                <span class="wl-sub">Total knee arthroplasty</span>
-                <span class="scenario-desc">Two weeks out. Her range of motion is improving, but something changed this week.</span>
+                <span class="wl-sub">Total knee replacement</span>
+                <span class="scenario-desc">Two weeks out. Her resting heart rate has been creeping up.</span>
               </span>
             </button>
             <button class="scenario-card" data-scenario="acl" type="button" aria-pressed="false">
@@ -68,7 +71,7 @@
               <span class="scenario-body">
                 <span class="scenario-top"><span class="wl-name">James Whitfield</span><span class="pill pill-neutral">Day 21</span></span>
                 <span class="wl-sub">ACL reconstruction</span>
-                <span class="scenario-desc">Young, active, and quietly skipping physical therapy.</span>
+                <span class="scenario-desc">His watch has barely synced this week.</span>
               </span>
             </button>
             <button class="scenario-card" data-scenario="rcr" type="button" aria-pressed="false">
@@ -76,7 +79,7 @@
               <span class="scenario-body">
                 <span class="scenario-top"><span class="wl-name">Rachel Okafor</span><span class="pill pill-neutral">Day 9</span></span>
                 <span class="wl-sub">Rotator cuff repair</span>
-                <span class="scenario-desc">Early days. Sleep is usually the first thing to go wrong.</span>
+                <span class="scenario-desc">Early days. Her step count is falling behind the usual curve.</span>
               </span>
             </button>
           </div>
@@ -92,10 +95,10 @@
                 <div class="card-head">
                   <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
                   <span class="card-title" id="chatTitle">Recovery check-in</span>
-                  <span class="card-chip">Adaptive</span>
+                  <span class="card-chip">Text message</span>
                 </div>
                 <div class="card-body">
-                  <div class="chat-meta" id="chatMeta">Day 14 · Total knee arthroplasty</div>
+                  <div class="chat-meta" id="chatMeta">Day 14 · Total knee replacement</div>
                   <div id="demoChatLog" class="chat-log chat-log-scroll" aria-live="polite"></div>
                   <div class="quick-replies" id="demoReplies" aria-label="Choose a reply"></div>
                   <div class="card-foot">
@@ -104,7 +107,7 @@
                   </div>
                 </div>
               </div>
-              <p class="demo-note">In practice this arrives as a text message in the patient's language. No app, no portal login.</p>
+              <p class="demo-note">Patients answer by text, a link, or the MedPull iPhone app.</p>
             </div>
 
             <!-- Step 3: provider side -->
@@ -123,7 +126,7 @@
                   <div class="card-body">
                     <div class="wl-row" id="worklistRow">
                       <span class="avatar av-1" id="wlAvatar">MA</span>
-                      <div><div class="wl-name" id="wlName">Maria Alvarez</div><div class="wl-sub"><span id="wlProc">Total knee arthroplasty</span>, day <span id="wlPod">14</span></div></div>
+                      <div><div class="wl-name" id="wlName">Maria Alvarez</div><div class="wl-sub"><span id="wlProc">Total knee replacement</span>, day <span id="wlPod">14</span></div></div>
                       <div class="wl-cell" id="wlReason">No check-in yet today</div>
                       <div class="wl-status"><span class="pill pill-neutral" id="wlStatus">Pending</span><span class="wl-when" id="wlLast">Not yet</span></div>
                     </div>
@@ -146,26 +149,26 @@
 
                 <div class="card">
                   <div class="card-head">
-                    <span class="glyph g-mint" style="width:26px;height:26px;border-radius:8px" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" style="width:15px;height:15px"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2Z"/></svg></span>
-                    <span class="card-title">RTM readiness</span>
-                    <span class="card-chip" id="rtmChip">In progress</span>
+                    <span class="glyph g-amber" style="width:28px;height:28px;border-radius:9px" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:15px;height:15px"><path d="M4 20h16M7 16v-4M12 16V7M17 16v-6"/></svg></span>
+                    <span class="card-title">Headline metrics</span>
+                    <span class="card-chip">Rule-based</span>
                   </div>
                   <div class="card-body">
-                    <div class="rtm-grid">
-                      <div class="rtm-code">
-                        <div class="rtm-code-top"><span class="rtm-code-id">98977</span><span class="pill pill-watch" id="rtmDaysPill">In progress</span></div>
-                        <div class="rtm-code-name">Device supply, 16 days of data</div>
-                        <div class="rtm-meter is-short"><span id="rtmDaysBar" style="width:56%"></span></div>
-                        <div class="rtm-foot"><span id="rtmDaysText">9 / 16 days</span><span>Auto-tracked</span></div>
+                    <div class="metric-list">
+                      <div class="metric-row">
+                        <div class="metric-top"><span>Symptom burden</span><b id="mPainValue">–</b><span class="pill pill-missing" id="mPainPill">Needs data</span></div>
+                        <div class="meter"><span class="meter-fill" id="mPainBar" style="width:0%"></span></div>
                       </div>
-                      <div class="rtm-code">
-                        <div class="rtm-code-top"><span class="rtm-code-id">98980</span><span class="pill pill-watch" id="rtmMinsPill">In progress</span></div>
-                        <div class="rtm-code-name">First 20 minutes of management</div>
-                        <div class="rtm-meter is-short"><span id="rtmMinsBar" style="width:60%"></span></div>
-                        <div class="rtm-foot"><span id="rtmMinsText">12 / 20 min</span><span>Auto-tracked</span></div>
+                      <div class="metric-row">
+                        <div class="metric-top"><span>Verified adherence</span><b id="mAdhValue">–</b><span class="pill pill-missing" id="mAdhPill">Needs data</span></div>
+                        <div class="meter"><span class="meter-fill" id="mAdhBar" style="width:0%"></span></div>
+                      </div>
+                      <div class="metric-row">
+                        <div class="metric-top"><span>Data confidence</span><b id="mDataValue">–</b><span class="pill pill-missing" id="mDataPill">Needs data</span></div>
+                        <div class="meter"><span class="meter-fill" id="mDataBar" style="width:0%"></span></div>
                       </div>
                     </div>
-                    <p class="fineprint">Illustrative only. RTM code availability and reimbursement vary by payer and setting.</p>
+                    <p class="fineprint">3 of 24 care metrics. Monitoring signals for clinician review, not a diagnosis.</p>
                   </div>
                 </div>
               </div>
@@ -178,8 +181,8 @@
       <section class="canvas cta" aria-labelledby="cta-title">
         <div class="cta-panel">
           <span class="app-icon app-icon-xl" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>
-          <h2 class="h2" id="cta-title">Ready to see this with your own patients?</h2>
-          <p class="lede">We'll show how the Recovery Copilot fits your procedure mix and post-op follow-up.</p>
+          <h2 class="h2" id="cta-title">See it with your own patients.</h2>
+          <p class="lede">We'll show how MedPull fits your procedures and follow-up.</p>
           <div class="btn-row btn-row-center">
             <a class="btn btn-lg btn-primary" href="book-demo.html"><span class="dot" aria-hidden="true"></span>Book a demo</a>
             <a class="btn btn-lg btn-secondary" href="join-waitlist.html">Join the waitlist</a>
@@ -197,7 +200,7 @@
               <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="20" height="20" /></span>
               MedPull
             </a>
-            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
+            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Wearable monitoring, quick check-ins, and a short daily list.</p>
           </div>
           <div>
             <h2>Product</h2>
@@ -212,7 +215,7 @@
             <h2>Company</h2>
             <ul>
               <li><a href="index.html#proof">Our background</a></li>
-              <li><a href="index.html#trust">Security</a></li>
+              <li><a href="index.html#trust">Trust</a></li>
             </ul>
           </div>
           <div>
@@ -231,9 +234,9 @@
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=5"></script>
-    <script src="assets/js/recovery-demo.js?v=5"></script>
-    <script src="assets/js/forms.js?v=5"></script>
-    <script src="assets/js/interest-popup.js?v=5"></script>
+    <script src="assets/js/site.js?v=6"></script>
+    <script src="assets/js/recovery-demo.js?v=6"></script>
+    <script src="assets/js/forms.js?v=6"></script>
+    <script src="assets/js/interest-popup.js?v=6"></script>
   </body>
 </html>

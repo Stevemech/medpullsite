@@ -1,5 +1,7 @@
 // MedPull Recovery Copilot — interactive demo (no deps)
 // Drives the patient check-in on the left and the provider views on the right.
+// Mirrors the product: a fixed set of check-in questions, wearable context per
+// patient, rule-based risk tiers, and a few headline care metrics.
 (function () {
   const $ = (s) => document.querySelector(s);
   const $$ = (s) => Array.from(document.querySelectorAll(s));
@@ -8,136 +10,77 @@
   if (!log) return;
 
   /* ---------------------------------------------------------------------
-     Scenarios. Each step asks a question and offers replies; a reply carries
-     the signals that question was designed to surface (risk, pain, adherence)
-     plus the note that ends up in the summary. Questions may be a function of
-     the answers so far — that is what makes the check-in adaptive.
+     Each reply carries the points it adds to the patient's risk and, when it
+     matters, a note for the summary. `alert` marks answers that notify the
+     care team right away (fever, drainage, redness, pain of 8 or more).
      --------------------------------------------------------------------- */
+  const QUESTIONS = [
+    (s) => ({
+      q: 'Hi ' + s.first + ', quick recovery check-in from Riverside Ortho. Pain right now, 0 to 10?',
+      replies: s.pain,
+    }),
+    () => ({
+      q: 'Any swelling, redness, or drainage at the incision?',
+      replies: [
+        { label: 'Some swelling', risk: 1, note: 'New swelling reported' },
+        { label: 'Drainage', risk: 3, alert: true, note: 'Incision drainage reported, care team alerted' },
+        { label: 'None', risk: 0 },
+      ],
+    }),
+    () => ({
+      q: 'Any fever or chills?',
+      replies: [
+        { label: 'No', risk: 0 },
+        { label: 'Yes', risk: 3, alert: true, note: 'Fever or chills reported, care team alerted' },
+      ],
+    }),
+    () => ({
+      q: 'How did you sleep last night?',
+      replies: [
+        { label: 'Pain woke me up', risk: 1, note: 'Sleep disrupted by pain' },
+        { label: 'Okay', risk: 0 },
+        { label: 'Well', risk: -1 },
+      ],
+    }),
+    () => ({
+      q: 'Did you do your exercises today?',
+      replies: [
+        { label: 'All of them', adherence: 92, risk: -1 },
+        { label: 'Some', adherence: 64, risk: 1, note: 'Exercises only partly done' },
+        { label: 'Not today', adherence: 38, risk: 2, note: 'Exercises skipped' },
+      ],
+    }),
+  ];
+
   const SCENARIOS = {
     tka: {
-      name: 'Maria Alvarez', initials: 'MA', procedure: 'Total knee arthroplasty', pod: 14,
-      rtm: { days: 9, mins: 12 },
-      steps: [
-        {
-          q: 'Hi Maria, quick check-in. How would you rate your knee pain right now, 0 to 10?',
-          replies: [
-            { label: 'About a 7', pain: 7, risk: 3, note: 'Pain 7/10, up from 4 last week' },
-            { label: 'About a 4', pain: 4, risk: 0, note: 'Pain stable at 4/10' },
-            { label: 'About a 2', pain: 2, risk: -1, note: 'Pain improving to 2/10' },
-          ],
-        },
-        {
-          q: (a) => a.pain >= 6
-            ? 'That’s up from a 4 last week. Is it worse when you’re resting, or when you’re moving?'
-            : 'That tracks with where we’d expect you at day 14. Is it worse when you’re resting, or when you’re moving?',
-          replies: [
-            { label: 'Mostly at night', risk: 2, note: 'Night waking reported' },
-            { label: 'When I’m moving', risk: 1, note: 'Pain on movement' },
-            { label: 'Neither really', risk: 0 },
-          ],
-        },
-        {
-          q: 'Any swelling, warmth, or redness around the knee?',
-          replies: [
-            { label: 'Some swelling', risk: 2, note: 'New swelling at day 14, first mention since discharge' },
-            { label: 'No changes', risk: 0 },
-          ],
-        },
-        {
-          q: 'Last one. How many of your home exercise sessions did you finish this week?',
-          replies: [
-            { label: 'All of them', adherence: 100, risk: -1 },
-            { label: 'Most of them', adherence: 86, risk: 0 },
-            { label: 'Only one or two', adherence: 35, risk: 2, note: 'Home exercise adherence dropped to 35%' },
-          ],
-        },
+      name: 'Maria Alvarez', first: 'Maria', initials: 'MA', av: 'av-1',
+      procedure: 'Total knee replacement', pod: 14,
+      signal: 'Resting HR rising vs baseline', signalRisk: 2, coverage: 86,
+      pain: [
+        { label: '7', pain: 7, risk: 2, note: 'Pain 7/10 in today’s check-in' },
+        { label: '4', pain: 4, risk: 0 },
+        { label: '2', pain: 2, risk: -1 },
       ],
     },
-
     acl: {
-      name: 'James Whitfield', initials: 'JW', procedure: 'ACL reconstruction', pod: 21,
-      rtm: { days: 14, mins: 16 },
-      steps: [
-        {
-          q: 'Hi James, checking in on week three. How’s the knee feeling overall?',
-          replies: [
-            { label: 'Pretty good', pain: 3, risk: 0 },
-            { label: 'Stiff and sore', pain: 5, risk: 1, note: 'Stiffness and soreness at week 3' },
-            { label: 'Worse than last week', pain: 7, risk: 3, note: 'Pain 7/10 and worsening' },
-          ],
-        },
-        {
-          q: 'How many physical therapy sessions did you make it to this week?',
-          replies: [
-            { label: 'Both of them', adherence: 100, risk: -1 },
-            { label: 'Just one', adherence: 50, risk: 2, note: 'Attended half of scheduled PT sessions' },
-            { label: 'None this week', adherence: 0, risk: 3, note: 'Missed all PT sessions this week' },
-          ],
-        },
-        {
-          q: (a) => a.adherence !== undefined && a.adherence < 100
-            ? 'That’s usually what sets recovery back the most. What’s getting in the way?'
-            : 'Good. Can you straighten the knee fully when you’re lying down?',
-          replies: (a) => a.adherence !== undefined && a.adherence < 100
-            ? [
-                { label: 'Work schedule', risk: 1, note: 'PT barrier: work schedule' },
-                { label: 'It hurts too much', risk: 2, note: 'PT barrier: pain limiting participation' },
-                { label: 'Too far to travel', risk: 1, note: 'PT barrier: transportation' },
-              ]
-            : [
-                { label: 'Yes, fully', risk: -1 },
-                { label: 'Almost', risk: 1, note: 'Mild extension deficit' },
-                { label: 'No', risk: 2, note: 'Extension deficit at week 3' },
-              ],
-        },
-        {
-          q: 'Are you walking without crutches yet?',
-          replies: [
-            { label: 'No crutches', risk: -1 },
-            { label: 'One crutch', risk: 0 },
-            { label: 'Still using both', risk: 2, note: 'Still using both crutches at week 3' },
-          ],
-        },
+      name: 'James Whitfield', first: 'James', initials: 'JW', av: 'av-2',
+      procedure: 'ACL reconstruction', pod: 21,
+      signal: 'Device data on only 20% of recent days', signalRisk: 0, coverage: 20,
+      pain: [
+        { label: '3', pain: 3, risk: 0 },
+        { label: '5', pain: 5, risk: 1, note: 'Pain 5/10, higher than last week' },
+        { label: '8', pain: 8, risk: 3, alert: true, note: 'Pain 8/10, care team alerted' },
       ],
     },
-
     rcr: {
-      name: 'Rachel Okafor', initials: 'RO', procedure: 'Rotator cuff repair', pod: 9,
-      rtm: { days: 5, mins: 6 },
-      steps: [
-        {
-          q: 'Hi Rachel, day nine. How well did you sleep last night?',
-          replies: [
-            { label: 'Badly, pain woke me', pain: 7, risk: 3, note: 'Sleep disrupted by shoulder pain' },
-            { label: 'So-so', pain: 5, risk: 1, note: 'Interrupted sleep' },
-            { label: 'Pretty well', pain: 3, risk: -1 },
-          ],
-        },
-        {
-          q: 'Are you keeping the sling on except during your exercises?',
-          replies: [
-            { label: 'Yes, always', risk: -1 },
-            { label: 'Mostly', risk: 1 },
-            { label: 'Taking it off a lot', risk: 3, note: 'Sling non-adherence, re-injury risk' },
-          ],
-        },
-        {
-          q: (a) => a.pain >= 6
-            ? 'Understood. Any numbness or tingling running down the arm or into the hand?'
-            : 'Good. Any numbness or tingling running down the arm or into the hand?',
-          replies: [
-            { label: 'Yes, some', risk: 3, note: 'New numbness and tingling in the arm' },
-            { label: 'No', risk: 0 },
-          ],
-        },
-        {
-          q: 'How are the passive range of motion exercises going?',
-          replies: [
-            { label: 'Doing them daily', adherence: 100, risk: -1 },
-            { label: 'Every other day', adherence: 60, risk: 1 },
-            { label: 'Haven’t started', adherence: 0, risk: 2, note: 'Passive ROM exercises not yet started' },
-          ],
-        },
+      name: 'Rachel Okafor', first: 'Rachel', initials: 'RO', av: 'av-3',
+      procedure: 'Rotator cuff repair', pod: 9,
+      signal: 'Behind expected recovery curve (−15%)', signalRisk: 2, coverage: 71,
+      pain: [
+        { label: '6', pain: 6, risk: 1, note: 'Pain 6/10' },
+        { label: '3', pain: 3, risk: 0 },
+        { label: '1', pain: 1, risk: -1 },
       ],
     },
   };
@@ -148,7 +91,9 @@
   let answers = {};
   let notes = [];
   let risk = 0;
+  let alerted = false;
   let busy = false;
+  let timer = null;
 
   /* --- chat rendering ---------------------------------------------------- */
 
@@ -164,19 +109,16 @@
   }
 
   function askNext() {
-    if (step >= scenario.steps.length) return finish();
+    if (step >= QUESTIONS.length) return finish();
 
-    const s = scenario.steps[step];
-    const text = typeof s.q === 'function' ? s.q(answers) : s.q;
-
+    const s = QUESTIONS[step](scenario);
     busy = true;
     renderReplies([]);
     const typing = bubble('ai', '<span class="typing"><i></i><i></i><i></i></span>');
 
-    setTimeout(() => {
-      typing.querySelector('.chat-message-bubble').textContent = text;
-      const replies = typeof s.replies === 'function' ? s.replies(answers) : s.replies;
-      renderReplies(replies);
+    timer = setTimeout(() => {
+      typing.querySelector('.chat-message-bubble').textContent = s.q;
+      renderReplies(s.replies);
       busy = false;
       progress();
     }, 620);
@@ -189,7 +131,6 @@
       const b = document.createElement('button');
       b.type = 'button';
       b.className = 'quick-reply';
-      b.style.cursor = 'pointer';
       b.textContent = r.label;
       b.addEventListener('click', () => choose(r, b));
       host.appendChild(b);
@@ -205,146 +146,144 @@
     if (reply.pain !== undefined) answers.pain = reply.pain;
     if (reply.adherence !== undefined) answers.adherence = reply.adherence;
     risk += reply.risk || 0;
+    if (reply.alert) alerted = true;
     if (reply.note) notes.push(reply.note);
+    updateMetrics();
 
     step++;
-    setTimeout(askNext, 380);
+    timer = setTimeout(askNext, 380);
   }
 
   function progress() {
     $('#chatProgress').textContent =
-      step >= scenario.steps.length ? 'Check-in complete' : 'Question ' + (step + 1) + ' of ' + scenario.steps.length;
+      step >= QUESTIONS.length ? 'Check-in complete' : 'Question ' + (step + 1) + ' of ' + QUESTIONS.length;
   }
 
   /* --- provider side ----------------------------------------------------- */
 
-  function statusOf(r) {
-    if (r >= 5) return { label: 'Needs attention', cls: 'pill-attention', chip: '1 needs attention' };
-    if (r >= 2) return { label: 'Watch', cls: 'pill-watch', chip: '1 to watch' };
+  // Same order of precedence as the product: red flags and high scores first,
+  // then thin device data, then anything worth a look.
+  function tierOf() {
+    const total = risk + scenario.signalRisk;
+    if (alerted || total >= 5) return { label: 'High risk', cls: 'pill-attention', chip: '1 high risk' };
+    if (scenario.coverage < 40) return { label: 'Missing data', cls: 'pill-missing', chip: '1 missing data' };
+    // A worrying device signal alone is enough for a review.
+    if (total >= 2 || scenario.signalRisk >= 2) return { label: 'Needs review', cls: 'pill-watch', chip: '1 needs review' };
     return { label: 'On track', cls: 'pill-ontrack', chip: 'All on track' };
   }
 
-  // Lowercase a procedure name for mid-sentence use, keeping acronyms like ACL.
-  function sentenceCase(text) {
-    return text.split(' ').map((w) => (w === w.toUpperCase() ? w : w.toLowerCase())).join(' ');
+  function summaryFor(tier) {
+    const n = scenario.first;
+    const found = notes.length ? notes.join('. ') + '.' : 'Nothing concerning in today’s check-in.';
+    const signal = scenario.signal + '.';
+    if (tier.label === 'High risk') {
+      return '<b>' + n + ' needs a call today.</b> ' + found + ' Device data: ' + signal + ' Worth reaching out within 24 hours.';
+    }
+    if (tier.label === 'Missing data') {
+      return '<b>Not enough device data to judge ' + n + '’s recovery.</b> ' + signal + ' ' + found + ' Ask ' + n + ' to reconnect their wearable.';
+    }
+    if (tier.label === 'Needs review') {
+      return '<b>' + n + ' is progressing, with something to review.</b> ' + found + ' Device data: ' + signal + ' The next check-in should confirm the trend.';
+    }
+    return '<b>' + n + ' is recovering as expected.</b> ' + found + ' No action needed.';
   }
 
-  function summaryFor(st) {
-    const n = scenario.name.split(' ')[0];
-    const reasons = notes.length ? notes.join('. ') + '.' : 'No concerning findings reported across any domain.';
+  const LEVEL_LABEL = { flag: 'Flag', watch: 'Watch', ok: 'OK', none: 'Needs data' };
+  const LEVEL_CLASS = { flag: 'pill-attention', watch: 'pill-watch', ok: 'pill-ontrack', none: 'pill-missing' };
 
-    if (st.label === 'Needs attention') {
-      return '<b>' + n + ' reported a pattern that warrants a call.</b> ' + reasons +
-        ' Taken together these signals fall outside the expected recovery path for ' +
-        sentenceCase(scenario.procedure) + ' at day ' + scenario.pod +
-        '. Recommend clinical outreach within 24 hours to assess in person.';
-    }
-    if (st.label === 'Watch') {
-      return '<b>' + n + ' is progressing, with a couple of things to keep an eye on.</b> ' + reasons +
-        ' Nothing here requires immediate outreach, but the next check-in should confirm the trend is not worsening.';
-    }
-    return '<b>' + n + ' is recovering as expected.</b> ' + reasons +
-      ' Trajectory is consistent with the expected path for ' + sentenceCase(scenario.procedure) +
-      ' at day ' + scenario.pod + '. No action needed. Continue routine check-ins.';
+  function setMetric(prefix, value, text, level) {
+    $('#' + prefix + 'Value').textContent = text;
+    const bar = $('#' + prefix + 'Bar');
+    bar.style.width = Math.max(0, Math.min(100, value)) + '%';
+    bar.classList.toggle('is-flag', level === 'flag');
+    bar.classList.toggle('is-watch', level === 'watch');
+    const pill = $('#' + prefix + 'Pill');
+    pill.className = 'pill ' + LEVEL_CLASS[level];
+    pill.textContent = LEVEL_LABEL[level];
+  }
+
+  function updateMetrics() {
+    // Symptom burden (0–10): 7 or more is a flag.
+    const p = answers.pain;
+    if (p === undefined) setMetric('mPain', 0, '–', 'none');
+    else setMetric('mPain', p * 10, p + '/10', p >= 7 ? 'flag' : p >= 5 ? 'watch' : 'ok');
+
+    // Verified adherence: under 50% is a flag, under 75% a watch.
+    const a = answers.adherence;
+    if (a === undefined) setMetric('mAdh', 0, '–', 'none');
+    else setMetric('mAdh', a, a + '%', a < 50 ? 'flag' : a < 75 ? 'watch' : 'ok');
+
+    // Data confidence: under 40% the patient can't be judged.
+    const c = scenario.coverage;
+    setMetric('mData', c, c + '%', c < 40 ? 'none' : c < 75 ? 'watch' : 'ok');
   }
 
   function finish() {
-    const st = statusOf(risk);
+    const tier = tierOf();
     progress();
 
-    // Worklist row
-    $('#wlReason').textContent = notes[0] || 'Meeting all milestones';
+    const lead = notes.find((n) => /alerted/.test(n)) || notes[0] || scenario.signal;
+    $('#wlReason').textContent = lead;
     $('#wlLast').textContent = 'Just now';
     const pill = $('#wlStatus');
-    pill.className = 'pill ' + st.cls;
-    pill.textContent = st.label;
-    $('#worklistChip').textContent = st.chip;
-    $('#worklistRow').classList.toggle('is-flagged', st.label !== 'On track');
+    pill.className = 'pill ' + tier.cls;
+    pill.textContent = tier.label;
+    $('#worklistChip').textContent = tier.chip;
+    $('#worklistRow').classList.toggle('is-flagged', tier.label === 'High risk');
 
-    // Summary
-    $('#summaryChip').textContent = 'Ready for chart';
+    $('#summaryChip').textContent = 'Written by AI';
     $('#summaryText').classList.remove('text-muted');
-    $('#summaryText').innerHTML = summaryFor(st);
+    $('#summaryText').innerHTML = summaryFor(tier);
 
     const flags = $('#summaryFlags');
     flags.innerHTML = '';
-    if (notes.length) {
-      notes.forEach((note, i) => {
-        const row = document.createElement('div');
-        row.className = 'rs-flag';
-        const cls = st.label === 'Needs attention' && i === 0 ? 'pill-attention' : 'pill-watch';
-        row.innerHTML = '<span class="pill ' + cls + '">' +
-          (cls === 'pill-attention' ? 'Flag' : 'Watch') + '</span><span>' + note + '</span>';
-        flags.appendChild(row);
-      });
-    }
-    const exportRow = document.createElement('div');
-    exportRow.className = 'rs-flag';
-    exportRow.innerHTML = '<span class="pill pill-neutral">Note</span><span>Summary is exportable to the chart as a progress note.</span>';
-    flags.appendChild(exportRow);
-
-    // RTM — this check-in adds a data day, and clinician review adds interactive minutes.
-    const flagged = st.label !== 'On track';
-    const days = Math.min(16, scenario.rtm.days + 1);
-    const mins = Math.min(20, scenario.rtm.mins + (flagged ? 8 : 4));
-    setMeter('#rtmDaysBar', '#rtmDaysText', '#rtmDaysPill', days, 16, days + ' / 16 days');
-    setMeter('#rtmMinsBar', '#rtmMinsText', '#rtmMinsPill', mins, 20, mins + ' / 20 min');
-    const ready = (days >= 16 ? 1 : 0) + (mins >= 20 ? 1 : 0);
-    $('#rtmChip').textContent = ready === 2 ? '2 of 2 ready' : ready + ' of 2 ready';
-  }
-
-  function setMeter(barSel, textSel, pillSel, value, target, text) {
-    const bar = $(barSel);
-    const pct = Math.round((value / target) * 100);
-    bar.style.width = pct + '%';
-    bar.parentElement.classList.toggle('is-short', value < target);
-    $(textSel).textContent = text;
-    const pill = $(pillSel);
-    pill.className = 'pill ' + (value >= target ? 'pill-ontrack' : 'pill-watch');
-    pill.textContent = value >= target ? 'Ready' : 'In progress';
+    notes.concat(scenario.signal).forEach((note) => {
+      const serious = /alerted/.test(note) || (tier.label === 'High risk' && note === lead);
+      const row = document.createElement('div');
+      row.className = 'rs-flag';
+      row.innerHTML = '<span class="pill ' + (serious ? 'pill-attention' : 'pill-watch') + '">' +
+        (serious ? 'Flag' : 'Watch') + '</span><span>' + note + '</span>';
+      flags.appendChild(row);
+    });
   }
 
   /* --- lifecycle --------------------------------------------------------- */
 
   function reset(newKey) {
+    clearTimeout(timer);
     key = newKey || key;
     scenario = SCENARIOS[key];
     step = 0;
     answers = {};
     notes = [];
     risk = 0;
+    alerted = false;
     busy = false;
 
     log.innerHTML = '';
     $('#demoReplies').innerHTML = '';
     $('#chatMeta').textContent = 'Day ' + scenario.pod + ' · ' + scenario.procedure;
-    $('#chatTitle').textContent = 'Recovery check-in';
 
     $('#wlName').textContent = scenario.name;
     const avatar = $('#wlAvatar');
-    if (avatar) {
-      avatar.textContent = scenario.initials;
-      avatar.className = 'avatar ' + ({ tka: 'av-1', acl: 'av-2', rcr: 'av-3' }[key] || 'av-1');
-    }
+    avatar.textContent = scenario.initials;
+    avatar.className = 'avatar ' + scenario.av;
     $('#wlProc').textContent = scenario.procedure;
     $('#wlPod').textContent = scenario.pod;
-    $('#wlReason').textContent = 'No check-in yet today';
-    $('#wlLast').textContent = 'Not yet';
+    $('#wlReason').textContent = scenario.signal;
+    $('#wlLast').textContent = 'Waiting';
     const pill = $('#wlStatus');
     pill.className = 'pill pill-neutral';
-    pill.textContent = 'Pending';
+    pill.textContent = 'Check-in sent';
     $('#worklistChip').textContent = 'Awaiting check-in';
     $('#worklistRow').classList.remove('is-flagged');
 
-    $('#summaryChip').textContent = 'Generating…';
+    $('#summaryChip').textContent = 'Waiting';
     $('#summaryText').className = 'text-muted';
-    $('#summaryText').textContent = 'The summary writes itself once the check-in is complete. Answer the questions on the left to see it build.';
+    $('#summaryText').textContent = 'The summary is written once the check-in is done. Answer the questions to see it.';
     $('#summaryFlags').innerHTML = '';
 
-    setMeter('#rtmDaysBar', '#rtmDaysText', '#rtmDaysPill', scenario.rtm.days, 16, scenario.rtm.days + ' / 16 days');
-    setMeter('#rtmMinsBar', '#rtmMinsText', '#rtmMinsPill', scenario.rtm.mins, 20, scenario.rtm.mins + ' / 20 min');
-    $('#rtmChip').textContent = 'In progress';
-
+    updateMetrics();
     askNext();
   }
 

@@ -9,12 +9,15 @@
     <meta name="theme-color" content="#fbfbf9" />
     <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
     <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
-    <script>document.documentElement.classList.add('js')</script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/site.css?v=5" />
+    <link rel="preload" href="assets/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/img/medpull-mark.png" as="image" />
+    <script>
+      // Animations start hidden; if site.js never runs, show everything anyway.
+      document.documentElement.classList.add('js');
+      setTimeout(function () { if (!window.MEDPULL_SITE) document.documentElement.classList.remove('js'); }, 3500);
+    </script>
+    <link rel="stylesheet" href="assets/css/site.css?v=6" />
   </head>
   <body data-interest-auto="off">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -29,7 +32,7 @@
         <nav class="nav-links" id="navLinks" aria-label="Primary">
           <a href="index.html#product">Product</a>
           <a href="index.html#how">How it works</a>
-          <a href="index.html#trust">Security</a>
+          <a href="index.html#trust">Trust</a>
           <a href="index.html#faq">FAQ</a>
           <a href="demo.html">Live demo</a>
         </nav>
@@ -50,7 +53,7 @@
             <ul class="checklist">
               <li>
                 <span class="glyph g-sage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="11.5" rx="2.5"/><path d="M9 20h6M12 16.5V20" stroke-linecap="round"/></svg></span>
-                <span><b>A live walkthrough</b>An adaptive check-in, the short list it feeds, and the AI summary it writes.</span>
+                <span><b>A live walkthrough</b>A patient check-in, the worklist it feeds, and the AI summary it writes.</span>
               </li>
               <li>
                 <span class="glyph g-clay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="9" cy="8" r="3"/><path d="M3.5 19c.6-3 2.6-4.5 5.5-4.5s4.9 1.5 5.5 4.5M16 5.2a3 3 0 0 1 0 5.6M17.5 14.7c1.6.5 2.6 1.9 3 4.3"/></svg></span>
@@ -58,7 +61,7 @@
               </li>
               <li>
                 <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-6l-4.5 3.5V16H7a3 3 0 0 1-3-3Z"/></svg></span>
-                <span><b>Straight answers</b>EMR integration, RTM billing, security and HIPAA, and pricing.</span>
+                <span><b>Straight answers</b>Wearables, care metrics, security, and pricing.</span>
               </li>
               <li>
                 <span class="glyph g-lilac" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -92,7 +95,7 @@
               <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="20" height="20" /></span>
               MedPull
             </a>
-            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
+            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Wearable monitoring, quick check-ins, and a short daily list.</p>
           </div>
           <div>
             <h2>Product</h2>
@@ -107,7 +110,7 @@
             <h2>Company</h2>
             <ul>
               <li><a href="index.html#proof">Our background</a></li>
-              <li><a href="index.html#trust">Security</a></li>
+              <li><a href="index.html#trust">Trust</a></li>
             </ul>
           </div>
           <div>
@@ -126,8 +129,8 @@
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=5"></script>
-    <script src="assets/js/forms.js?v=5"></script>
-    <script src="assets/js/interest-popup.js?v=5"></script>
+    <script src="assets/js/site.js?v=6"></script>
+    <script src="assets/js/forms.js?v=6"></script>
+    <script src="assets/js/interest-popup.js?v=6"></script>
   </body>
 </html>

@@ -9,7 +9,12 @@
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
+  window.MEDPULL_SITE = true;
   root.classList.add('js');
+
+  // Hold entrance animations until the font is in, so nothing reflows mid-animation.
+  const ready = Promise.race([document.fonts ? document.fonts.ready : Promise.resolve(), sleep(1200)])
+    .then(() => { root.classList.add('is-ready'); });
 
   // Footer year
   $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
@@ -101,56 +106,46 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => moveThumb(current()));
   }
 
-  /* --- Scroll reveal, plus the small animations inside each card ----------- */
+  /* --- Scroll reveal ------------------------------------------------------ */
+  // Keep in sync with the matching selector list in site.css.
   const REVEAL = [
-    '.section-head', '.procedures', '.compare > *', '.tabs', '.stage-tile', '.bento > *',
-    '.steps > *', '.origin', '.trust > *', '.faq-aside', '.faq-list > *', '.cta-panel',
-    '.page-top > *', '.split-intro > *', '.split > .form-card', '.scenarios > *', '.demo-grid > *',
-    '.demo-step', '.footer-grid > *',
+    '.section-head', '.procedures > p', '.procedure-list > li', '.compare > *', '.tabs', '.stage-tile',
+    '.bento > *', '.steps > *', '.origin', '.trust > *', '.faq-aside', '.faq-list > *', '.cta-panel',
+    '.page-top > *', '.split-intro > :not(.checklist)', '.checklist > li', '.split > .form-card',
+    '.scenarios > *', '.demo-step', '.demo-grid .card', '.demo-note', '.footer-grid > *',
   ];
-  // Give staggered children an index so their transitions cascade.
+  // Stagger siblings, and cascade the bars and dots inside graphics.
   $$('.silence-row').forEach((row, r) => $$('i', row).forEach((dot, i) => dot.style.setProperty('--i', r * 2 + i)));
-  $$('.spark').forEach((spark) => $$('i', spark).forEach((bar, i) => bar.style.setProperty('--i', i)));
+  $$('.spark, .bars').forEach((set) => $$('i', set).forEach((bar, i) => bar.style.setProperty('--i', i)));
 
-  const targets = [];
-  REVEAL.forEach((sel) => {
-    $$(sel).forEach((el) => {
-      if (targets.some((t) => t === el || t.contains(el))) return;
-      const siblings = el.parentElement ? $$(':scope > *', el.parentElement).filter((s) => s.matches(sel)) : [el];
-      el.style.setProperty('--d', Math.min(siblings.indexOf(el), 6));
-      targets.push(el);
-    });
+  const targets = $$(REVEAL.join(','));
+  targets.forEach((el) => {
+    const group = $$(':scope > *', el.parentElement).filter((sib) => targets.includes(sib));
+    el.style.setProperty('--d', Math.min(Math.max(group.indexOf(el), 0), 6));
   });
 
-  const settle = (el) => {
-    el.classList.remove('in-wait');
-    if (!el.classList.contains('reveal')) return;
-    el.classList.add('is-in');
-    const d = parseFloat(el.style.getPropertyValue('--d')) || 0;
-    // Drop the reveal classes afterwards so each element's own transitions apply again.
-    setTimeout(() => el.classList.remove('reveal', 'is-in'), 1200 + d * 90);
-  };
+  const show = (el) => { el.classList.add('is-shown'); el.dispatchEvent(new CustomEvent('shown')); };
 
-  if (!reduceMotion && 'IntersectionObserver' in window) {
-    targets.forEach((el) => el.classList.add('reveal', 'in-wait'));
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    targets.forEach(show);
+  } else {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
         io.unobserve(entry.target);
-        settle(entry.target);
+        show(entry.target);
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
-    targets.forEach((el) => io.observe(el));
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
+    ready.then(() => targets.forEach((el) => io.observe(el)));
 
-    // Safety net for fast scrolling or jumps: anything already above the fold is shown.
+    // Safety net for fast scrolling or anchor jumps: anything above the fold is shown.
     let pending = targets.slice();
     let queued = false;
     const sweep = () => {
       queued = false;
-      const limit = window.innerHeight;
       pending = pending.filter((el) => {
-        if (!el.classList.contains('in-wait')) return false;
-        if (el.getBoundingClientRect().top < limit) { io.unobserve(el); settle(el); return false; }
+        if (el.classList.contains('is-shown')) return false;
+        if (el.getBoundingClientRect().top < window.innerHeight * 0.94) { io.unobserve(el); show(el); return false; }
         return true;
       });
       if (!pending.length) window.removeEventListener('scroll', onSweep);
@@ -160,30 +155,23 @@
   }
 
   /* --- Count-up numbers ---------------------------------------------------- */
-  const counters = $$('[data-count]');
-  const runCount = (el) => {
+  $$('[data-count]').forEach((el) => {
     const to = parseFloat(el.getAttribute('data-count'));
-    if (reduceMotion || !isFinite(to)) { el.textContent = el.getAttribute('data-count'); return; }
-    const start = performance.now();
-    const dur = 1400;
-    const tick = (now) => {
-      const t = Math.min(1, (now - start) / dur);
-      const eased = 1 - Math.pow(1 - t, 3);
-      el.textContent = Math.round(to * eased);
-      if (t < 1) requestAnimationFrame(tick);
+    const host = el.closest('.is-shown, ' + REVEAL.join(','));
+    if (reduceMotion || !isFinite(to) || !host) return;
+    el.textContent = '0';
+    const run = () => {
+      const start = performance.now();
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / 1400);
+        el.textContent = Math.round(to * (1 - Math.pow(1 - t, 3))).toLocaleString();
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
     };
-    requestAnimationFrame(tick);
-  };
-  if (counters.length && 'IntersectionObserver' in window) {
-    const cio = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        cio.unobserve(entry.target);
-        runCount(entry.target);
-      });
-    }, { threshold: 0.6 });
-    counters.forEach((el) => cio.observe(el));
-  }
+    if (host.classList.contains('is-shown')) run();
+    else host.addEventListener('shown', run, { once: true });
+  });
 
   /* --- A soft light that follows the pointer across glass ------------------ */
   if (finePointer && !reduceMotion) {
@@ -197,11 +185,12 @@
   }
 
   /* --- Only run decorative loops while they are on screen ------------------ */
-  const loopHosts = $$('.canvas, .gtile, .origin');
+  // Start them a little before they scroll in, so they are already moving when seen.
+  const loopHosts = $$('.canvas, .gtile, .origin, .stage-tile, .tile, .card');
   if ('IntersectionObserver' in window) {
     const lio = new IntersectionObserver((entries) => {
       entries.forEach((entry) => entry.target.classList.toggle('is-live', entry.isIntersecting));
-    }, { rootMargin: '80px' });
+    }, { rootMargin: '40% 0px' });
     loopHosts.forEach((el) => lio.observe(el));
   } else {
     loopHosts.forEach((el) => el.classList.add('is-live'));
@@ -211,7 +200,13 @@
   const screen = $('[data-screen]');
   const dash = screen && $('.dash', screen);
   if (screen && dash) {
-    const fit = () => dash.style.setProperty('--s', (screen.clientWidth / 1280).toFixed(4));
+    // Phones get the display in portrait, zoomed to the worklist and live check-in.
+    const narrow = window.matchMedia('(max-width: 560px)');
+    const fit = () => {
+      const crop = narrow.matches;
+      dash.classList.toggle('is-crop', crop);
+      dash.style.setProperty('--s', (screen.clientWidth / (crop ? 500 : 1280)).toFixed(4));
+    };
     fit();
     if ('ResizeObserver' in window) new ResizeObserver(fit).observe(screen);
     else window.addEventListener('resize', fit);
@@ -239,13 +234,13 @@
   const sms = $('[data-hero-sms]');
   if (sms) {
     const script = [
-      ['in', 'Hi Maria, it’s your day 14 check-in. How is your knee pain right now, 0 to 10?'],
-      ['out', 'About a 7'],
-      ['in', 'That’s up from a 4 last week. Is it worse at rest or when you’re moving?'],
-      ['out', 'Mostly at night, it keeps waking me up'],
-      ['in', 'Thanks for telling me. Any swelling or warmth around the knee?'],
-      ['out', 'A little swelling'],
-      ['in', 'Got it. Dr. Reyes’s team will give you a call today.'],
+      ['in', 'Hi Maria, quick recovery check-in from Riverside Ortho. Pain right now, 0 to 10?'],
+      ['out', '7'],
+      ['in', 'Any swelling, redness, or drainage at the incision?'],
+      ['out', 'Some swelling'],
+      ['in', 'Any fever or chills?'],
+      ['out', 'No'],
+      ['in', 'Thanks, Maria. Your care team will review this today.'],
     ];
 
     const note = $('[data-hero-note]');
@@ -267,6 +262,9 @@
 
     const checkIn = (animate) => {
       $$('[data-hero-checkins]').forEach((el) => { el.textContent = '214'; if (animate) pop(el); });
+      $$('[data-hero-pain]').forEach((el) => { el.textContent = '7'; if (animate) pop(el); });
+      $$('[data-hero-gauge]').forEach((el) => el.style.setProperty('--p', '.7'));
+      $$('[data-hero-delta]').forEach((el) => { el.hidden = false; });
     };
 
     const flagMaria = (animate) => {
@@ -279,18 +277,22 @@
         row.setAttribute('data-maria', '');
         row.innerHTML =
           '<span class="avatar av-1">MA</span>' +
-          '<span><b>Maria Alvarez</b><span class="sub">Knee, day 14 · pain up 3, new swelling</span></span>' +
-          '<span class="pill pill-attention">Call today</span>';
+          '<span><b>Maria Alvarez</b><span class="sub">Knee · resting HR rising vs baseline</span></span>' +
+          '<span class="pill pill-attention">High risk</span>';
         list.prepend(row);
       }
     };
 
     // Start once the display is in view, so visitors see the story from the beginning.
+    const showcase = sms.closest('.showcase');
     let started = false;
     const play = async () => {
       if (started) return;
       started = true;
-      await sleep(700);
+      await ready;
+      await sleep(500);
+      if (showcase) show(showcase);
+      await sleep(500);
       for (const [i, [dir, text]] of script.entries()) {
         if (dir === 'in') {
           const typing = addMsg('in', '');
@@ -312,15 +314,58 @@
 
     if (reduceMotion) {
       script.slice(-4).forEach(([dir, text]) => addMsg(dir, text));
+      if (showcase) show(showcase);
       checkIn(false);
       flagMaria(false);
     } else if ('IntersectionObserver' in window) {
       const sio = new IntersectionObserver((entries) => {
         if (entries.some((e) => e.isIntersecting)) { sio.disconnect(); play(); }
       }, { threshold: 0.35 });
-      sio.observe(sms.closest('.showcase') || sms);
+      sio.observe(showcase || sms);
     } else {
       play();
+    }
+  }
+
+  /* --- Compare: an endless table vs. the same patients, sorted ------------- */
+  const scanCount = $('[data-scan]');
+  if (scanCount && !reduceMotion) {
+    let n = 1;
+    setInterval(() => {
+      if (!scanCount.closest('.is-live')) return;
+      n = n >= 240 ? 1 : n + 1;
+      scanCount.textContent = n;
+    }, 1800);
+  }
+
+  const sorter = $('[data-sorter]');
+  const sorterStatus = $('[data-sorter-status]');
+  if (sorter) {
+    const setState = (state) => {
+      sorter.classList.toggle('is-reading', state === 'reading');
+      sorter.classList.toggle('is-sorted', state === 'sorted');
+      if (sorterStatus) {
+        sorterStatus.classList.toggle('is-reading', state === 'reading');
+        sorterStatus.classList.toggle('is-sorted', state === 'sorted');
+      }
+    };
+    if (reduceMotion) {
+      setState('sorted');
+    } else {
+      const card = sorter.closest('.compare > *') || sorter;
+      const cycle = async () => {
+        for (;;) {
+          setState('idle');
+          await sleep(60);
+          setState('reading');
+          await sleep(2200);
+          setState('sorted');
+          await sleep(6500);
+          while (!card.classList.contains('is-live')) await sleep(500);
+        }
+      };
+      if (card.classList.contains('is-shown')) cycle();
+      else card.addEventListener('shown', () => sleep(400).then(cycle), { once: true });
     }
   }
 })();
