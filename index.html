@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MedPull | AI Recovery Copilot for orthopedic practices</title>
     <meta name="description" content="MedPull checks in with every post-op patient by text, tracks how recovery is progressing, and tells your team which patients need attention today." />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f3f3ff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#fbfbf9" />
     <meta property="og:title" content="MedPull | AI Recovery Copilot for orthopedic practices" />
     <meta property="og:description" content="Adaptive post-op check-ins, wearable and EMR integration, ranked provider worklists, and RTM made simple." />
     <meta property="og:type" content="website" />
@@ -20,11 +19,12 @@
     <meta name="twitter:image" content="https://medpull.org/assets/img/medpull-logo.png" />
     <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
     <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
+    <script>document.documentElement.classList.add('js')</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/site.css?v=3" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/site.css?v=4" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -33,7 +33,7 @@
     <header class="nav" data-nav>
       <div class="nav-inner">
         <a class="brand" href="#top" aria-label="MedPull home">
-          <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+          <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="20" height="20" /></span>
           MedPull
         </a>
         <nav class="nav-links" id="navLinks" aria-label="Primary">
@@ -45,7 +45,7 @@
         </nav>
         <div class="nav-cta">
           <a class="btn btn-sm btn-tinted" href="join-waitlist.html">Join waitlist</a>
-          <a class="btn btn-sm btn-primary" href="book-demo.html">Book a demo</a>
+          <a class="btn btn-sm btn-primary" href="book-demo.html"><span class="dot" aria-hidden="true"></span>Book a demo</a>
         </div>
         <button class="nav-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" data-nav-toggle><span></span></button>
       </div>
@@ -56,42 +56,45 @@
       <section class="canvas hero" id="top">
         <div class="hero-copy">
           <a class="badge" href="join-waitlist.html">
-            <span class="badge-new">New</span>
+            <span class="dot" aria-hidden="true"></span>
             Now onboarding orthopedic practices
-            <svg class="badge-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m4.5 2.5 3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg class="badge-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m4.5 2.5 3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <h1 class="display">Know which post-op patients need you today.</h1>
           <p class="lede">MedPull checks in with every patient by text, keeps an eye on how recovery is going, and lets your team know who could use a call.</p>
           <div class="btn-row">
-            <a class="btn btn-lg btn-primary" href="book-demo.html">Book a demo</a>
+            <a class="btn btn-lg btn-primary" href="book-demo.html"><span class="dot" aria-hidden="true"></span>Book a demo</a>
             <a class="btn btn-lg btn-secondary" href="demo.html">Try the live demo</a>
+          </div>
+          <div class="today-strip">
+            <div class="today-top"><b>Today's check-ins</b><span><span class="num" data-hero-checkins>213</span> of 240 patients</span></div>
+            <div class="timeline" aria-hidden="true">
+              <div class="timeline-fill"><span class="timeline-mark" style="left:5.9%"></span><span class="timeline-mark" style="left:10.6%"></span><span class="timeline-mark" style="left:15.3%"></span><span class="timeline-mark" style="left:21.3%"></span><span class="timeline-mark" style="left:28.3%"></span><span class="timeline-mark" style="left:34.2%"></span><span class="timeline-mark" style="left:39.0%"></span><span class="timeline-mark" style="left:44.9%"></span><span class="timeline-mark" style="left:51.9%"></span><span class="timeline-mark" style="left:57.9%"></span><span class="timeline-mark" style="left:62.6%"></span><span class="timeline-mark" style="left:67.3%"></span><span class="timeline-mark" style="left:73.2%"></span><span class="timeline-mark" style="left:79.1%"></span><span class="timeline-mark" style="left:83.8%"></span><span class="timeline-mark" style="left:88.5%"></span><span class="timeline-mark" style="left:93.3%"></span></div>
+              <span class="timeline-now"></span>
+            </div>
+            <div class="timeline-ticks" aria-hidden="true"><span>6 AM</span><span>10 AM</span><span>2 PM</span><span>6 PM</span><span>9 PM</span></div>
           </div>
         </div>
 
-        <div class="stage" role="img" aria-label="A patient answers a check-in by text, and MedPull adds her to the team's list for today">
-          <!-- Today widget -->
-          <div class="widget w-today" aria-hidden="true">
-            <div class="widget-head"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>Today</div>
-            <span class="big grad-num num" data-hero-count>2</span>
-            <span class="lbl">patients need you</span>
-            <span class="faces" data-hero-faces><span class="avatar av-2">JW</span><span class="avatar av-3">RO</span></span>
-          </div>
-
-          <!-- Check-ins ring -->
-          <div class="widget w-ring" aria-hidden="true">
-            <div class="widget-head"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>Check-ins</div>
-            <div class="ring">
-              <svg viewBox="0 0 100 100">
-                <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fe0c9"/><stop offset="1" stop-color="#7b87f3"/></linearGradient></defs>
-                <circle class="ring-track" cx="50" cy="50" r="42" fill="none" stroke-width="11"/>
-                <circle class="ring-value" cx="50" cy="50" r="42" fill="none" stroke="url(#ringGrad)" stroke-width="11" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="29.7" data-hero-ring/>
-              </svg>
-              <b class="num" data-hero-checkins>213</b>
+        <div class="stage" role="img" aria-label="A patient answers her day 14 check-in by text, and MedPull adds her to the team's list for today">
+          <div class="callout c-left" aria-hidden="true">
+            <div class="callout-text">
+              <span class="big-num">14<small>days</small></span>
+              <span class="callout-label">Since knee surgery</span>
+              <span class="callout-sub">Motion improving</span>
             </div>
-            <span class="lbl">of 240 checked in</span>
+            <span class="callout-line"></span><span class="dot"></span>
           </div>
 
-          <!-- Phone -->
+          <div class="callout c-right" aria-hidden="true">
+            <div class="callout-text">
+              <span class="big-num">7<small>/10</small></span>
+              <span class="callout-label">Pain tonight</span>
+              <span class="callout-sub">Up from 4 last week</span>
+            </div>
+            <span class="callout-line"></span><span class="dot"></span>
+          </div>
+
           <div class="phone" aria-hidden="true">
             <div class="phone-screen">
               <span class="phone-island"></span>
@@ -109,7 +112,13 @@
             </div>
           </div>
 
-          <!-- Notification -->
+          <div class="widget w-today" aria-hidden="true">
+            <div class="widget-head"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>Today</div>
+            <span class="big-num" data-hero-count>2</span>
+            <span class="lbl">patients need you</span>
+            <span class="faces" data-hero-faces><span class="avatar av-2">JW</span><span class="avatar av-3">RO</span></span>
+          </div>
+
           <div class="widget w-note" data-hero-note aria-hidden="true">
             <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
             <div>
@@ -118,13 +127,6 @@
               <p>Pain is up 3 points since last week, with new swelling.</p>
             </div>
           </div>
-
-          <!-- Summary widget -->
-          <div class="widget w-summary" aria-hidden="true">
-            <div class="widget-head"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>Recovery summary</div>
-            <p><b>Sofia N. is right on track.</b> Hip flexion keeps improving and she hasn't missed an exercise all week.</p>
-            <div class="spark"><i style="height:40%"></i><i style="height:52%"></i><i style="height:60%"></i><i style="height:68%"></i><i style="height:80%"></i><i style="height:92%"></i></div>
-          </div>
         </div>
       </section>
 
@@ -132,16 +134,16 @@
       <div class="procedures">
         <p>Recovery pathways built for the procedures you do most</p>
         <ul class="procedure-list">
-          <li>Total knee arthroplasty</li>
-          <li>Total hip arthroplasty</li>
-          <li>ACL reconstruction</li>
-          <li>Rotator cuff repair</li>
-          <li>Meniscectomy</li>
+          <li><span class="dot" aria-hidden="true"></span>Total knee arthroplasty</li>
+          <li><span class="dot" aria-hidden="true"></span>Total hip arthroplasty</li>
+          <li><span class="dot" aria-hidden="true"></span>ACL reconstruction</li>
+          <li><span class="dot" aria-hidden="true"></span>Rotator cuff repair</li>
+          <li><span class="dot" aria-hidden="true"></span>Meniscectomy</li>
         </ul>
       </div>
 
       <!-- POSITIONING -->
-      <section class="band band-alt" aria-labelledby="signal-title" style="margin-top:56px">
+      <section class="band fog-a" aria-labelledby="signal-title">
         <div class="wrap">
           <div class="section-head">
             <h2 class="h2" id="signal-title">Your team doesn't need another dashboard. It needs the answer.</h2>
@@ -151,22 +153,21 @@
           <div class="compare">
             <figure class="tile">
               <div class="compare-top">
-                <span class="compare-kicker"><span class="glyph g-sky" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg></span>A monitoring dashboard</span>
-                <span class="compare-count"><b class="num">240</b><span>to review</span></span>
+                <div><span class="compare-kicker">A monitoring dashboard</span><span class="compare-num big-num" data-count="240">240</span></div>
+                <span class="compare-note">patients for your team to read through</span>
               </div>
               <div class="field" role="img" aria-label="240 patients, all shown the same way"></div>
               <figcaption class="compare-foot">Every patient looks the same until someone opens their chart and works out what changed.</figcaption>
             </figure>
 
-            <figure class="tile">
-              <div class="compare-top">
-                <span class="compare-kicker"><span class="glyph g-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>MedPull</span>
-                <span class="compare-count"><b class="grad-num num">3</b><span>to call</span></span>
+            <figure class="gtile g-sage">
+              <div class="gtile-top">
+                <div><span class="gtile-kicker">MedPull</span><span class="gtile-num big-num">3</span></div>
+                <div class="gtile-side"><b>240 to 3</b>need a call today</div>
               </div>
-              <div class="field" role="img" aria-label="The same 240 patients, with 3 highlighted">
-                <span class="field-hit" style="--x:4;--y:2;--c:#f0677a"></span>
-                <span class="field-hit" style="--x:13;--y:5;--c:#5a78f0"></span>
-                <span class="field-hit" style="--x:8;--y:9;--c:#f0a040"></span>
+              <div class="gtile-art">
+                <svg class="art art-funnel" viewBox="0 0 220 230" fill="none" aria-hidden="true"><line x1="110" y1="14" x2="110" y2="206"/><ellipse class="art-ring" style="--i:0" cx="110" cy="22" rx="101" ry="21.7"/><ellipse class="art-ring" style="--i:1" cx="110" cy="39.6" rx="88.3" ry="19.2"/><ellipse class="art-ring" style="--i:2" cx="110" cy="57.2" rx="76" ry="16.7"/><ellipse class="art-ring" style="--i:3" cx="110" cy="74.8" rx="64.3" ry="14.4"/><ellipse class="art-ring" style="--i:4" cx="110" cy="92.4" rx="53.2" ry="12.1"/><ellipse class="art-ring" style="--i:5" cx="110" cy="110" rx="42.7" ry="10"/><ellipse class="art-ring" style="--i:6" cx="110" cy="127.6" rx="32.9" ry="8.1"/><ellipse class="art-ring" style="--i:7" cx="110" cy="145.2" rx="23.9" ry="6.3"/><ellipse class="art-ring" style="--i:8" cx="110" cy="162.8" rx="15.9" ry="4.7"/><ellipse class="art-ring" style="--i:9" cx="110" cy="180.4" rx="9.3" ry="3.4"/><ellipse class="art-ring" style="--i:10" cx="110" cy="198" rx="5" ry="2.5"/><circle class="art-dot" cx="110" cy="206" r="5.5"/></svg>
+                <div class="funnel-labels" aria-hidden="true"><span>240 check-ins read</span><span>3 flagged</span></div>
               </div>
               <figcaption class="people">
                 <div class="person"><span class="avatar av-1">MA</span><span class="person-text"><b>Maria A.</b>Pain up 3 points, new swelling</span><span class="pill pill-attention">Call today</span></div>
@@ -197,7 +198,7 @@
             <!-- Check-in -->
             <div class="panel" role="tabpanel" id="panel-chat" aria-labelledby="tab-chat" tabindex="0">
               <div class="panel-copy">
-                <span class="glyph g-indigo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-6l-4.5 3.5V16H7a3 3 0 0 1-3-3Z"/></svg></span>
+                <span class="glyph g-sage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-6l-4.5 3.5V16H7a3 3 0 0 1-3-3Z"/></svg></span>
                 <h3 class="h3">Check-ins that listen, not a script</h3>
                 <p class="body">MedPull knows the procedure, the day of recovery, and what the patient said last time. When a pain score jumps three points, it asks the follow-up a nurse would.</p>
                 <ul class="notes">
@@ -239,7 +240,7 @@
             <!-- Worklist -->
             <div class="panel" role="tabpanel" id="panel-worklist" aria-labelledby="tab-worklist" tabindex="0" hidden>
               <div class="panel-copy">
-                <span class="glyph g-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6.5h10M9 12h10M9 17.5h10"/><circle cx="4.8" cy="6.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.8" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.8" cy="17.5" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+                <span class="glyph g-clay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 6.5h10M9 12h10M9 17.5h10"/><circle cx="4.8" cy="6.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.8" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.8" cy="17.5" r="1.3" fill="currentColor" stroke="none"/></svg></span>
                 <h3 class="h3">A short list of who needs you</h3>
                 <p class="body">Instead of a grid of all 240 patients, MedPull ranks the few who need attention and writes out why. The first thing your team reads is the decision to make.</p>
                 <ul class="notes">
@@ -296,7 +297,7 @@
             <!-- Summary -->
             <div class="panel" role="tabpanel" id="panel-summary" aria-labelledby="tab-summary" tabindex="0" hidden>
               <div class="panel-copy">
-                <span class="glyph g-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
+                <span class="glyph g-lilac" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
                 <h3 class="h3">Two weeks of recovery, read in fifteen seconds</h3>
                 <p class="body">Every check-in, trend, and flag becomes a short paragraph written for a clinician: what's going well, what changed, and what it might mean.</p>
                 <ul class="notes">
@@ -343,7 +344,7 @@
             <!-- RTM -->
             <div class="panel" role="tabpanel" id="panel-rtm" aria-labelledby="tab-rtm" tabindex="0" hidden>
               <div class="panel-copy">
-                <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2Z"/><path d="M9.5 8.5h5M9.5 12.5h5" stroke-linecap="round"/></svg></span>
+                <span class="glyph g-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2Z"/><path d="M9.5 8.5h5M9.5 12.5h5" stroke-linecap="round"/></svg></span>
                 <h3 class="h3">RTM revenue, minus the paperwork</h3>
                 <p class="body">Remote Therapeutic Monitoring is reimbursable, but tracking data days and minutes by hand usually isn't worth it. MedPull counts both automatically, from work your team already does.</p>
                 <ul class="notes">
@@ -396,7 +397,7 @@
       </section>
 
       <!-- FEATURES -->
-      <section class="band band-alt" id="features" aria-labelledby="features-title">
+      <section class="band fog-b" id="features" aria-labelledby="features-title">
         <div class="wrap">
           <div class="section-head">
             <h2 class="h2" id="features-title">Everything between discharge and day 90</h2>
@@ -404,73 +405,75 @@
           </div>
 
           <div class="bento">
-            <article class="tile cell cell-2">
-              <span class="glyph g-indigo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17.5 9.5 12l3.5 3.5L20 8.5"/><path d="M15 8.5h5v5"/></svg></span>
-              <h3 class="title">Measured against the expected curve</h3>
-              <p class="body">Pain, range of motion, function, and adherence are compared to the usual recovery path for that procedure, so a reversal stands out the day it starts.</p>
-              <div class="cell-visual curve" aria-hidden="true">
-                <div class="curve-legend"><span><i></i>Expected for knee arthroplasty</span><span><i class="is-actual"></i>Maria A.</span><span class="curve-note"><b></b>Pain 7 on day 14</span></div>
-                <svg viewBox="0 0 600 150" fill="none">
-                  <path class="curve-grid" d="M0 140.5H600M0 90.5H600M0 40.5H600"/>
-                  <path class="curve-expected" d="M0 12C80 32 150 70 230 95C320 122 440 136 600 142" stroke-width="2.5" stroke-dasharray="4 7" stroke-linecap="round"/>
-                  <defs><linearGradient id="curveGrad" x1="0" x2="1"><stop offset="0" stop-color="#7b87f3"/><stop offset="1" stop-color="#a48af5"/></linearGradient></defs>
-                  <path d="M0 16C70 34 140 66 200 88C250 106 290 108 330 102C370 96 395 78 430 60" stroke="url(#curveGrad)" stroke-width="4" stroke-linecap="round"/>
-                  <circle cx="430" cy="60" r="8" fill="#ff7a6b" opacity=".25"/>
-                  <circle cx="430" cy="60" r="5" fill="#ff7a6b"/>
+            <article class="gtile g-meadow span-2">
+              <div class="gtile-top">
+                <div><span class="gtile-kicker">Recovery curve, knee arthroplasty</span><span class="gtile-num big-num">Day 14</span></div>
+                <div class="gtile-side"><b>Pain 7</b>trend reversed</div>
+              </div>
+              <div class="gtile-art curve-art" aria-hidden="true">
+                <svg class="curve-svg" viewBox="0 0 600 170" fill="none">
+                  <path class="curve-grid" d="M0 150.5H600M0 100.5H600M0 50.5H600"/>
+                  <path class="curve-expected" d="M0 20C80 40 150 78 230 103C320 130 440 144 600 150"/>
+                  <path d="M430 80V150" stroke="rgba(255,255,255,.5)" stroke-dasharray="2 4"/>
+                  <path class="curve-line" pathLength="1" d="M0 24C70 42 140 74 200 96C250 114 290 116 330 110C370 104 395 86 430 68"/>
+                  <g class="curve-mark"><circle cx="430" cy="68" r="13" fill="rgba(212,241,74,.28)"/><circle class="art-dot" cx="430" cy="68" r="5.5"/></g>
                 </svg>
-                <div class="curve-axis"><span>Day 1</span><span>Day 90</span></div>
+                <div class="curve-legend"><span><i></i>Expected path</span><span><i class="is-actual"></i>Maria A.</span><span>Day 1 to day 90</span></div>
+              </div>
+              <div class="gtile-cap">
+                <h3 class="title">Measured against the expected curve</h3>
+                <p class="body">Pain, range of motion, function, and adherence are compared to the usual recovery path for that procedure, so a reversal stands out the day it starts.</p>
               </div>
             </article>
 
-            <article class="tile cell">
-              <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5S9.7 5.9 12 3.5Z"/></svg></span>
-              <h3 class="title">In the patient's language</h3>
-              <p class="body">Check-ins run in the language each patient prefers, so response rates hold up across your whole panel.</p>
-              <div class="cell-visual lang-bubbles" aria-hidden="true">
-                <span class="sms-msg sms-in">Hola María, ¿cómo está su dolor de rodilla hoy, del 0 al 10?</span>
-                <span class="sms-msg sms-out">Como un 3</span>
-                <span class="sms-msg sms-in">¡Qué bien! ¿Pudo hacer sus ejercicios?</span>
+            <article class="gtile g-amber">
+              <div class="gtile-top">
+                <div><span class="gtile-kicker">Languages</span><span class="gtile-num big-num">5+</span></div>
+              </div>
+              <div class="gtile-art" aria-hidden="true"><svg class="art art-globe" viewBox="0 0 200 200" fill="none" aria-hidden="true"><circle cx="100" cy="100" r="80"/><g class="art-spin"><ellipse cx="100" cy="100" rx="76.1" ry="80"/><ellipse cx="100" cy="100" rx="64.7" ry="80"/><ellipse cx="100" cy="100" rx="47" ry="80"/><ellipse cx="100" cy="100" rx="24.7" ry="80"/><line x1="100" y1="20" x2="100" y2="180"/></g><ellipse cx="100" cy="30.7" rx="40" ry="3.5"/><ellipse cx="100" cy="60" rx="69.3" ry="6.1"/><ellipse cx="100" cy="100" rx="80" ry="7"/><ellipse cx="100" cy="140" rx="69.3" ry="6.1"/><ellipse cx="100" cy="169.3" rx="40" ry="3.5"/><circle class="art-dot" cx="146" cy="72" r="4.5"/></svg></div>
+              <div class="gtile-cap">
+                <h3 class="title">In the patient's language</h3>
+                <p class="body">Check-ins run in the language each patient prefers, so response rates hold up across your panel.</p>
               </div>
             </article>
 
-            <article class="tile cell">
-              <span class="glyph g-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5h4l2-5 4 10 2-5h6"/></svg></span>
-              <h3 class="title">Wearables on the same timeline</h3>
-              <p class="body">Steps, activity, and sleep sit next to what the patient told us, so a mismatch shows up on its own.</p>
-              <div class="cell-visual wear" aria-hidden="true">
-                <span class="sms-msg sms-out">Moving around well this week</span>
-                <div class="wear-bars"><i style="height:78%"></i><i style="height:84%"></i><i style="height:90%"></i><i style="height:86%"></i><i class="is-low" style="height:48%"></i><i class="is-low" style="height:42%"></i><i class="is-low" style="height:40%"></i></div>
-                <div class="wear-caption"><span>Daily steps</span><span>Down 52% since Friday</span></div>
+            <article class="gtile g-clay">
+              <div class="gtile-top">
+                <div><span class="gtile-kicker">Daily steps</span><span class="gtile-num big-num">−52%</span></div>
+                <div class="gtile-side"><b>“Moving well”</b>what she told us</div>
+              </div>
+              <div class="gtile-art" aria-hidden="true"><svg class="art art-waves" viewBox="0 0 280 120" fill="none" preserveAspectRatio="none" aria-hidden="true"><g class="art-scroll"><path d="M0 60 L6 69 L12 77.4 L18 84.6 L24 89.9 L30 93.1 L36 94 L42 92.3 L48 88.4 L54 82.4 L60 74.8 L66 66.1 L72 57 L78 48.1 L84 40 L90 33.4 L96 28.7 L102 26.3 L108 26.3 L114 28.7 L120 33.4 L126 40 L132 48.1 L138 57 L144 66.1 L150 74.8 L156 82.4 L162 88.4 L168 92.3 L174 94 L180 93.1 L186 89.9 L192 84.6 L198 77.4 L204 69 L210 60 L216 51 L222 42.6 L228 35.4 L234 30.1 L240 26.9 L246 26 L252 27.7 L258 31.6 L264 37.6 L270 45.2 L276 53.9 L282 63 L288 71.9 L294 80 L300 86.6 L306 91.3 L312 93.7 L318 93.7 L324 91.3 L330 86.6 L336 80 L342 71.9 L348 63 L354 53.9 L360 45.2 L366 37.6 L372 31.6 L378 27.7 L384 26 L390 26.9 L396 30.1 L402 35.4 L408 42.6 L414 51 L420 60 L426 69 L432 77.4 L438 84.6 L444 89.9 L450 93.1 L456 94 L462 92.3 L468 88.4 L474 82.4 L480 74.8 L486 66.1 L492 57 L498 48.1 L504 40 L510 33.4 L516 28.7 L522 26.3 L528 26.3 L534 28.7 L540 33.4 L546 40 L552 48.1 L558 57" opacity="0.45"/><path d="M0 80.4 L6 83.9 L12 85.8 L18 85.8 L24 83.9 L30 80.3 L36 75.2 L42 69.1 L48 62.3 L54 55.3 L60 48.7 L66 42.8 L72 38.3 L78 35.3 L84 34 L90 34.7 L96 37.1 L102 41.3 L108 46.7 L114 53.1 L120 60.1 L126 67 L132 73.4 L138 78.8 L144 82.9 L150 85.4 L156 86 L162 84.7 L168 81.7 L174 77.1 L180 71.2 L186 64.6 L192 57.6 L198 50.8 L204 44.7 L210 39.6 L216 36.1 L222 34.2 L228 34.2 L234 36.1 L240 39.7 L246 44.8 L252 50.9 L258 57.7 L264 64.7 L270 71.3 L276 77.2 L282 81.7 L288 84.7 L294 86 L300 85.3 L306 82.9 L312 78.7 L318 73.3 L324 66.9 L330 59.9 L336 53 L342 46.6 L348 41.2 L354 37.1 L360 34.6 L366 34 L372 35.3 L378 38.3 L384 42.9 L390 48.8 L396 55.4 L402 62.4 L408 69.2 L414 75.3 L420 80.4 L426 83.9 L432 85.8 L438 85.8 L444 83.9 L450 80.3 L456 75.2 L462 69.1 L468 62.3 L474 55.3 L480 48.7 L486 42.8 L492 38.3 L498 35.3 L504 34 L510 34.7 L516 37.1 L522 41.3 L528 46.7 L534 53.1 L540 60.1 L546 67 L552 73.4 L558 78.8" opacity="0.57"/><path d="M0 97.9 L6 93 L12 85.9 L18 76.8 L24 66.5 L30 55.8 L36 45.4 L42 36 L48 28.4 L54 23 L60 20.3 L66 20.4 L72 23.5 L78 29.1 L84 37 L90 46.5 L96 57 L102 67.7 L108 77.9 L114 86.8 L120 93.7 L126 98.2 L132 100 L138 98.9 L144 94.9 L150 88.5 L156 80 L162 70.1 L168 59.4 L174 48.8 L180 39 L186 30.7 L192 24.5 L198 20.9 L204 20.1 L210 22.1 L216 27 L222 34.1 L228 43.2 L234 53.5 L240 64.2 L246 74.6 L252 84 L258 91.6 L264 97 L270 99.7 L276 99.6 L282 96.5 L288 90.9 L294 83 L300 73.5 L306 63 L312 52.3 L318 42.1 L324 33.2 L330 26.3 L336 21.8 L342 20 L348 21.1 L354 25.1 L360 31.5 L366 40 L372 49.9 L378 60.6 L384 71.2 L390 81 L396 89.3 L402 95.5 L408 99.1 L414 99.9 L420 97.9 L426 93 L432 85.9 L438 76.8 L444 66.5 L450 55.8 L456 45.4 L462 36 L468 28.4 L474 23 L480 20.3 L486 20.4 L492 23.5 L498 29.1 L504 37 L510 46.5 L516 57 L522 67.7 L528 77.9 L534 86.8 L540 93.7 L546 98.2 L552 100 L558 98.9" opacity="0.69"/><path d="M0 66 L6 61.3 L12 56.5 L18 51.9 L24 47.9 L30 44.8 L36 42.8 L42 42 L48 42.5 L54 44.3 L60 47.2 L66 51 L72 55.5 L78 60.3 L84 65.1 L90 69.5 L96 73.2 L102 76 L108 77.6 L114 78 L120 77 L126 74.8 L132 71.6 L138 67.5 L144 62.9 L150 58.1 L156 53.4 L162 49.2 L168 45.7 L174 43.3 L180 42.1 L186 42.2 L192 43.6 L198 46.1 L204 49.7 L210 54 L216 58.7 L222 63.5 L228 68.1 L234 72.1 L240 75.2 L246 77.2 L252 78 L258 77.5 L264 75.7 L270 72.8 L276 69 L282 64.5 L288 59.7 L294 54.9 L300 50.5 L306 46.8 L312 44 L318 42.4 L324 42 L330 43 L336 45.2 L342 48.4 L348 52.5 L354 57.1 L360 61.9 L366 66.6 L372 70.8 L378 74.3 L384 76.7 L390 77.9 L396 77.8 L402 76.4 L408 73.9 L414 70.3 L420 66 L426 61.3 L432 56.5 L438 51.9 L444 47.9 L450 44.8 L456 42.8 L462 42 L468 42.5 L474 44.3 L480 47.2 L486 51 L492 55.5 L498 60.3 L504 65.1 L510 69.5 L516 73.2 L522 76 L528 77.6 L534 78 L540 77 L546 74.8 L552 71.6 L558 67.5" opacity="0.81"/><path d="M0 37.3 L6 32.9 L12 30.5 L18 30.1 L24 32 L30 35.8 L36 41.4 L42 48.4 L48 56.1 L54 64.2 L60 71.9 L66 78.8 L72 84.4 L78 88.1 L84 89.9 L90 89.5 L96 87 L102 82.5 L108 76.4 L114 69.1 L120 61.2 L126 53.2 L132 45.6 L138 39.1 L144 34.2 L150 31 L156 30 L162 31.1 L168 34.3 L174 39.4 L180 45.9 L186 53.5 L192 61.5 L198 69.4 L204 76.7 L210 82.7 L216 87.1 L222 89.5 L228 89.9 L234 88 L240 84.2 L246 78.6 L252 71.6 L258 63.9 L264 55.8 L270 48.1 L276 41.2 L282 35.6 L288 31.9 L294 30.1 L300 30.5 L306 33 L312 37.5 L318 43.6 L324 50.9 L330 58.8 L336 66.8 L342 74.4 L348 80.9 L354 85.8 L360 89 L366 90 L372 88.9 L378 85.7 L384 80.6 L390 74.1 L396 66.5 L402 58.5 L408 50.6 L414 43.3 L420 37.3 L426 32.9 L432 30.5 L438 30.1 L444 32 L450 35.8 L456 41.4 L462 48.4 L468 56.1 L474 64.2 L480 71.9 L486 78.8 L492 84.4 L498 88.1 L504 89.9 L510 89.5 L516 87 L522 82.5 L528 76.4 L534 69.1 L540 61.2 L546 53.2 L552 45.6 L558 39.1" opacity="0.93"/></g><circle class="art-dot" cx="70" cy="60" r="4.5"/><circle class="art-node" cx="210" cy="60" r="3.5"/></svg></div>
+              <div class="gtile-cap">
+                <h3 class="title">Wearables on the same timeline</h3>
+                <p class="body">Steps, activity, and sleep sit next to what the patient told us, so a mismatch shows up on its own.</p>
               </div>
             </article>
 
-            <article class="tile cell">
-              <span class="glyph g-sky" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3.5h7l4 4v13H7Z"/><path d="M14 3.5v4h4M10 12.5h5M10 16h5" stroke-linecap="round"/></svg></span>
-              <h3 class="title">Connected to your EMR</h3>
-              <p class="body">Patient and procedure data flow in, and summaries post back to the chart. Nobody re-enters anything.</p>
-              <div class="cell-visual" aria-hidden="true">
-                <div class="emr-row">
-                  <span class="glyph g-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6.5 13.5 12 19l5.5-5.5"/></svg></span>
-                  <span><b>Procedure imported</b>Left knee, discharged Jul 1</span>
-                </div>
-                <div class="emr-row">
-                  <span class="glyph g-mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 12.5 4 4 8-9"/></svg></span>
-                  <span><b>Progress note posted</b>Recovery summary, day 14</span>
-                </div>
+            <article class="gtile g-dusk">
+              <div class="gtile-top">
+                <div><span class="gtile-kicker">Your EMR</span><span class="gtile-num big-num">2-way</span></div>
+              </div>
+              <div class="gtile-art" aria-hidden="true"><svg class="art art-arcs" viewBox="0 0 220 130" fill="none" aria-hidden="true"><path class="art-draw" pathLength="1" style="--i:0" d="M16 118 A22 22 0 0 1 60 118"/><circle class="art-node" cx="60" cy="118" r="3"/><path class="art-draw" pathLength="1" style="--i:1" d="M16 118 A40 40 0 0 1 96 118"/><circle class="art-node" cx="96" cy="118" r="3"/><path class="art-draw" pathLength="1" style="--i:2" d="M16 118 A58 58 0 0 1 132 118"/><circle class="art-node" cx="132" cy="118" r="3"/><path class="art-draw" pathLength="1" style="--i:3" d="M16 118 A76 76 0 0 1 168 118"/><circle class="art-node" cx="168" cy="118" r="3"/><path class="art-draw" pathLength="1" style="--i:4" d="M16 118 A94 94 0 0 1 204 118"/><circle class="art-node" cx="204" cy="118" r="3"/><line x1="8" y1="118" x2="212" y2="118" stroke-dasharray="1 5" stroke-linecap="round"/><circle class="art-dot" cx="16" cy="118" r="5"/></svg></div>
+              <div class="gtile-cap">
+                <h3 class="title">Connected to your chart</h3>
+                <p class="body">Patient and procedure data flow in, and summaries post back as progress notes. Nobody re-enters anything.</p>
               </div>
             </article>
 
-            <article class="tile cell">
-              <span class="glyph g-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 16v-5a5.5 5.5 0 1 1 11 0v5l1.5 2h-14Z"/><path d="M10 20.5a2 2 0 0 0 4 0" stroke-linecap="round"/></svg></span>
-              <h3 class="title">Quiet counts as a signal</h3>
-              <p class="body">A patient who stops replying gets flagged, just like one who reports a problem.</p>
-              <div class="cell-visual" aria-hidden="true">
-                <div class="silence-card">
+            <article class="gtile g-lilac">
+              <div class="gtile-top">
+                <div><span class="gtile-kicker">Last reply, James W.</span><span class="gtile-num big-num">4<small>days</small></span></div>
+              </div>
+              <div class="gtile-art" aria-hidden="true">
+                <div class="silence-art">
                   <div class="silence-row"><span>Maria A.</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-                  <div class="silence-row"><span>James W.</span><i></i><i></i><i></i><i class="is-miss"></i><i class="is-miss"></i><i class="is-miss"></i><i class="is-miss"></i></div>
+                  <div class="silence-row"><span>James W.</span><i></i><i></i><i></i><i class="is-miss"></i><i class="is-miss"></i><i class="is-miss"></i><i class="is-now"></i></div>
                   <div class="silence-row"><span>Sofia N.</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
                 </div>
-                <span class="pill pill-attention" style="align-self:flex-start">James W. quiet for 4 days</span>
+              </div>
+              <div class="gtile-cap">
+                <h3 class="title">Quiet counts as a signal</h3>
+                <p class="body">A patient who stops replying gets flagged, just like one who reports a problem.</p>
               </div>
             </article>
           </div>
@@ -478,7 +481,7 @@
       </section>
 
       <!-- HOW IT WORKS -->
-      <section class="band" id="how" aria-labelledby="how-title">
+      <section class="band fog-c" id="how" aria-labelledby="how-title">
         <div class="wrap">
           <div class="section-head">
             <h2 class="h2" id="how-title">From discharge to a short list</h2>
@@ -486,17 +489,17 @@
           </div>
           <ol class="steps">
             <li class="tile step">
-              <span class="step-n">1</span>
+              <div class="step-top"><span class="step-n">1</span><span class="glyph g-sage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-6l-4.5 3.5V16H7a3 3 0 0 1-3-3Z"/></svg></span></div>
               <h3 class="title">The patient checks in</h3>
               <p class="body">A short text arrives in the patient's language, with questions that fit their procedure and their last answers.</p>
             </li>
             <li class="tile step">
-              <span class="step-n">2</span>
+              <div class="step-top"><span class="step-n">2</span><span class="glyph g-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17.5 9.5 12l3.5 3.5L20 8.5"/><path d="M15 8.5h5v5"/></svg></span></div>
               <h3 class="title">MedPull makes sense of it</h3>
               <p class="body">Answers become recovery signals like pain, motion, and adherence, combined with wearable data and compared to the expected path.</p>
             </li>
             <li class="tile step">
-              <span class="step-n">3</span>
+              <div class="step-top"><span class="step-n">3</span><span class="glyph g-clay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 6.5h10M9 12h10M9 17.5h10"/><circle cx="4.8" cy="6.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.8" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.8" cy="17.5" r="1.2" fill="currentColor" stroke="none"/></svg></span></div>
               <h3 class="title">Your team sees what matters</h3>
               <p class="body">One ranked list, an AI summary posted to your EMR, and RTM billing status already worked out.</p>
             </li>
@@ -508,33 +511,34 @@
       <section class="band" id="proof" aria-labelledby="proof-title" style="padding-top:0">
         <div class="wrap">
           <div class="origin">
+            <svg class="art art-orbit" viewBox="0 0 200 200" fill="none" aria-hidden="true"><g class="art-turn"><ellipse cx="100" cy="100" rx="78" ry="26" transform="rotate(0 100 100)"/><ellipse cx="100" cy="100" rx="78" ry="26" transform="rotate(30 100 100)"/><ellipse cx="100" cy="100" rx="78" ry="26" transform="rotate(60 100 100)"/><ellipse cx="100" cy="100" rx="78" ry="26" transform="rotate(90 100 100)"/><ellipse cx="100" cy="100" rx="78" ry="26" transform="rotate(120 100 100)"/><ellipse cx="100" cy="100" rx="78" ry="26" transform="rotate(150 100 100)"/></g><circle cx="100" cy="100" r="30"/><circle class="art-dot" cx="100" cy="100" r="5"/></svg>
             <div>
               <h2 class="h2" id="proof-title">We didn't start from scratch.</h2>
-              <p class="body">Before MedPull was a Recovery Copilot, we built an AI intake platform for community health centers: adaptive, multilingual conversations designed for real clinical settings. The Recovery Copilot runs on that same engine. What changed is what we ask about, and who gets the answers.</p>
+              <p class="origin-body">Before MedPull was a Recovery Copilot, we built an AI intake platform for community health centers: adaptive, multilingual conversations designed for real clinical settings. The Recovery Copilot runs on that same engine. What changed is what we ask about, and who gets the answers.</p>
             </div>
-            <div class="timeline">
+            <div class="timeline-list">
               <div class="tl-item">
                 <div class="tl-year">2025</div>
                 <div class="tl-title">Conversational intake</div>
                 <p class="tl-sub">Adaptive, multilingual patient conversations for community health centers.</p>
               </div>
-              <div class="tl-item is-now">
-                <div class="tl-year">2026</div>
+              <div class="tl-item">
+                <div class="tl-year"><span class="dot" aria-hidden="true"></span>2026, today</div>
                 <div class="tl-title">AI Recovery Copilot</div>
                 <p class="tl-sub">The same engine, now caring for orthopedic patients after surgery.</p>
               </div>
             </div>
             <div class="facts">
-              <div class="fact"><b class="grad-num">5+</b><span>Languages the engine speaks</span></div>
-              <div class="fact"><b class="grad-num">0</b><span>Apps for patients to install</span></div>
-              <div class="fact"><b class="grad-num">24/7</b><span>Check-ins on the patient's schedule</span></div>
+              <div class="fact"><b>5+</b><span>Languages the engine speaks</span></div>
+              <div class="fact"><b>0</b><span>Apps for patients to install</span></div>
+              <div class="fact"><b>24/7</b><span>Check-ins on the patient's schedule</span></div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- TRUST -->
-      <section class="band band-alt" id="trust" aria-labelledby="trust-title">
+      <section class="band fog-a" id="trust" aria-labelledby="trust-title">
         <div class="wrap">
           <div class="section-head">
             <h2 class="h2" id="trust-title">Built for clinical care</h2>
@@ -542,22 +546,22 @@
           </div>
           <div class="trust">
             <div class="tile">
-              <span class="glyph g-indigo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 5.5 5.5v5c0 4.3 2.8 7.4 6.5 9 3.7-1.6 6.5-4.7 6.5-9v-5Z"/><path d="m9 12 2.2 2.2 4-4.4" stroke-linecap="round"/></svg></span>
+              <span class="glyph g-sage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3 5.5 5.5v5c0 4.3 2.8 7.4 6.5 9 3.7-1.6 6.5-4.7 6.5-9v-5Z"/><path d="m9 12 2.2 2.2 4-4.4" stroke-linecap="round"/></svg></span>
               <h3 class="title">HIPAA-aligned, with BAAs</h3>
               <p class="body">Patient data is processed securely, and enterprise plans include HIPAA-aligned options and business associate agreements.</p>
             </div>
             <div class="tile">
-              <span class="glyph g-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></span>
+              <span class="glyph g-clay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></span>
               <h3 class="title">A person on every escalation</h3>
               <p class="body">Concerning answers go to someone on your team, with the full conversation attached.</p>
             </div>
             <div class="tile">
-              <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1M14 10a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/></svg></span>
+              <span class="glyph g-dusk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 14a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1M14 10a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/></svg></span>
               <h3 class="title">Every claim shows its source</h3>
               <p class="body">Each line in a summary links back to the check-in or data point it came from.</p>
             </div>
             <div class="tile">
-              <span class="glyph g-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3 2"/></svg></span>
+              <span class="glyph g-lilac" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3 2"/></svg></span>
               <h3 class="title">Supports decisions, never makes them</h3>
               <p class="body">MedPull doesn't diagnose. It tells your team where to look, and why.</p>
             </div>
@@ -566,7 +570,7 @@
       </section>
 
       <!-- FAQ -->
-      <section class="band" id="faq" aria-labelledby="faq-title">
+      <section class="band fog-b" id="faq" aria-labelledby="faq-title">
         <div class="wrap">
           <div class="faq">
             <div class="faq-aside">
@@ -606,12 +610,14 @@
 
       <!-- CTA -->
       <section class="canvas cta" id="contact" aria-labelledby="cta-title">
-        <span class="app-icon app-icon-xl" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>
-        <h2 class="h2" id="cta-title">See it with your own patients.</h2>
-        <p class="lede">We're onboarding a small group of orthopedic practices. If post-op follow-up is eating your team's time, we'd love to hear about it.</p>
-        <div class="btn-row btn-row-center">
-          <a class="btn btn-lg btn-primary" href="book-demo.html">Book a demo</a>
-          <a class="btn btn-lg btn-secondary" href="#" data-interest-open>Request early access</a>
+        <div class="cta-panel">
+          <span class="app-icon app-icon-xl" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>
+          <h2 class="h2" id="cta-title">See it with your own patients.</h2>
+          <p class="lede">We're onboarding a small group of orthopedic practices. If post-op follow-up is eating your team's time, we'd love to hear about it.</p>
+          <div class="btn-row btn-row-center">
+            <a class="btn btn-lg btn-primary" href="book-demo.html"><span class="dot" aria-hidden="true"></span>Book a demo</a>
+            <a class="btn btn-lg btn-secondary" href="#" data-interest-open>Request early access</a>
+          </div>
         </div>
       </section>
     </main>
@@ -622,7 +628,7 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <a class="brand" href="#top">
-              <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+              <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="20" height="20" /></span>
               MedPull
             </a>
             <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
@@ -654,13 +660,13 @@
         </div>
         <div class="footer-base">
           <span>Copyright © <span data-year></span> MedPull. All rights reserved.</span>
-          <span>Made for orthopedic practices</span>
+          <span><span class="dot" aria-hidden="true"></span>Made for orthopedic practices</span>
         </div>
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=3"></script>
-    <script src="assets/js/forms.js?v=3"></script>
-    <script src="assets/js/interest-popup.js?v=3"></script>
+    <script src="assets/js/site.js?v=4"></script>
+    <script src="assets/js/forms.js?v=4"></script>
+    <script src="assets/js/interest-popup.js?v=4"></script>
   </body>
 </html>
