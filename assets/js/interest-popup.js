@@ -30,7 +30,7 @@
     '  <ul class="ea-perks">',
     '    <li>Free pilot access</li>',
     '    <li>Priority onboarding</li>',
-    '    <li>RTM setup support</li>',
+    '    <li>Wearable setup help</li>',
     '    <li>No commitment</li>',
     '  </ul>',
     '</div>',
