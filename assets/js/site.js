@@ -141,6 +141,22 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     targets.forEach((el) => io.observe(el));
+
+    // Safety net for fast scrolling or jumps: anything already above the fold is shown.
+    let pending = targets.slice();
+    let queued = false;
+    const sweep = () => {
+      queued = false;
+      const limit = window.innerHeight;
+      pending = pending.filter((el) => {
+        if (!el.classList.contains('in-wait')) return false;
+        if (el.getBoundingClientRect().top < limit) { io.unobserve(el); settle(el); return false; }
+        return true;
+      });
+      if (!pending.length) window.removeEventListener('scroll', onSweep);
+    };
+    const onSweep = () => { if (!queued) { queued = true; requestAnimationFrame(sweep); } };
+    window.addEventListener('scroll', onSweep, { passive: true });
   }
 
   /* --- Count-up numbers ---------------------------------------------------- */
@@ -172,12 +188,51 @@
   /* --- A soft light that follows the pointer across glass ------------------ */
   if (finePointer && !reduceMotion) {
     document.addEventListener('pointermove', (e) => {
-      const el = e.target.closest && e.target.closest('.tile, .card, .scenario-card, .widget, .gtile');
-      if (!el) return;
+      const el = e.target.closest && e.target.closest('.tile, .card, .scenario-card, .gtile');
+      if (!el || el.closest('.dash')) return;
       const r = el.getBoundingClientRect();
       el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
       el.style.setProperty('--my', (e.clientY - r.top) + 'px');
     }, { passive: true });
+  }
+
+  /* --- Only run decorative loops while they are on screen ------------------ */
+  const loopHosts = $$('.canvas, .gtile, .origin');
+  if ('IntersectionObserver' in window) {
+    const lio = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => entry.target.classList.toggle('is-live', entry.isIntersecting));
+    }, { rootMargin: '80px' });
+    loopHosts.forEach((el) => lio.observe(el));
+  } else {
+    loopHosts.forEach((el) => el.classList.add('is-live'));
+  }
+
+  /* --- Display: scale the 1280×720 dashboard to fit, tilt it on scroll ----- */
+  const screen = $('[data-screen]');
+  const dash = screen && $('.dash', screen);
+  if (screen && dash) {
+    const fit = () => dash.style.setProperty('--s', (screen.clientWidth / 1280).toFixed(4));
+    fit();
+    if ('ResizeObserver' in window) new ResizeObserver(fit).observe(screen);
+    else window.addEventListener('resize', fit);
+  }
+
+  const tilt = $('[data-tilt]');
+  if (tilt && !reduceMotion) {
+    let queued = false;
+    const MAX = 14;
+    const update = () => {
+      queued = false;
+      const vh = window.innerHeight;
+      const top = tilt.getBoundingClientRect().top;
+      // Leans back while low on the screen, stands upright by the time it is near the top.
+      const p = Math.min(1, Math.max(0, 1 - (top - vh * 0.12) / (vh * 0.62)));
+      tilt.style.setProperty('--tilt', (MAX * (1 - p)).toFixed(2) + 'deg');
+    };
+    const onScroll = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
   }
 
   /* --- Hero: a text check-in lands on the team's list for today ----------- */
@@ -194,8 +249,7 @@
     ];
 
     const note = $('[data-hero-note]');
-    const faces = $('[data-hero-faces]');
-    const checkins = $$('[data-hero-checkins]');
+    const list = $('[data-hero-list]');
 
     const addMsg = (dir, text) => {
       const el = document.createElement('div');
@@ -212,22 +266,31 @@
     };
 
     const checkIn = (animate) => {
-      checkins.forEach((el) => { el.textContent = '214'; if (animate) pop(el); });
+      $$('[data-hero-checkins]').forEach((el) => { el.textContent = '214'; if (animate) pop(el); });
     };
 
     const flagMaria = (animate) => {
       if (note) note.classList.add('is-on');
       $$('[data-hero-count]').forEach((el) => { el.textContent = '3'; if (animate) pop(el); });
-      if (faces && !faces.querySelector('.av-1')) {
-        const face = document.createElement('span');
-        face.className = 'avatar av-1' + (animate ? ' pop' : '');
-        face.textContent = 'MA';
-        faces.prepend(face);
+      $$('[data-hero-ontrack]').forEach((el) => { el.textContent = '237'; });
+      if (list && !list.querySelector('[data-maria]')) {
+        const row = document.createElement('div');
+        row.className = 'dash-row' + (animate ? ' is-new' : '');
+        row.setAttribute('data-maria', '');
+        row.innerHTML =
+          '<span class="avatar av-1">MA</span>' +
+          '<span><b>Maria Alvarez</b><span class="sub">Knee, day 14 · pain up 3, new swelling</span></span>' +
+          '<span class="pill pill-attention">Call today</span>';
+        list.prepend(row);
       }
     };
 
+    // Start once the display is in view, so visitors see the story from the beginning.
+    let started = false;
     const play = async () => {
-      await sleep(1500);
+      if (started) return;
+      started = true;
+      await sleep(700);
       for (const [i, [dir, text]] of script.entries()) {
         if (dir === 'in') {
           const typing = addMsg('in', '');
@@ -248,9 +311,14 @@
     };
 
     if (reduceMotion) {
-      script.forEach(([dir, text]) => addMsg(dir, text));
+      script.slice(-4).forEach(([dir, text]) => addMsg(dir, text));
       checkIn(false);
       flagMaria(false);
+    } else if ('IntersectionObserver' in window) {
+      const sio = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) { sio.disconnect(); play(); }
+      }, { threshold: 0.35 });
+      sio.observe(sms.closest('.showcase') || sms);
     } else {
       play();
     }

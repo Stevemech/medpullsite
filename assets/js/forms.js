@@ -48,5 +48,52 @@
     );
   }
 
-  window.MEDPULL_FORMS = { submit: submit };
+  // Inline validation: each field shows its own message underneath, linked with
+  // aria-describedby. Messages come from data-error on the field.
+  function showFieldError(el) {
+    var holder = el.type === 'checkbox' ? (el.closest('.form-check') || el) : el;
+    var msg = document.getElementById(el.id + '-error');
+    if (el.validity.valid) {
+      if (msg) msg.remove();
+      el.removeAttribute('aria-invalid');
+      el.removeAttribute('aria-describedby');
+      return true;
+    }
+    var text = el.validity.typeMismatch
+      ? 'Enter an email address like name@practice.com.'
+      : (el.getAttribute('data-error') || 'Fill in this field.');
+    if (!msg) {
+      msg = document.createElement('p');
+      msg.className = 'field-error';
+      msg.id = el.id + '-error';
+      holder.insertAdjacentElement('afterend', msg);
+    }
+    msg.textContent = text;
+    el.setAttribute('aria-invalid', 'true');
+    el.setAttribute('aria-describedby', msg.id);
+    return false;
+  }
+
+  function wire(form) {
+    var fields = Array.prototype.filter.call(
+      form.querySelectorAll('input, select, textarea'),
+      function (el) { return el.id && !el.classList.contains('form-honey') && (el.required || el.type === 'email'); }
+    );
+    fields.forEach(function (el) {
+      // Check a field once the visitor leaves it, then keep it current as they fix it.
+      el.addEventListener('blur', function () { if (el.value || el.hasAttribute('aria-invalid')) showFieldError(el); });
+      el.addEventListener('input', function () { if (el.hasAttribute('aria-invalid')) showFieldError(el); });
+      el.addEventListener('change', function () { if (el.hasAttribute('aria-invalid')) showFieldError(el); });
+    });
+    return {
+      validate: function () {
+        var firstInvalid = null;
+        fields.forEach(function (el) { if (!showFieldError(el) && !firstInvalid) firstInvalid = el; });
+        if (firstInvalid) firstInvalid.focus();
+        return !firstInvalid;
+      }
+    };
+  }
+
+  window.MEDPULL_FORMS = { submit: submit, wire: wire };
 })();

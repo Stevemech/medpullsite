@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/site.css?v=4" />
+    <link rel="stylesheet" href="assets/css/site.css?v=5" />
   </head>
   <body data-interest-auto="off">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -77,7 +77,7 @@
               <div class="form-grid">
                 <div>
                   <label for="contactName" class="form-label">Your name</label>
-                  <input type="text" class="form-control" id="contactName" name="contactName" autocomplete="name" required />
+                  <input type="text" class="form-control" id="contactName" name="contactName" autocomplete="name" required data-error="Enter your name." />
                 </div>
                 <div>
                   <label for="contactTitle" class="form-label">Role <span class="opt">(optional)</span></label>
@@ -85,7 +85,7 @@
                 </div>
                 <div>
                   <label for="contactEmail" class="form-label">Work email</label>
-                  <input type="email" class="form-control" id="contactEmail" name="contactEmail" autocomplete="email" required />
+                  <input type="email" class="form-control" id="contactEmail" name="contactEmail" autocomplete="email" required data-error="Enter your work email." />
                 </div>
                 <div>
                   <label for="contactPhone" class="form-label">Phone <span class="opt">(optional)</span></label>
@@ -93,11 +93,11 @@
                 </div>
                 <div class="field-full">
                   <label for="practiceName" class="form-label">Practice or group name</label>
-                  <input type="text" class="form-control" id="practiceName" name="practiceName" autocomplete="organization" required />
+                  <input type="text" class="form-control" id="practiceName" name="practiceName" autocomplete="organization" required data-error="Enter your practice or group name." />
                 </div>
                 <div>
                   <label for="practiceLocation" class="form-label">City and state</label>
-                  <input type="text" class="form-control" id="practiceLocation" name="practiceLocation" placeholder="Houston, TX" required />
+                  <input type="text" class="form-control" id="practiceLocation" name="practiceLocation" placeholder="Houston, TX" required data-error="Enter your city and state." />
                 </div>
                 <div>
                   <label for="surgicalVolume" class="form-label">Monthly surgeries <span class="opt">(optional)</span></label>
@@ -116,10 +116,10 @@
                 </div>
                 <div class="field-full">
                   <label for="interestReason" class="form-label">How do you handle post-op follow-up today?</label>
-                  <textarea class="form-control" id="interestReason" name="interestReason" rows="4" placeholder="Who makes the calls, how often, and where patients slip through" required></textarea>
+                  <textarea class="form-control" id="interestReason" name="interestReason" rows="4" placeholder="Who makes the calls, how often, and where patients slip through" required data-error="Tell us briefly how follow-up works today."></textarea>
                 </div>
                 <label class="form-check field-full">
-                  <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
+                  <input type="checkbox" id="agreeTerms" name="agreeTerms" required data-error="Check the box so we can contact you." />
                   <span>I agree to be contacted about the MedPull pilot program and understand that participation depends on availability.</span>
                 </label>
                 <div class="field-full form-feedback" id="waitlistFeedback" role="status"></div>
@@ -135,7 +135,7 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-      <div class="wrap" style="padding-inline:0">
+      <div class="wrap">
         <div class="footer-grid">
           <div class="footer-brand">
             <a class="brand" href="index.html">
@@ -175,9 +175,9 @@
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=4"></script>
-    <script src="assets/js/forms.js?v=4"></script>
-    <script src="assets/js/interest-popup.js?v=4"></script>
+    <script src="assets/js/site.js?v=5"></script>
+    <script src="assets/js/forms.js?v=5"></script>
+    <script src="assets/js/interest-popup.js?v=5"></script>
     <script>
       // Waitlist form: posts through the shared helper in assets/js/forms.js.
       (function () {
@@ -185,6 +185,7 @@
         var feedback = document.getElementById('waitlistFeedback');
         var card = document.getElementById('waitlistCard');
         var baseClass = 'field-full form-feedback';
+        var checker = window.MEDPULL_FORMS ? window.MEDPULL_FORMS.wire(form) : null;
 
         function showError(message) {
           feedback.className = baseClass + ' is-error';
@@ -196,18 +197,12 @@
           feedback.className = baseClass;
           feedback.textContent = '';
 
-          if (!form.checkValidity()) {
-            form.classList.add('was-validated');
-            showError('Fill in the highlighted fields to continue.');
-            var firstInvalid = form.querySelector(':invalid');
-            if (firstInvalid) firstInvalid.focus();
-            return;
-          }
-
-          if (!window.MEDPULL_FORMS) {
+          if (!window.MEDPULL_FORMS || !checker) {
             showError('This form didn\'t finish loading. Refresh the page and try again.');
             return;
           }
+
+          if (!checker.validate()) return;
 
           var btn = form.querySelector('button[type="submit"]');
           var label = btn.textContent;
