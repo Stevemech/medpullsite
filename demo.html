@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Live demo | MedPull Recovery Copilot</title>
-    <meta name="description" content="Answer a post-op check-in as a patient and watch it become a worklist entry, an AI recovery summary, and headline care metrics." />
+    <meta name="description" content="Answer a post-op check-in as a patient and watch it update the patient list, an AI recovery summary, and key recovery metrics." />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#fbfbf9" />
     <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
@@ -17,7 +17,7 @@
       document.documentElement.classList.add('js');
       setTimeout(function () { if (!window.MEDPULL_SITE) document.documentElement.classList.remove('js'); }, 3500);
     </script>
-    <link rel="stylesheet" href="assets/css/site.css?v=6" />
+    <link rel="stylesheet" href="assets/css/site.css?v=7" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -120,7 +120,7 @@
                 <div class="card">
                   <div class="card-head">
                     <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
-                    <span class="card-title">Today</span>
+                    <span class="card-title">Patient list</span>
                     <span class="card-chip" id="worklistChip">Awaiting check-in</span>
                   </div>
                   <div class="card-body">
@@ -156,19 +156,19 @@
                   <div class="card-body">
                     <div class="metric-list">
                       <div class="metric-row">
-                        <div class="metric-top"><span>Symptom burden</span><b id="mPainValue">–</b><span class="pill pill-missing" id="mPainPill">Needs data</span></div>
+                        <div class="metric-top"><span>Pain level</span><b id="mPainValue">–</b><span class="pill pill-missing" id="mPainPill">Needs data</span></div>
                         <div class="meter"><span class="meter-fill" id="mPainBar" style="width:0%"></span></div>
                       </div>
                       <div class="metric-row">
-                        <div class="metric-top"><span>Verified adherence</span><b id="mAdhValue">–</b><span class="pill pill-missing" id="mAdhPill">Needs data</span></div>
+                        <div class="metric-top"><span>Exercises done</span><b id="mAdhValue">–</b><span class="pill pill-missing" id="mAdhPill">Needs data</span></div>
                         <div class="meter"><span class="meter-fill" id="mAdhBar" style="width:0%"></span></div>
                       </div>
                       <div class="metric-row">
-                        <div class="metric-top"><span>Data confidence</span><b id="mDataValue">–</b><span class="pill pill-missing" id="mDataPill">Needs data</span></div>
+                        <div class="metric-top"><span>Wearable data</span><b id="mDataValue">–</b><span class="pill pill-missing" id="mDataPill">Needs data</span></div>
                         <div class="meter"><span class="meter-fill" id="mDataBar" style="width:0%"></span></div>
                       </div>
                     </div>
-                    <p class="fineprint">3 of 24 care metrics. Monitoring signals for clinician review, not a diagnosis.</p>
+                    <p class="fineprint">3 of 24 recovery metrics. Monitoring signals for clinician review, not a diagnosis.</p>
                   </div>
                 </div>
               </div>
@@ -234,9 +234,9 @@
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=6"></script>
-    <script src="assets/js/recovery-demo.js?v=6"></script>
-    <script src="assets/js/forms.js?v=6"></script>
-    <script src="assets/js/interest-popup.js?v=6"></script>
+    <script src="assets/js/site.js?v=7"></script>
+    <script src="assets/js/recovery-demo.js?v=7"></script>
+    <script src="assets/js/forms.js?v=7"></script>
+    <script src="assets/js/interest-popup.js?v=7"></script>
   </body>
 </html>

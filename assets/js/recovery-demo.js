@@ -56,7 +56,7 @@
     tka: {
       name: 'Maria Alvarez', first: 'Maria', initials: 'MA', av: 'av-1',
       procedure: 'Total knee replacement', pod: 14,
-      signal: 'Resting HR rising vs baseline', signalRisk: 2, coverage: 86,
+      signal: 'Resting heart rate above her normal', signalRisk: 2, coverage: 86,
       pain: [
         { label: '7', pain: 7, risk: 2, note: 'Pain 7/10 in today’s check-in' },
         { label: '4', pain: 4, risk: 0 },
@@ -66,7 +66,7 @@
     acl: {
       name: 'James Whitfield', first: 'James', initials: 'JW', av: 'av-2',
       procedure: 'ACL reconstruction', pod: 21,
-      signal: 'Device data on only 20% of recent days', signalRisk: 0, coverage: 20,
+      signal: 'Wearable synced only 2 of the last 10 days', signalRisk: 0, coverage: 20,
       pain: [
         { label: '3', pain: 3, risk: 0 },
         { label: '5', pain: 5, risk: 1, note: 'Pain 5/10, higher than last week' },
@@ -76,7 +76,7 @@
     rcr: {
       name: 'Rachel Okafor', first: 'Rachel', initials: 'RO', av: 'av-3',
       procedure: 'Rotator cuff repair', pod: 9,
-      signal: 'Behind expected recovery curve (−15%)', signalRisk: 2, coverage: 71,
+      signal: 'Walking 15% less than expected', signalRisk: 2, coverage: 71,
       pain: [
         { label: '6', pain: 6, risk: 1, note: 'Pain 6/10' },
         { label: '3', pain: 3, risk: 0 },
@@ -177,13 +177,13 @@
     const found = notes.length ? notes.join('. ') + '.' : 'Nothing concerning in today’s check-in.';
     const signal = scenario.signal + '.';
     if (tier.label === 'High risk') {
-      return '<b>' + n + ' needs a call today.</b> ' + found + ' Device data: ' + signal + ' Worth reaching out within 24 hours.';
+      return '<b>' + n + ' needs a call today.</b> ' + found + ' Wearable: ' + signal + ' Worth reaching out within 24 hours.';
     }
     if (tier.label === 'Missing data') {
-      return '<b>Not enough device data to judge ' + n + '’s recovery.</b> ' + signal + ' ' + found + ' Ask ' + n + ' to reconnect their wearable.';
+      return '<b>Not enough wearable data to judge ' + n + '’s recovery.</b> ' + signal + ' ' + found + ' Ask ' + n + ' to reconnect their wearable.';
     }
     if (tier.label === 'Needs review') {
-      return '<b>' + n + ' is progressing, with something to review.</b> ' + found + ' Device data: ' + signal + ' The next check-in should confirm the trend.';
+      return '<b>' + n + ' is progressing, with something to review.</b> ' + found + ' Wearable: ' + signal + ' The next check-in should confirm the trend.';
     }
     return '<b>' + n + ' is recovering as expected.</b> ' + found + ' No action needed.';
   }
