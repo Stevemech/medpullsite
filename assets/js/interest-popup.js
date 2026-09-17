@@ -1,23 +1,12 @@
-/* MedPull early-access interest popup — self-contained (uses the Bootstrap bundle already on the page) */
+/* MedPull early-access interest popup — uses the native <dialog> element.
+   Submissions go through assets/js/forms.js (load it before this file).
+   Styles live in assets/css/site.css under "Early-access dialog". */
 (function () {
   'use strict';
-
-  /* =========================================================================
-     SETUP — read this:
-     1. Go to https://web3forms.com and type the email you want submissions sent to.
-     2. Copy the "Access Key" they give you (free, no account needed).
-     3. Paste it between the quotes below, replacing YOUR-WEB3FORMS-ACCESS-KEY.
-     That's it — every submission will then be emailed to you instantly.
-     Until you add a key, the form runs in DEMO MODE: it logs to the console and
-     still shows the success message, so you can test the look and feel.
-     ========================================================================= */
-  var WEB3FORMS_ACCESS_KEY = 'ee3a6bc7-8a3e-491e-9d17-b3bf412b4cd9';
 
   // How long before the gentle timed prompt appears (ms). Exit-intent can fire sooner.
   var SHOW_DELAY_MS = 30000;
   var STORAGE_KEY = 'medpull-interest-popup-seen';
-
-  var hasKey = WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.indexOf('YOUR-') !== 0;
 
   function alreadySeen() {
     try { return localStorage.getItem(STORAGE_KEY) === '1'; } catch (e) { return false; }
@@ -26,104 +15,76 @@
     try { localStorage.setItem(STORAGE_KEY, '1'); } catch (e) {}
   }
 
-  // --- Styles (scoped to the popup) -------------------------------------------------
-  var style = document.createElement('style');
-  style.textContent = [
-    '#interestModal .modal-content{border:0;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(31,65,114,.28)}',
-    '#interestModal .ip-head{background-image:linear-gradient(135deg,var(--brand-grad-1,#7fb4ff),var(--brand-grad-2,#86ccff) 50%,var(--brand-grad-3,#a7ecff));color:#0b1220;padding:26px 28px 22px}',
-    '#interestModal .ip-eyebrow{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:rgba(255,255,255,.55);padding:4px 10px;border-radius:999px;margin-bottom:10px}',
-    '#interestModal .ip-title{font-weight:700;font-size:1.5rem;line-height:1.2;margin:0 0 6px}',
-    '#interestModal .ip-sub{margin:0;font-size:.95rem;color:#1f2a44;opacity:.85}',
-    '#interestModal .ip-body{padding:24px 28px 28px}',
-    '#interestModal .ip-perks{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-wrap:wrap;gap:8px 16px}',
-    '#interestModal .ip-perks li{font-size:.85rem;color:#66728a;display:flex;align-items:center;gap:6px}',
-    '#interestModal .ip-perks li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--brand-grad-2,#86ccff);flex:0 0 auto}',
-    '#interestModal .ip-close{position:absolute;top:14px;right:16px;border:0;background:rgba(255,255,255,.6);width:32px;height:32px;border-radius:50%;font-size:18px;line-height:1;color:#0b1220;cursor:pointer}',
-    '#interestModal .ip-close:hover{background:rgba(255,255,255,.9)}',
-    '#interestModal .ip-fineprint{font-size:.78rem;color:#9aa3b2;margin:14px 0 0;text-align:center}',
-    '#interestModal .ip-honey{position:absolute;left:-9999px;top:-9999px;opacity:0}',
-    // "Get early access" trigger links — brand blue, so they stand out across the site.
-    '[data-interest-open]{color:#2d6cdf!important;font-weight:700!important}',
-    '[data-interest-open]:hover,[data-interest-open]:focus{color:#1f53b8!important;text-decoration:underline!important;text-underline-offset:3px}'
-  ].join('');
-  document.head.appendChild(style);
-
   // --- Markup -----------------------------------------------------------------------
-  var wrap = document.createElement('div');
-  wrap.innerHTML = [
-    '<div class="modal fade" id="interestModal" tabindex="-1" aria-labelledby="interestModalTitle" aria-hidden="true">',
-    '  <div class="modal-dialog modal-dialog-centered">',
-    '    <div class="modal-content">',
-    '      <button type="button" class="ip-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>',
-    '      <div class="ip-head">',
-    '        <span class="ip-eyebrow">Early access</span>',
-    '        <h2 class="ip-title" id="interestModalTitle">Bring the Recovery Copilot to your practice</h2>',
-    '        <p class="ip-sub">Tell us where to reach you and we\'ll set up a free walkthrough for your team. Early partners get priority onboarding and pilot pricing.</p>',
+  var dialog = document.createElement('dialog');
+  dialog.className = 'ea-dialog';
+  dialog.setAttribute('aria-labelledby', 'eaTitle');
+  dialog.innerHTML = [
+    '<button type="button" class="ea-close" data-ea-close aria-label="Close">',
+    '  <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="m2.5 2.5 7 7m0-7-7 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+    '</button>',
+    '<div class="ea-head">',
+    '  <span class="app-icon app-icon-lg" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>',
+    '  <h2 class="ea-title" id="eaTitle">Bring the Recovery Copilot to your practice</h2>',
+    '  <p class="ea-sub">Tell us where to reach you and we\'ll set up a free walkthrough for your team. Early partners get priority onboarding and pilot pricing.</p>',
+    '  <ul class="ea-perks">',
+    '    <li>Free pilot access</li>',
+    '    <li>Priority onboarding</li>',
+    '    <li>RTM setup support</li>',
+    '    <li>No commitment</li>',
+    '  </ul>',
+    '</div>',
+    '<div class="ea-body">',
+    '  <form id="interestForm" novalidate>',
+    '    <input type="checkbox" name="botcheck" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />',
+    '    <div class="form-grid">',
+    '      <div class="field-full">',
+    '        <label for="ip_clinic" class="form-label">Practice name</label>',
+    '        <input type="text" class="form-control" id="ip_clinic" name="clinic_name" autocomplete="organization" required />',
     '      </div>',
-    '      <div class="ip-body">',
-    '        <ul class="ip-perks">',
-    '          <li>Free pilot access</li>',
-    '          <li>Priority onboarding</li>',
-    '          <li>RTM setup support</li>',
-    '          <li>No commitment</li>',
-    '        </ul>',
-    '        <form id="interestForm" novalidate>',
-    '          <input type="text" name="botcheck" class="ip-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />',
-    '          <div class="row g-3">',
-    '            <div class="col-12">',
-    '              <label for="ip_clinic" class="form-label fw-semibold">Practice name <span class="text-danger">*</span></label>',
-    '              <input type="text" class="form-control" id="ip_clinic" name="clinic_name" required />',
-    '            </div>',
-    '            <div class="col-md-6">',
-    '              <label for="ip_contact" class="form-label fw-semibold">Your name <span class="text-danger">*</span></label>',
-    '              <input type="text" class="form-control" id="ip_contact" name="contact_name" required />',
-    '            </div>',
-    '            <div class="col-md-6">',
-    '              <label for="ip_email" class="form-label fw-semibold">Email <span class="text-danger">*</span></label>',
-    '              <input type="email" class="form-control" id="ip_email" name="email" required />',
-    '            </div>',
-    '            <div class="col-12">',
-    '              <label for="ip_phone" class="form-label fw-semibold">Phone <span class="text-muted fw-normal">(optional)</span></label>',
-    '              <input type="tel" class="form-control" id="ip_phone" name="phone" />',
-    '            </div>',
-    '            <div class="col-12">',
-    '              <label for="ip_comments" class="form-label fw-semibold">Additional comments <span class="text-muted fw-normal">(optional)</span></label>',
-    '              <textarea class="form-control" id="ip_comments" name="comments" rows="3" placeholder="Anything else you\'d like us to know?"></textarea>',
-    '            </div>',
-    '            <div class="col-12">',
-    '              <div class="form-check">',
-    '                <input class="form-check-input" type="checkbox" id="ip_tcpa" name="tcpa_consent" required />',
-    '                <label class="form-check-label small text-muted" for="ip_tcpa">By checking this box, I agree to receive calls and text messages from MedPull at the phone number provided, including via automated technology. Consent is not a condition of purchase. Message and data rates may apply. <span class="text-danger">*</span></label>',
-    '              </div>',
-    '            </div>',
-    '            <div class="col-12">',
-    '              <div id="interestFeedback" class="small"></div>',
-    '            </div>',
-    '            <div class="col-12">',
-    '              <button type="submit" class="btn btn-gradient btn-lg w-100">Request early access</button>',
-    '            </div>',
-    '          </div>',
-    '        </form>',
-    '        <p class="ip-fineprint">No spam, ever. We\'ll only use this to reach out about MedPull.</p>',
+    '      <div>',
+    '        <label for="ip_contact" class="form-label">Your name</label>',
+    '        <input type="text" class="form-control" id="ip_contact" name="contact_name" autocomplete="name" required />',
+    '      </div>',
+    '      <div>',
+    '        <label for="ip_email" class="form-label">Work email</label>',
+    '        <input type="email" class="form-control" id="ip_email" name="email" autocomplete="email" required />',
+    '      </div>',
+    '      <div class="field-full">',
+    '        <label for="ip_phone" class="form-label">Phone <span class="opt">(optional)</span></label>',
+    '        <input type="tel" class="form-control" id="ip_phone" name="phone" autocomplete="tel" />',
+    '      </div>',
+    '      <div class="field-full">',
+    '        <label for="ip_comments" class="form-label">Anything we should know? <span class="opt">(optional)</span></label>',
+    '        <textarea class="form-control" id="ip_comments" name="comments" rows="2"></textarea>',
+    '      </div>',
+    '      <label class="form-check field-full">',
+    '        <input type="checkbox" id="ip_tcpa" name="tcpa_consent" required />',
+    '        <span>By checking this box, I agree to receive calls and text messages from MedPull at the phone number provided, including via automated technology. Consent is not a condition of purchase. Message and data rates may apply.</span>',
+    '      </label>',
+    '      <div class="field-full form-feedback" id="interestFeedback" role="status"></div>',
+    '      <div class="field-full">',
+    '        <button type="submit" class="btn btn-lg btn-primary btn-block">Request early access</button>',
     '      </div>',
     '    </div>',
-    '  </div>',
+    '  </form>',
+    '  <p class="ea-fine">No spam. We\'ll only use this to reach out about MedPull.</p>',
     '</div>'
   ].join('');
-  document.body.appendChild(wrap.firstElementChild);
+  document.body.appendChild(dialog);
 
-  var modalEl = document.getElementById('interestModal');
-  var form = document.getElementById('interestForm');
-  var feedback = document.getElementById('interestFeedback');
-
-  function getModal() {
-    if (!window.bootstrap || !bootstrap.Modal) return null;
-    return bootstrap.Modal.getOrCreateInstance(modalEl);
-  }
+  var form = dialog.querySelector('#interestForm');
+  var feedback = dialog.querySelector('#interestFeedback');
 
   function openModal() {
-    var m = getModal();
-    if (m) { markSeen(); m.show(); }
+    if (dialog.open) return;
+    markSeen();
+    if (typeof dialog.showModal === 'function') dialog.showModal();
+    else dialog.setAttribute('open', '');
+  }
+  function closeModal() {
+    if (typeof dialog.close === 'function') dialog.close();
+    else dialog.removeAttribute('open');
   }
   // Expose a global so any button/link can open it.
   window.openInterestModal = openModal;
@@ -133,19 +94,27 @@
     var trigger = e.target.closest('[data-interest-open]');
     if (trigger) { e.preventDefault(); openModal(); }
   });
+  dialog.addEventListener('click', function (e) {
+    if (e.target.closest('[data-ea-close]')) { closeModal(); return; }
+    // A click on the backdrop (outside the dialog box) closes it.
+    if (e.target === dialog) {
+      var r = dialog.getBoundingClientRect();
+      var inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+      if (!inside) closeModal();
+    }
+  });
 
   // --- Gentle auto-trigger (once per visitor) ---------------------------------------
-  // Disable on pages that opt out (e.g. the waitlist page) via <body data-interest-auto="off">.
+  // Pages opt out with <body data-interest-auto="off">.
   var autoEnabled = (document.body.getAttribute('data-interest-auto') !== 'off') && !alreadySeen();
 
   if (autoEnabled) {
     var fired = false;
-    function autoFire() {
+    var autoFire = function () {
       if (fired || alreadySeen()) return;
       fired = true;
       openModal();
-    }
-    // Timed prompt.
+    };
     var timer = setTimeout(autoFire, SHOW_DELAY_MS);
     // Exit-intent: pointer leaves the top of the viewport (desktop only).
     document.addEventListener('mouseout', function (e) {
@@ -157,77 +126,52 @@
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     feedback.textContent = '';
-    feedback.className = 'small';
+    feedback.className = 'field-full form-feedback';
 
     if (!form.checkValidity()) {
       form.classList.add('was-validated');
+      feedback.textContent = 'Fill in the highlighted fields to continue.';
+      feedback.classList.add('is-error');
+      var firstInvalid = form.querySelector(':invalid');
+      if (firstInvalid) firstInvalid.focus();
       return;
     }
 
-    var data = {
+    if (!window.MEDPULL_FORMS) {
+      feedback.textContent = 'This form didn\'t finish loading. Refresh the page and try again.';
+      feedback.classList.add('is-error');
+      return;
+    }
+
+    var btn = form.querySelector('button[type="submit"]');
+    var originalLabel = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+
+    window.MEDPULL_FORMS.submit({
+      subject: 'New MedPull early-access interest',
       clinic_name: form.clinic_name.value.trim(),
       contact_name: form.contact_name.value.trim(),
       email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
-      comments: form.comments.value.trim(),
-      tcpa_consent: form.tcpa_consent.checked,
-      botcheck: form.botcheck.value
-    };
-
-    var btn = form.querySelector('button[type="submit"]');
-    var originalLabel = btn.innerHTML;
-    btn.disabled = true;
-    btn.innerHTML = 'Sending…';
-
-    function showSuccess() {
-      feedback.textContent = '';
-      form.classList.remove('was-validated');
-      form.reset();
-      btn.disabled = false;
-      btn.innerHTML = originalLabel;
-      var body = modalEl.querySelector('.ip-body');
-      body.innerHTML = [
-        '<div class="text-center py-3">',
-        '  <div style="font-size:44px;line-height:1">🎉</div>',
-        '  <h3 class="fw-bold mt-2 mb-2">You\'re on the list!</h3>',
-        '  <p class="text-muted mb-3">Thanks for your interest. We\'ll reach out shortly to set up your walkthrough.</p>',
-        '  <button type="button" class="btn btn-gradient" data-bs-dismiss="modal">Done</button>',
-        '</div>'
-      ].join('');
-    }
-
-    function showError() {
-      btn.disabled = false;
-      btn.innerHTML = originalLabel;
-      feedback.textContent = 'Something went wrong. Please try again, or email us directly.';
-      feedback.className = 'small text-danger';
-    }
-
-    if (!hasKey) {
-      // DEMO MODE: no access key configured yet.
-      console.log('[MedPull interest popup] DEMO MODE — submission captured locally:', data);
-      setTimeout(showSuccess, 600);
-      return;
-    }
-
-    fetch('https://api.web3forms.com/submit', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_ACCESS_KEY,
-        subject: 'New MedPull early-access interest',
-        from_name: 'MedPull website',
-        clinic_name: data.clinic_name,
-        contact_name: data.contact_name,
-        email: data.email,
-        phone: data.phone || '(not provided)',
-        comments: data.comments || '(none)',
-        tcpa_consent: data.tcpa_consent ? 'Yes, consented to calls/texts' : 'No',
-        botcheck: data.botcheck
+      phone: form.phone.value.trim() || '(not provided)',
+      comments: form.comments.value.trim() || '(none)',
+      tcpa_consent: form.tcpa_consent.checked ? 'Yes, consented to calls/texts' : 'No'
+    }, form.botcheck.checked)
+      .then(function () {
+        dialog.querySelector('.ea-body').innerHTML = [
+          '<div class="done-state" role="status">',
+          '  <div class="done-icon"><svg width="24" height="24" viewBox="0 0 22 22" fill="none"><path d="m5.5 11.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>',
+          '  <h3 class="done-title">You\'re on the list</h3>',
+          '  <p class="done-sub">Thanks for your interest. We\'ll reach out shortly to set up your walkthrough.</p>',
+          '  <button type="button" class="btn btn-primary" data-ea-close>Done</button>',
+          '</div>'
+        ].join('');
       })
-    })
-      .then(function (r) { return r.json(); })
-      .then(function (json) { json && json.success ? showSuccess() : showError(); })
-      .catch(showError);
+      .catch(function (err) {
+        btn.disabled = false;
+        btn.textContent = originalLabel;
+        feedback.textContent = 'Your request didn\'t go through. ' + err.message;
+        feedback.classList.add('is-error');
+      });
   });
 })();

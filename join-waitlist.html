@@ -1,312 +1,251 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Join Waitlist | MedPull Pilot Program</title>
+    <title>Join the waitlist | MedPull pilot program</title>
     <meta name="description" content="Join the MedPull pilot program and bring the AI Recovery Copilot to your orthopedic practice." />
-    
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f3f3ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
+    <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=EB+Garamond:wght@500;600&display=swap" rel="stylesheet" />
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/cluely.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/site.css?v=3" />
   </head>
-  <body class="with-fixed-nav" data-interest-auto="off">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg site-nav fixed-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
-          <img src="assets/img/medpull-logo.png" alt="MedPull" style="height: 32px; display: block; background: transparent;" onerror="this.style.display='none';">
-          <span>MedPull</span>
+  <body data-interest-auto="off">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- NAV -->
+    <header class="nav" data-nav>
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="MedPull home">
+          <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+          MedPull
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.html#features">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#how">How it works</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#testimonials">Testimonials</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#faq">FAQ</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact Us</a></li>
-          </ul>
-          <div class="d-flex gap-2 align-items-center">
-            <a class="btn btn-gradient btn-sm" href="join-waitlist.html">Join Waitlist</a>
-          </div>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+          <a href="index.html#product">Product</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#trust">Security</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="demo.html">Live demo</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn-sm btn-tinted" href="join-waitlist.html" aria-current="page">Join waitlist</a>
+          <a class="btn btn-sm btn-primary" href="book-demo.html">Book a demo</a>
         </div>
+        <button class="nav-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" data-nav-toggle><span></span></button>
       </div>
-    </nav>
+    </header>
 
-    <main class="py-6">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <!-- Header -->
-            <div class="text-center mb-5">
-              <h1 class="hero-title mb-3" style="font-size: clamp(36px,5vw,52px);">Join the MedPull Pilot Program</h1>
-              <p class="text-muted" style="max-width: 600px; margin: 0 auto;">Follow every post-op patient without adding to your team's workload. Join the waitlist to be among the first orthopedic practices running the Recovery Copilot.</p>
-            </div>
+    <main id="main">
+      <section class="canvas page-canvas">
+        <div class="split">
+          <div class="split-intro">
+            <h1 class="display">Join the pilot program</h1>
+            <p class="lede">We're bringing the Recovery Copilot to a small group of orthopedic practices first. Tell us about yours and we'll be in touch when a spot opens.</p>
+            <ul class="checklist">
+              <li>
+                <span class="glyph g-indigo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 12.5 4 4 8-9"/></svg></span>
+                <span><b>Full platform access</b>Adaptive check-ins, the daily list, AI summaries, and RTM readiness tracking.</span>
+              </li>
+              <li>
+                <span class="glyph g-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></span>
+                <span><b>Hands-on setup</b>We set up recovery pathways for your procedure mix and fit MedPull to your follow-up routine.</span>
+              </li>
+              <li>
+                <span class="glyph g-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
+                <span><b>First access to new features</b>Early wearable and EMR integrations, plus a say in what we build next.</span>
+              </li>
+              <li>
+                <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 5.5 5.5v5c0 4.3 2.8 7.4 6.5 9 3.7-1.6 6.5-4.7 6.5-9v-5Z"/></svg></span>
+                <span><b>HIPAA-aligned</b>Secure handling of patient data, with business associate agreements available.</span>
+              </li>
+            </ul>
+            <p class="aside-note">Rather talk it through? <a class="link" href="book-demo.html">Book a demo</a></p>
+          </div>
 
-            <!-- Info Section -->
-            <div class="card shadow-sm mb-5">
-              <div class="card-body p-4 p-lg-5">
-                <h3 class="fw-bold mb-4">What is the Pilot Program?</h3>
-                <p class="text-muted mb-4">The MedPull pilot program gives orthopedic practices early access to our AI Recovery Copilot. During the pilot, your practice will receive:</p>
-                
-                <div class="row g-4 mb-4">
-                  <div class="col-md-6">
-                    <div class="d-flex gap-3">
-                      <div class="flex-shrink-0">
-                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #1f2a44;">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                          </svg>
-                        </div>
-                      </div>
-                      <div>
-                        <h5 class="fw-semibold mb-2">Full Platform Access</h5>
-                        <p class="text-muted small mb-0">Adaptive post-op check-ins, the ranked worklist, AI summaries, and RTM readiness tracking.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="d-flex gap-3">
-                      <div class="flex-shrink-0">
-                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #1f2a44;">
-                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                            <circle cx="9" cy="7" r="4"></circle>
-                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div>
-                        <h5 class="fw-semibold mb-2">Dedicated Support</h5>
-                        <p class="text-muted small mb-0">Help configuring recovery pathways for your procedure mix and fitting MedPull to your follow-up workflow.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="d-flex gap-3">
-                      <div class="flex-shrink-0">
-                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #1f2a44;">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                            <path d="M2 17l10 5 10-5"></path>
-                            <path d="M2 12l10 5 10-5"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div>
-                        <h5 class="fw-semibold mb-2">Priority Features</h5>
-                        <p class="text-muted small mb-0">Early access to wearable and EHR integrations, plus a say in the roadmap.</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="d-flex gap-3">
-                      <div class="flex-shrink-0">
-                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">
-                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #1f2a44;">
-                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                          </svg>
-                        </div>
-                      </div>
-                      <div>
-                        <h5 class="fw-semibold mb-2">HIPAA-Compliant</h5>
-                        <p class="text-muted small mb-0">Enterprise-grade security with HIPAA-aligned options and Business Associate Agreements available.</p>
-                      </div>
-                    </div>
-                  </div>
+          <div class="form-card" id="waitlistCard">
+            <h2 class="h3">Tell us about your practice</h2>
+            <p class="body">It takes about two minutes.</p>
+
+            <form id="waitlistForm" novalidate>
+              <input type="checkbox" name="botcheck" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+              <div class="form-grid">
+                <div>
+                  <label for="contactName" class="form-label">Your name</label>
+                  <input type="text" class="form-control" id="contactName" name="contactName" autocomplete="name" required />
+                </div>
+                <div>
+                  <label for="contactTitle" class="form-label">Role <span class="opt">(optional)</span></label>
+                  <input type="text" class="form-control" id="contactTitle" name="contactTitle" autocomplete="organization-title" placeholder="Administrator, surgeon…" />
+                </div>
+                <div>
+                  <label for="contactEmail" class="form-label">Work email</label>
+                  <input type="email" class="form-control" id="contactEmail" name="contactEmail" autocomplete="email" required />
+                </div>
+                <div>
+                  <label for="contactPhone" class="form-label">Phone <span class="opt">(optional)</span></label>
+                  <input type="tel" class="form-control" id="contactPhone" name="contactPhone" autocomplete="tel" />
+                </div>
+                <div class="field-full">
+                  <label for="practiceName" class="form-label">Practice or group name</label>
+                  <input type="text" class="form-control" id="practiceName" name="practiceName" autocomplete="organization" required />
+                </div>
+                <div>
+                  <label for="practiceLocation" class="form-label">City and state</label>
+                  <input type="text" class="form-control" id="practiceLocation" name="practiceLocation" placeholder="Houston, TX" required />
+                </div>
+                <div>
+                  <label for="surgicalVolume" class="form-label">Monthly surgeries <span class="opt">(optional)</span></label>
+                  <select class="form-control" id="surgicalVolume" name="surgicalVolume">
+                    <option value="">Select a range</option>
+                    <option value="0-25">0–25 procedures</option>
+                    <option value="25-75">25–75 procedures</option>
+                    <option value="75-150">75–150 procedures</option>
+                    <option value="150-300">150–300 procedures</option>
+                    <option value="300+">300+ procedures</option>
+                  </select>
+                </div>
+                <div class="field-full">
+                  <label for="primaryProcedures" class="form-label">Procedures you'd want covered first <span class="opt">(optional)</span></label>
+                  <input type="text" class="form-control" id="primaryProcedures" name="primaryProcedures" placeholder="Knee and hip replacement, ACL, rotator cuff" />
+                </div>
+                <div class="field-full">
+                  <label for="interestReason" class="form-label">How do you handle post-op follow-up today?</label>
+                  <textarea class="form-control" id="interestReason" name="interestReason" rows="4" placeholder="Who makes the calls, how often, and where patients slip through" required></textarea>
+                </div>
+                <label class="form-check field-full">
+                  <input type="checkbox" id="agreeTerms" name="agreeTerms" required />
+                  <span>I agree to be contacted about the MedPull pilot program and understand that participation depends on availability.</span>
+                </label>
+                <div class="field-full form-feedback" id="waitlistFeedback" role="status"></div>
+                <div class="field-full">
+                  <button type="submit" class="btn btn-lg btn-primary btn-block">Join the waitlist</button>
                 </div>
               </div>
-            </div>
-
-            <!-- Waitlist Form -->
-            <div class="card shadow-sm">
-              <div class="card-body p-4 p-lg-5">
-                <h3 class="fw-bold mb-3">Join the Waitlist</h3>
-                <p class="text-muted mb-4">Fill out the form below to join our pilot program waitlist. We'll contact you when spots become available.</p>
-                
-                <form id="waitlistForm" novalidate>
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label for="contactName" class="form-label fw-semibold">Contact Name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="contactName" name="contactName" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="contactTitle" class="form-label fw-semibold">Title/Role</label>
-                      <input type="text" class="form-control" id="contactTitle" name="contactTitle" placeholder="e.g., Practice Administrator, Orthopedic Surgeon" />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="contactEmail" class="form-label fw-semibold">Email <span class="text-danger">*</span></label>
-                      <input type="email" class="form-control" id="contactEmail" name="contactEmail" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="contactPhone" class="form-label fw-semibold">Phone</label>
-                      <input type="tel" class="form-control" id="contactPhone" name="contactPhone" />
-                    </div>
-                    <div class="col-12">
-                      <label for="practiceName" class="form-label fw-semibold">Practice / Group Name <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="practiceName" name="practiceName" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="practiceLocation" class="form-label fw-semibold">Location (City, State) <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="practiceLocation" name="practiceLocation" placeholder="e.g., Houston, TX" required />
-                    </div>
-                    <div class="col-md-6">
-                      <label for="surgicalVolume" class="form-label fw-semibold">Approximate Monthly Surgical Volume</label>
-                      <select class="form-select" id="surgicalVolume" name="surgicalVolume">
-                        <option value="">Select range...</option>
-                        <option value="0-25">0-25 procedures</option>
-                        <option value="25-75">25-75 procedures</option>
-                        <option value="75-150">75-150 procedures</option>
-                        <option value="150-300">150-300 procedures</option>
-                        <option value="300+">300+ procedures</option>
-                      </select>
-                    </div>
-                    <div class="col-12">
-                      <label for="primaryProcedures" class="form-label fw-semibold">Primary Procedures Performed</label>
-                      <input type="text" class="form-control" id="primaryProcedures" name="primaryProcedures" placeholder="e.g., TKA, THA, ACL reconstruction, rotator cuff repair" />
-                      <div class="form-text">The procedures you'd most want covered first during the pilot</div>
-                    </div>
-                    <div class="col-12">
-                      <label for="interestReason" class="form-label fw-semibold">What interests you about MedPull? <span class="text-danger">*</span></label>
-                      <textarea class="form-control" id="interestReason" name="interestReason" rows="4" placeholder="Tell us how you handle post-op follow-up today and where recovery visibility breaks down..." required></textarea>
-                    </div>
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="agreeTerms" name="agreeTerms" required />
-                        <label class="form-check-label" for="agreeTerms">
-                          I agree to be contacted about the MedPull pilot program and understand that participation is subject to availability.
-                        </label>
-                      </div>
-                    </div>
-                    <div class="col-12">
-                      <div id="waitlistFeedback" class="small mt-3"></div>
-                    </div>
-                    <div class="col-12">
-                      <button type="submit" class="btn btn-gradient btn-lg w-100 d-flex align-items-center justify-content-center gap-2">
-                        <span>Join Waitlist</span>
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </div>
-
-            <!-- Additional Info -->
-            <div class="text-center mt-5">
-              <p class="text-muted small mb-0">Questions? <a href="index.html#contact" class="text-decoration-none">Contact us</a> or <a href="demo.html" class="text-decoration-none">try the demo</a>.</p>
-            </div>
+            </form>
           </div>
         </div>
-      </div>
+      </section>
     </main>
 
     <!-- FOOTER -->
-    <footer class="py-5 border-top">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-md-6">
-            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html" style="letter-spacing: -0.02em;">
-              <img src="assets/img/medpull-logo.png" alt="MedPull" style="height: 32px; display: block; background: transparent;" onerror="this.style.display='none';">
-              <span>MedPull</span>
+    <footer class="footer">
+      <div class="wrap" style="padding-inline:0">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+              MedPull
             </a>
-            <p class="text-muted mt-2">The AI Recovery Copilot for orthopedic practices. Adaptive check-ins, ranked worklists, and recovery made legible.</p>
+            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
           </div>
-          <div class="col-6 col-md-3">
-            <h6 class="fw-semibold">Product</h6>
-            <ul class="list-unstyled">
-              <li><a class="link-body-emphasis" href="index.html#features">Features</a></li>
-              <li><a class="link-body-emphasis" href="index.html#faq">FAQ</a></li>
+          <div>
+            <h2>Product</h2>
+            <ul>
+              <li><a href="index.html#product">Inside the product</a></li>
+              <li><a href="index.html#how">How it works</a></li>
+              <li><a href="demo.html">Live demo</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
             </ul>
           </div>
-          <div class="col-6 col-md-3">
-            <h6 class="fw-semibold">Company</h6>
-            <ul class="list-unstyled">
-              <li><a class="link-body-emphasis" href="index.html#contact">Contact</a></li>
+          <div>
+            <h2>Company</h2>
+            <ul>
+              <li><a href="index.html#proof">Our background</a></li>
+              <li><a href="index.html#trust">Security</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Get started</h2>
+            <ul>
+              <li><a href="book-demo.html">Book a demo</a></li>
+              <li><a href="join-waitlist.html">Join the waitlist</a></li>
             </ul>
           </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top">
-          <small class="text-muted">© <span id="year"></span> MedPull. All rights reserved.</small>
+        <div class="footer-base">
+          <span>Copyright © <span data-year></span> MedPull. All rights reserved.</span>
+          <span>Made for orthopedic practices</span>
         </div>
       </div>
     </footer>
 
-    <script src="assets/js/cluely.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/interest-popup.js"></script>
+    <script src="assets/js/site.js?v=3"></script>
+    <script src="assets/js/forms.js?v=3"></script>
+    <script src="assets/js/interest-popup.js?v=3"></script>
     <script>
-      // Waitlist form handling
-      document.addEventListener('DOMContentLoaded', () => {
-        const form = document.getElementById('waitlistForm');
-        const feedback = document.getElementById('waitlistFeedback');
-        
-        if (form) {
-          form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            if (!form.checkValidity()) {
-              form.classList.add('was-validated');
-              return;
-            }
-            
-            // Get form data
-            const formData = {
-              contactName: document.getElementById('contactName').value,
-              contactTitle: document.getElementById('contactTitle').value,
-              contactEmail: document.getElementById('contactEmail').value,
-              contactPhone: document.getElementById('contactPhone').value,
-              practiceName: document.getElementById('practiceName').value,
-              practiceLocation: document.getElementById('practiceLocation').value,
-              surgicalVolume: document.getElementById('surgicalVolume').value,
-              primaryProcedures: document.getElementById('primaryProcedures').value,
-              interestReason: document.getElementById('interestReason').value,
-              agreeTerms: document.getElementById('agreeTerms').checked
-            };
-            
-            // Submit to backend API
-            feedback.innerHTML = '<div class="alert alert-info">Submitting...</div>';
-            
-            // TODO: Replace with actual backend API endpoint
-            // Example: fetch('/api/waitlist', { method: 'POST', body: JSON.stringify(formData) })
-            fetch('/api/waitlist', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(formData)
-            })
-            .then(response => {
-              if (!response.ok) throw new Error('Submission failed');
-              return response.json();
-            })
-            .then(data => {
-              feedback.innerHTML = '<div class="alert alert-success">Thank you! We\'ve received your request. We\'ll contact you soon about joining the pilot program.</div>';
-              form.reset();
-              form.classList.remove('was-validated');
-              feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            })
-            .catch(error => {
-              console.error('Waitlist submission error:', error);
-              // Fallback: Store in console for now (backend integration needed)
-              console.log('Waitlist submission (stored locally):', formData);
-              feedback.innerHTML = '<div class="alert alert-success">Thank you! We\'ve received your request. We\'ll contact you soon about joining the pilot program.</div>';
-              form.reset();
-              form.classList.remove('was-validated');
-              feedback.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            });
-          });
+      // Waitlist form: posts through the shared helper in assets/js/forms.js.
+      (function () {
+        var form = document.getElementById('waitlistForm');
+        var feedback = document.getElementById('waitlistFeedback');
+        var card = document.getElementById('waitlistCard');
+        var baseClass = 'field-full form-feedback';
+
+        function showError(message) {
+          feedback.className = baseClass + ' is-error';
+          feedback.textContent = message;
         }
-      });
+
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          feedback.className = baseClass;
+          feedback.textContent = '';
+
+          if (!form.checkValidity()) {
+            form.classList.add('was-validated');
+            showError('Fill in the highlighted fields to continue.');
+            var firstInvalid = form.querySelector(':invalid');
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+
+          if (!window.MEDPULL_FORMS) {
+            showError('This form didn\'t finish loading. Refresh the page and try again.');
+            return;
+          }
+
+          var btn = form.querySelector('button[type="submit"]');
+          var label = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Sending…';
+
+          var v = function (id) { return document.getElementById(id).value.trim(); };
+          window.MEDPULL_FORMS.submit({
+            subject: 'New MedPull pilot waitlist request',
+            contact_name: v('contactName'),
+            title_role: v('contactTitle') || '(not provided)',
+            email: v('contactEmail'),
+            phone: v('contactPhone') || '(not provided)',
+            practice_name: v('practiceName'),
+            practice_location: v('practiceLocation'),
+            monthly_surgical_volume: v('surgicalVolume') || '(not provided)',
+            primary_procedures: v('primaryProcedures') || '(not provided)',
+            current_follow_up: v('interestReason'),
+            agreed_to_contact: document.getElementById('agreeTerms').checked ? 'Yes' : 'No'
+          }, form.botcheck.checked)
+            .then(function () {
+              card.innerHTML = [
+                '<div class="done-state" role="status">',
+                '  <div class="done-icon"><svg width="24" height="24" viewBox="0 0 22 22" fill="none"><path d="m5.5 11.5 3.5 3.5 7.5-8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>',
+                '  <h2 class="done-title">You\'re on the waitlist</h2>',
+                '  <p class="done-sub">Thanks for telling us about your practice. We\'ll reach out when a pilot spot opens.</p>',
+                '  <a class="btn btn-tinted" href="demo.html">Try the live demo while you wait</a>',
+                '</div>'
+              ].join('');
+              card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            })
+            .catch(function (err) {
+              btn.disabled = false;
+              btn.textContent = label;
+              showError('Your request didn\'t go through. ' + err.message);
+            });
+        });
+      })();
     </script>
   </body>
 </html>
-

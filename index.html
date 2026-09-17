@@ -1,10 +1,13 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MedPull | AI Recovery Copilot for orthopedic practices</title>
-    <meta name="description" content="MedPull runs adaptive post-op check-ins, tracks recovery progression, and tells your team which patients need attention today. An AI intelligence layer, not another dashboard." />
+    <meta name="description" content="MedPull checks in with every post-op patient by text, tracks how recovery is progressing, and tells your team which patients need attention today." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f3f3ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
     <meta property="og:title" content="MedPull | AI Recovery Copilot for orthopedic practices" />
     <meta property="og:description" content="Adaptive post-op check-ins, wearable and EMR integration, ranked provider worklists, and RTM made simple." />
     <meta property="og:type" content="website" />
@@ -15,624 +18,649 @@
     <meta name="twitter:title" content="MedPull | AI Recovery Copilot for orthopedic practices" />
     <meta name="twitter:description" content="Adaptive post-op check-ins, wearable and EMR integration, ranked provider worklists, and RTM made simple." />
     <meta name="twitter:image" content="https://medpull.org/assets/img/medpull-logo.png" />
+    <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
+    <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=EB+Garamond:wght@500;600&display=swap" rel="stylesheet" />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/cluely.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/site.css?v=3" />
   </head>
   <body>
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg site-nav fixed-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#home" style="letter-spacing: -0.02em;">
-          <img src="assets/img/medpull-logo.png" alt="MedPull" style="height: 32px; display: block; background: transparent;" onerror="this.style.display='none';">
-          <span>MedPull</span>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- NAV -->
+    <header class="nav" data-nav>
+      <div class="nav-inner">
+        <a class="brand" href="#top" aria-label="MedPull home">
+          <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+          MedPull
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="#product">Product</a></li>
-            <li class="nav-item"><a class="nav-link" href="#how">How it works</a></li>
-            <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-            <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
-          </ul>
-          <div class="d-flex gap-2 align-items-center">
-            <a class="btn btn-link btn-sm text-decoration-none px-2 d-none d-lg-inline" href="#" data-interest-open>Get early access</a>
-            <a class="btn btn-outline-primary btn-sm" href="demo.html">Book Demo</a>
-            <a class="btn btn-gradient btn-sm" href="join-waitlist.html">Join Waitlist</a>
-          </div>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+          <a href="#product">Product</a>
+          <a href="#how">How it works</a>
+          <a href="#trust">Security</a>
+          <a href="#faq">FAQ</a>
+          <a href="demo.html">Live demo</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn-sm btn-tinted" href="join-waitlist.html">Join waitlist</a>
+          <a class="btn btn-sm btn-primary" href="book-demo.html">Book a demo</a>
         </div>
-      </div>
-    </nav>
-
-    <!-- HERO -->
-    <header id="home" class="hero-landing text-center text-lg-start">
-      <div class="container position-relative">
-        <div class="row align-items-center g-5">
-          <div class="col-lg-6 order-2 order-lg-1">
-            <h1 class="hero-title mb-3">Smarter post-op recovery for orthopedic practices</h1>
-            <p class="hero-subtitle">MedPull checks in with every post-op patient, tracks how recovery is progressing, and tells your team who needs attention today.</p>
-            <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
-              <a href="demo.html" class="btn btn-gradient btn-lg px-4">Book Demo</a>
-              <a href="join-waitlist.html" class="btn btn-gradient btn-lg px-4">Join Waitlist</a>
-            </div>
-            <p class="small text-muted mt-3 mb-0">Running an orthopedic practice? <a href="#" data-interest-open class="fw-semibold text-decoration-none">Get early access →</a></p>
-
-            <div class="ask-bar mt-4">
-              <span class="prefix">Today,</span>
-              <span class="prompt" id="askPrompt">3 patients need attention</span>
-              <span class="live"><i></i>Live</span>
-            </div>
-          </div>
-
-          <div class="col-lg-6 order-1 order-lg-2">
-            <div class="hero-preview">
-              <div class="preview-top d-flex justify-content-between align-items-center">
-              </div>
-              <div class="row g-3 mt-2">
-                <div class="col-6">
-                  <div class="stat">
-                    <div class="stat-label">Recovery window</div>
-                    <div class="stat-value">Day 1 to 90</div>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="stat">
-                    <div class="stat-label">Patient check-in</div>
-                    <div class="stat-value">Under 2 min</div>
-                  </div>
-                </div>
-                <div class="col-12">
-                  <div class="stat stat-accent">
-                    <div class="stat-label">Flagged for review today</div>
-                    <div class="stat-value">3 of 240</div>
-                    <div class="small text-muted">The rest are recovering as expected</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <button class="nav-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" data-nav-toggle><span></span></button>
       </div>
     </header>
 
-    <!-- POSITIONING -->
-    <section class="py-6">
-      <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-9">
-            <span class="eyebrow">Not another dashboard</span>
-            <h2 class="fw-bold mb-3">Your team doesn't need more data. It needs the answer.</h2>
-            <p class="text-muted mb-0" style="font-size: 1.05rem;">Monitoring tools hand you another screen and more numbers to interpret. MedPull is an AI intelligence layer. It combines check-ins, wearable data, and your EMR into a short list of patients who need you, each with the reason already written out.</p>
+    <main id="main">
+      <!-- HERO -->
+      <section class="canvas hero" id="top">
+        <div class="hero-copy">
+          <a class="badge" href="join-waitlist.html">
+            <span class="badge-new">New</span>
+            Now onboarding orthopedic practices
+            <svg class="badge-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m4.5 2.5 3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <h1 class="display">Know which post-op patients need you today.</h1>
+          <p class="lede">MedPull checks in with every patient by text, keeps an eye on how recovery is going, and lets your team know who could use a call.</p>
+          <div class="btn-row">
+            <a class="btn btn-lg btn-primary" href="book-demo.html">Book a demo</a>
+            <a class="btn btn-lg btn-secondary" href="demo.html">Try the live demo</a>
           </div>
         </div>
+
+        <div class="stage" role="img" aria-label="A patient answers a check-in by text, and MedPull adds her to the team's list for today">
+          <!-- Today widget -->
+          <div class="widget w-today" aria-hidden="true">
+            <div class="widget-head"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>Today</div>
+            <span class="big grad-num num" data-hero-count>2</span>
+            <span class="lbl">patients need you</span>
+            <span class="faces" data-hero-faces><span class="avatar av-2">JW</span><span class="avatar av-3">RO</span></span>
+          </div>
+
+          <!-- Check-ins ring -->
+          <div class="widget w-ring" aria-hidden="true">
+            <div class="widget-head"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>Check-ins</div>
+            <div class="ring">
+              <svg viewBox="0 0 100 100">
+                <defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5fe0c9"/><stop offset="1" stop-color="#7b87f3"/></linearGradient></defs>
+                <circle class="ring-track" cx="50" cy="50" r="42" fill="none" stroke-width="11"/>
+                <circle class="ring-value" cx="50" cy="50" r="42" fill="none" stroke="url(#ringGrad)" stroke-width="11" stroke-linecap="round" stroke-dasharray="263.9" stroke-dashoffset="29.7" data-hero-ring/>
+              </svg>
+              <b class="num" data-hero-checkins>213</b>
+            </div>
+            <span class="lbl">of 240 checked in</span>
+          </div>
+
+          <!-- Phone -->
+          <div class="phone" aria-hidden="true">
+            <div class="phone-screen">
+              <span class="phone-island"></span>
+              <div class="phone-status">
+                <span>9:41</span>
+                <svg viewBox="0 0 54 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/><path d="M27 2.2c2 0 3.8.8 5.1 2l1-1A8.6 8.6 0 0 0 27 .8a8.6 8.6 0 0 0-6.1 2.4l1 1c1.3-1.2 3.1-2 5.1-2Zm0 3c1.2 0 2.2.4 3 1.1l1-1A5.8 5.8 0 0 0 27 3.8a5.8 5.8 0 0 0-4 1.5l1 1c.8-.7 1.8-1.1 3-1.1Zm0 3c.4 0 .8.2 1 .4L27 9.7l-1-1.1c.2-.2.6-.4 1-.4Z"/><rect x="36.5" y="1" width="15" height="9" rx="2.6" fill="none" stroke="currentColor" opacity=".45"/><rect x="38" y="2.5" width="11" height="6" rx="1.4"/><rect x="52.3" y="4" width="1.4" height="3" rx=".7" opacity=".45"/></svg>
+              </div>
+              <div class="phone-head">
+                <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
+                <div class="phone-name">Riverside Ortho Care Team</div>
+                <div class="phone-sub">Text Message</div>
+              </div>
+              <div class="sms" data-hero-sms><span class="sms-time">Today 6:42 PM</span></div>
+              <div class="phone-input"><i>+</i><span>Text Message</span></div>
+            </div>
+          </div>
+
+          <!-- Notification -->
+          <div class="widget w-note" data-hero-note aria-hidden="true">
+            <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
+            <div>
+              <div class="w-note-top"><span>MedPull</span><span>now</span></div>
+              <b>Maria A. needs a call today</b>
+              <p>Pain is up 3 points since last week, with new swelling.</p>
+            </div>
+          </div>
+
+          <!-- Summary widget -->
+          <div class="widget w-summary" aria-hidden="true">
+            <div class="widget-head"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>Recovery summary</div>
+            <p><b>Sofia N. is right on track.</b> Hip flexion keeps improving and she hasn't missed an exercise all week.</p>
+            <div class="spark"><i style="height:40%"></i><i style="height:52%"></i><i style="height:60%"></i><i style="height:68%"></i><i style="height:80%"></i><i style="height:92%"></i></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROCEDURES -->
+      <div class="procedures">
+        <p>Recovery pathways built for the procedures you do most</p>
+        <ul class="procedure-list">
+          <li>Total knee arthroplasty</li>
+          <li>Total hip arthroplasty</li>
+          <li>ACL reconstruction</li>
+          <li>Rotator cuff repair</li>
+          <li>Meniscectomy</li>
+        </ul>
       </div>
-    </section>
 
-    <!-- FEATURES -->
-    <section id="features" class="py-6 bg-body-tertiary">
-      <div class="container">
-        <div class="row mb-4 align-items-end">
-          <div class="col-lg-8">
-            <h2 class="fw-bold mb-2">Built to make recovery legible</h2>
-            <p class="text-muted">Everything you need to follow a patient from discharge to recovery, without adding to anyone's workload.</p>
+      <!-- POSITIONING -->
+      <section class="band band-alt" aria-labelledby="signal-title" style="margin-top:56px">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="h2" id="signal-title">Your team doesn't need another dashboard. It needs the answer.</h2>
+            <p class="lede">Monitoring tools hand you every patient and leave the interpreting to your staff. MedPull reads the check-ins, wearable data, and chart, then gives you the short list.</p>
           </div>
-        </div>
-        <div id="featuresGrid" class="row g-4"></div>
 
-        <div class="row g-4 mt-1">
-          <div class="col-md-6">
-            <div class="card h-100 playful-card">
-              <div class="card-body p-4">
-                <span class="pill pill-neutral mb-3">Wearables</span>
-                <h5 class="card-title">Wearable data on the same timeline</h5>
-                <p class="card-text text-muted mb-0">MedPull integrates with the patient's wearable, so activity, step count, and sleep sit next to what they told us in their check-in. When a patient reports they are moving well but their step count has halved, the worklist sees both.</p>
+          <div class="compare">
+            <figure class="tile">
+              <div class="compare-top">
+                <span class="compare-kicker"><span class="glyph g-sky" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="4" width="6" height="6" rx="1.5"/><rect x="14" y="4" width="6" height="6" rx="1.5"/><rect x="4" y="14" width="6" height="6" rx="1.5"/><rect x="14" y="14" width="6" height="6" rx="1.5"/></svg></span>A monitoring dashboard</span>
+                <span class="compare-count"><b class="num">240</b><span>to review</span></span>
               </div>
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="card h-100 playful-card">
-              <div class="card-body p-4">
-                <span class="pill pill-neutral mb-3">EMR</span>
-                <h5 class="card-title">Communicates directly with your EMR</h5>
-                <p class="card-text text-muted mb-0">MedPull integrates directly with your EMR. Patient and procedure data flow in automatically, and recovery summaries post back to the chart as progress notes, so nobody re-enters anything by hand.</p>
+              <div class="field" role="img" aria-label="240 patients, all shown the same way"></div>
+              <figcaption class="compare-foot">Every patient looks the same until someone opens their chart and works out what changed.</figcaption>
+            </figure>
+
+            <figure class="tile">
+              <div class="compare-top">
+                <span class="compare-kicker"><span class="glyph g-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>MedPull</span>
+                <span class="compare-count"><b class="grad-num num">3</b><span>to call</span></span>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRODUCT MOCKUPS -->
-    <section id="product" class="py-6">
-      <div class="container">
-        <div class="row mb-4 align-items-end">
-          <div class="col-lg-8">
-            <span class="eyebrow">Inside the product</span>
-            <h2 class="fw-bold mb-2">The four views your team works from</h2>
-            <p class="text-muted">The same AI that talks to your patient produces the worklist, the summary, and the billing status.</p>
-          </div>
-        </div>
-
-        <div class="mock-tabs" role="tablist" aria-label="Product views">
-          <button class="mock-tab" role="tab" id="tab-chat" aria-controls="panel-chat" aria-selected="true" type="button">AI recovery chat</button>
-          <button class="mock-tab" role="tab" id="tab-worklist" aria-controls="panel-worklist" aria-selected="false" type="button">Provider worklist</button>
-          <button class="mock-tab" role="tab" id="tab-summary" aria-controls="panel-summary" aria-selected="false" type="button">Recovery summary</button>
-          <button class="mock-tab" role="tab" id="tab-rtm" aria-controls="panel-rtm" aria-selected="false" type="button">RTM readiness</button>
-        </div>
-
-        <!-- Panel: AI recovery chat -->
-        <div class="mock-panel" role="tabpanel" id="panel-chat" aria-labelledby="tab-chat">
-          <div class="row g-4 align-items-center">
-            <div class="col-lg-6">
-              <div class="mock-window">
-                <div class="mock-bar">
-                  <div class="mock-dots"><i></i><i></i><i></i></div>
-                  <span class="mock-title">Recovery check-in</span>
-                  <span class="mock-chip">Adaptive</span>
-                </div>
-                <div class="mock-body">
-                  <div class="chat-meta">Day 14 · Total knee arthroplasty · 6:42 PM</div>
-                  <div class="chat-log chat-log-mock">
-                    <div class="chat-message ai">
-                      <div class="chat-message-avatar">M</div>
-                      <div class="chat-message-bubble">Hi Maria, quick check-in. How would you rate your knee pain right now, 0 to 10?</div>
-                    </div>
-                    <div class="chat-message user">
-                      <div class="chat-message-avatar">MA</div>
-                      <div class="chat-message-bubble">About a 7 today</div>
-                    </div>
-                    <div class="chat-message ai">
-                      <div class="chat-message-avatar">M</div>
-                      <div class="chat-message-bubble">That's up from a 4 last week. Is it worse when you're resting, or when you're moving?</div>
-                    </div>
-                    <div class="chat-message user">
-                      <div class="chat-message-avatar">MA</div>
-                      <div class="chat-message-bubble">Mostly at night, it's been waking me up</div>
-                    </div>
-                    <div class="chat-message ai">
-                      <div class="chat-message-avatar">M</div>
-                      <div class="chat-message-bubble">Thanks. Any swelling, warmth, or redness around the knee?</div>
-                    </div>
-                  </div>
-                  <div class="quick-replies">
-                    <span class="quick-reply is-picked">Some swelling</span>
-                    <span class="quick-reply">No changes</span>
-                    <span class="quick-reply">Not sure</span>
-                  </div>
-                  <div class="d-flex align-items-center gap-2 mt-3 pt-3 border-top">
-                    <span class="pill pill-attention">Flagged for Dr. Reyes</span>
-                    <span class="wl-sub">Pain +3 · night waking · added to worklist</span>
-                  </div>
-                </div>
+              <div class="field" role="img" aria-label="The same 240 patients, with 3 highlighted">
+                <span class="field-hit" style="--x:4;--y:2;--c:#f0677a"></span>
+                <span class="field-hit" style="--x:13;--y:5;--c:#5a78f0"></span>
+                <span class="field-hit" style="--x:8;--y:9;--c:#f0a040"></span>
               </div>
-            </div>
-            <div class="col-lg-6">
-              <h3 class="fw-bold h4 mb-3">Check-ins that follow the answer, not a script</h3>
-              <p class="text-muted">A static questionnaire asks every patient the same questions and learns nothing. MedPull knows the procedure, the post-op day, and what the patient said last time. A pain score that jumps three points triggers the follow-up a nurse would have asked.</p>
-              <ul class="list-unstyled text-muted">
-                <li class="prose-note"><b>Meets patients where they are.</b> A text message. No app, no portal login, in their language.</li>
-                <li class="prose-note"><b>Two minutes, not twenty.</b> Short by design, so patients keep answering through week twelve.</li>
-                <li class="prose-note"><b>Escalates on its own.</b> Concerning answers route to the right clinician with the transcript attached.</li>
-              </ul>
-            </div>
+              <figcaption class="people">
+                <div class="person"><span class="avatar av-1">MA</span><span class="person-text"><b>Maria A.</b>Pain up 3 points, new swelling</span><span class="pill pill-attention">Call today</span></div>
+                <div class="person"><span class="avatar av-2">JW</span><span class="person-text"><b>James W.</b>Hasn't replied in 4 days</span><span class="pill pill-attention">Call today</span></div>
+                <div class="person"><span class="avatar av-3">RO</span><span class="person-text"><b>Rachel O.</b>Range of motion behind curve</span><span class="pill pill-watch">Watch</span></div>
+              </figcaption>
+            </figure>
           </div>
         </div>
+      </section>
 
-        <!-- Panel: Provider worklist -->
-        <div class="mock-panel" role="tabpanel" id="panel-worklist" aria-labelledby="tab-worklist" hidden>
-          <div class="row g-4 align-items-center">
-            <div class="col-lg-7">
-              <div class="mock-window">
-                <div class="mock-bar">
-                  <div class="mock-dots"><i></i><i></i><i></i></div>
-                  <span class="mock-title">Today's worklist · Orthopedics</span>
-                  <span class="mock-chip">3 need attention</span>
-                </div>
-                <div class="mock-body mock-scroll">
-                  <div>
-                    <div class="wl-head">
-                      <div>Patient</div><div>Why it surfaced</div><div>POD</div><div>Status</div><div>Last check-in</div>
+      <!-- PRODUCT -->
+      <section class="band" id="product" aria-labelledby="product-title">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="h2" id="product-title">Four views. One calm morning.</h2>
+            <p class="lede">The same AI that talks with your patients writes the worklist, the summary, and the billing status.</p>
+          </div>
+
+          <div class="tabs" role="tablist" aria-label="Product views">
+            <button class="tab" role="tab" id="tab-chat" aria-controls="panel-chat" aria-selected="true" type="button">Check-in</button>
+            <button class="tab" role="tab" id="tab-worklist" aria-controls="panel-worklist" aria-selected="false" tabindex="-1" type="button">Worklist</button>
+            <button class="tab" role="tab" id="tab-summary" aria-controls="panel-summary" aria-selected="false" tabindex="-1" type="button">Summary</button>
+            <button class="tab" role="tab" id="tab-rtm" aria-controls="panel-rtm" aria-selected="false" tabindex="-1" type="button">RTM billing</button>
+          </div>
+
+          <div class="stage-tile">
+            <!-- Check-in -->
+            <div class="panel" role="tabpanel" id="panel-chat" aria-labelledby="tab-chat" tabindex="0">
+              <div class="panel-copy">
+                <span class="glyph g-indigo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 7a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3h-6l-4.5 3.5V16H7a3 3 0 0 1-3-3Z"/></svg></span>
+                <h3 class="h3">Check-ins that listen, not a script</h3>
+                <p class="body">MedPull knows the procedure, the day of recovery, and what the patient said last time. When a pain score jumps three points, it asks the follow-up a nurse would.</p>
+                <ul class="notes">
+                  <li><span><b>Just a text message.</b> In the patient's language. No app, no portal login.</span></li>
+                  <li><span><b>Two minutes, not twenty.</b> Short enough that patients keep answering through week twelve.</span></li>
+                  <li><span><b>Speaks up when it matters.</b> Concerning answers go to the right clinician, transcript attached.</span></li>
+                </ul>
+              </div>
+              <div class="panel-visual">
+                <div class="card">
+                  <div class="card-head">
+                    <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
+                    <span class="card-title">Recovery check-in</span>
+                    <span class="card-chip">Day 14</span>
+                  </div>
+                  <div class="card-body">
+                    <div class="chat-meta">Today 6:42 PM</div>
+                    <div class="chat-log">
+                      <div class="chat-message ai"><div class="chat-message-avatar">M</div><div class="chat-message-bubble">Hi Maria, quick check-in. How would you rate your knee pain right now, 0 to 10?</div></div>
+                      <div class="chat-message user"><div class="chat-message-avatar">MA</div><div class="chat-message-bubble">About a 7 today</div></div>
+                      <div class="chat-message ai"><div class="chat-message-avatar">M</div><div class="chat-message-bubble">That's up from a 4 last week. Is it worse when you're resting, or when you're moving?</div></div>
+                      <div class="chat-message user"><div class="chat-message-avatar">MA</div><div class="chat-message-bubble">Mostly at night, it's been waking me up</div></div>
+                      <div class="chat-message ai"><div class="chat-message-avatar">M</div><div class="chat-message-bubble">Thanks. Any swelling, warmth, or redness around the knee?</div></div>
                     </div>
-                    <div class="wl-row is-flagged">
-                      <div><div class="wl-name">Maria Alvarez</div><div class="wl-sub">Total knee arthroplasty</div></div>
-                      <div class="wl-cell">Pain 7/10, up from 4 · night waking</div>
-                      <div class="wl-pod">14</div>
-                      <div><span class="pill pill-attention">Needs attention</span></div>
-                      <div class="wl-cell">2h ago</div>
+                    <div class="quick-replies">
+                      <span class="quick-reply is-picked">Some swelling</span>
+                      <span class="quick-reply">No changes</span>
+                      <span class="quick-reply">Not sure</span>
                     </div>
-                    <div class="wl-row is-flagged">
-                      <div><div class="wl-name">James Whitfield</div><div class="wl-sub">ACL reconstruction</div></div>
-                      <div class="wl-cell">No response for 4 days</div>
-                      <div class="wl-pod">21</div>
-                      <div><span class="pill pill-attention">Needs attention</span></div>
-                      <div class="wl-cell">4d ago</div>
-                    </div>
-                    <div class="wl-row is-flagged">
-                      <div><div class="wl-name">Rachel Okafor</div><div class="wl-sub">Rotator cuff repair</div></div>
-                      <div class="wl-cell">ROM 6 weeks behind expected curve</div>
-                      <div class="wl-pod">9</div>
-                      <div><span class="pill pill-watch">Watch</span></div>
-                      <div class="wl-cell">Today</div>
-                    </div>
-                    <div class="wl-row">
-                      <div><div class="wl-name">Sofia Nguyen</div><div class="wl-sub">Total hip arthroplasty</div></div>
-                      <div class="wl-cell">Meeting all milestones</div>
-                      <div class="wl-pod">33</div>
-                      <div><span class="pill pill-ontrack">On track</span></div>
-                      <div class="wl-cell">Today</div>
-                    </div>
-                    <div class="wl-row">
-                      <div><div class="wl-name">Daniel Cohen</div><div class="wl-sub">Meniscectomy</div></div>
-                      <div class="wl-cell">Pain 2/10 · adherence 100%</div>
-                      <div class="wl-pod">6</div>
-                      <div><span class="pill pill-ontrack">On track</span></div>
-                      <div class="wl-cell">Today</div>
+                    <div class="card-foot">
+                      <span class="pill pill-attention">Flagged for Dr. Reyes</span>
+                      <span class="wl-sub">Added to today's list</span>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-5">
-              <h3 class="fw-bold h4 mb-3">A list of who needs you, not a grid of everyone</h3>
-              <p class="text-muted">Most monitoring products show you all 240 patients and leave triage to your staff. MedPull inverts that. Patients are ranked by clinical concern, each with the reason written out, so the first thing your team reads is the decision they need to make.</p>
-              <ul class="list-unstyled text-muted">
-                <li class="prose-note"><b>Silence counts as a signal.</b> A patient who stops responding surfaces like one reporting worsening pain.</li>
-                <li class="prose-note"><b>Compared to the expected curve.</b> Progress is judged against the recovery path for that procedure, not a generic baseline.</li>
-                <li class="prose-note"><b>On-track patients stay quiet.</b> No attention spent on the patients recovering as planned.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        <!-- Panel: Recovery summary -->
-        <div class="mock-panel" role="tabpanel" id="panel-summary" aria-labelledby="tab-summary" hidden>
-          <div class="row g-4 align-items-center">
-            <div class="col-lg-7">
-              <div class="mock-window">
-                <div class="mock-bar">
-                  <div class="mock-dots"><i></i><i></i><i></i></div>
-                  <span class="mock-title">Maria Alvarez · TKA · POD 14</span>
-                  <span class="mock-chip">AI summary</span>
-                </div>
-                <div class="mock-body">
-                  <div class="rs-summary mb-3">
-                    <p><b>Recovery is progressing, with one new concern.</b> Range of motion has improved steadily (86° to 98° over 7 days) and home exercise adherence is strong at 86%. Reported pain rose from 4 to 7 over the last three check-ins, concentrated at night, now with new swelling. Consistent with overexertion, but warrants a call to rule out effusion or early infection.</p>
+            <!-- Worklist -->
+            <div class="panel" role="tabpanel" id="panel-worklist" aria-labelledby="tab-worklist" tabindex="0" hidden>
+              <div class="panel-copy">
+                <span class="glyph g-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6.5h10M9 12h10M9 17.5h10"/><circle cx="4.8" cy="6.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.8" cy="12" r="1.3" fill="currentColor" stroke="none"/><circle cx="4.8" cy="17.5" r="1.3" fill="currentColor" stroke="none"/></svg></span>
+                <h3 class="h3">A short list of who needs you</h3>
+                <p class="body">Instead of a grid of all 240 patients, MedPull ranks the few who need attention and writes out why. The first thing your team reads is the decision to make.</p>
+                <ul class="notes">
+                  <li><span><b>Quiet counts too.</b> A patient who stops replying shows up just like one reporting more pain.</span></li>
+                  <li><span><b>Measured against the expected curve.</b> Progress is compared to the usual path for that procedure.</span></li>
+                  <li><span><b>Everyone else stays calm.</b> Patients recovering as planned don't ask for your attention.</span></li>
+                </ul>
+              </div>
+              <div class="panel-visual">
+                <div class="card">
+                  <div class="card-head">
+                    <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
+                    <span class="card-title">Today</span>
+                    <span class="card-chip">3 need you</span>
                   </div>
-                  <div class="row g-3 mb-3">
-                    <div class="col-4">
-                      <div class="rs-metric">
-                        <div class="rs-metric-label">Pain (0–10)</div>
-                        <div class="rs-metric-value">7 <span class="rs-delta down">▲ 3</span></div>
-                        <div class="spark"><i style="height:40%"></i><i style="height:35%"></i><i style="height:40%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:100%"></i></div>
+                  <div class="card-body">
+                    <div class="wl-list">
+                      <div class="wl-row is-flagged">
+                        <span class="avatar av-1">MA</span>
+                        <div><div class="wl-name">Maria Alvarez</div><div class="wl-sub">Knee arthroplasty, day 14</div></div>
+                        <div class="wl-cell">Pain 7/10, up from 4, waking at night</div>
+                        <div class="wl-status"><span class="pill pill-attention">Call today</span><span class="wl-when">2h ago</span></div>
+                      </div>
+                      <div class="wl-row is-flagged">
+                        <span class="avatar av-2">JW</span>
+                        <div><div class="wl-name">James Whitfield</div><div class="wl-sub">ACL reconstruction, day 21</div></div>
+                        <div class="wl-cell">Hasn't replied in 4 days</div>
+                        <div class="wl-status"><span class="pill pill-attention">Call today</span><span class="wl-when">4d ago</span></div>
+                      </div>
+                      <div class="wl-row">
+                        <span class="avatar av-3">RO</span>
+                        <div><div class="wl-name">Rachel Okafor</div><div class="wl-sub">Rotator cuff repair, day 9</div></div>
+                        <div class="wl-cell">Range of motion behind the expected curve</div>
+                        <div class="wl-status"><span class="pill pill-watch">Watch</span><span class="wl-when">Today</span></div>
+                      </div>
+                      <div class="wl-row">
+                        <span class="avatar av-4">SN</span>
+                        <div><div class="wl-name">Sofia Nguyen</div><div class="wl-sub">Hip arthroplasty, day 33</div></div>
+                        <div class="wl-cell">Meeting every milestone</div>
+                        <div class="wl-status"><span class="pill pill-ontrack">On track</span><span class="wl-when">Today</span></div>
+                      </div>
+                      <div class="wl-row">
+                        <span class="avatar av-5">DC</span>
+                        <div><div class="wl-name">Daniel Cohen</div><div class="wl-sub">Meniscectomy, day 6</div></div>
+                        <div class="wl-cell">Pain 2/10, every exercise done</div>
+                        <div class="wl-status"><span class="pill pill-ontrack">On track</span><span class="wl-when">Today</span></div>
                       </div>
                     </div>
-                    <div class="col-4">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary -->
+            <div class="panel" role="tabpanel" id="panel-summary" aria-labelledby="tab-summary" tabindex="0" hidden>
+              <div class="panel-copy">
+                <span class="glyph g-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
+                <h3 class="h3">Two weeks of recovery, read in fifteen seconds</h3>
+                <p class="body">Every check-in, trend, and flag becomes a short paragraph written for a clinician: what's going well, what changed, and what it might mean.</p>
+                <ul class="notes">
+                  <li><span><b>Ready for the chart.</b> Summaries export as a progress note, so documentation gets shorter.</span></li>
+                  <li><span><b>Trends, not snapshots.</b> A 7 on the way up means something different from a 7 on the way down.</span></li>
+                  <li><span><b>Always shows its source.</b> Every line links back to the check-in it came from.</span></li>
+                </ul>
+              </div>
+              <div class="panel-visual">
+                <div class="card">
+                  <div class="card-head">
+                    <span class="avatar av-1" style="width:28px;height:28px;font-size:11px">MA</span>
+                    <span class="card-title">Maria Alvarez, day 14</span>
+                    <span class="card-chip">AI summary</span>
+                  </div>
+                  <div class="card-body">
+                    <div class="rs-summary">
+                      <p><b>Recovery is progressing, with one new concern.</b> Range of motion has improved steadily (86° to 98° over 7 days) and home exercise adherence is strong at 86%. Pain rose from 4 to 7 over the last three check-ins, mostly at night, now with new swelling. Likely overexertion, but worth a call to rule out effusion or early infection.</p>
+                    </div>
+                    <div class="rs-metrics">
+                      <div class="rs-metric">
+                        <div class="rs-metric-label">Pain</div>
+                        <div class="rs-metric-value">7 <span class="rs-delta down">▲ 3</span></div>
+                        <div class="spark is-alert"><i style="height:40%"></i><i style="height:35%"></i><i style="height:40%"></i><i style="height:55%"></i><i style="height:70%"></i><i style="height:100%"></i></div>
+                      </div>
                       <div class="rs-metric">
                         <div class="rs-metric-label">Knee flexion</div>
                         <div class="rs-metric-value">98° <span class="rs-delta up">▲ 12</span></div>
                         <div class="spark"><i style="height:45%"></i><i style="height:55%"></i><i style="height:62%"></i><i style="height:70%"></i><i style="height:85%"></i><i style="height:95%"></i></div>
                       </div>
-                    </div>
-                    <div class="col-4">
                       <div class="rs-metric">
-                        <div class="rs-metric-label">HEP adherence</div>
+                        <div class="rs-metric-label">Exercises done</div>
                         <div class="rs-metric-value">86% <span class="rs-delta up">▲ 4</span></div>
                         <div class="spark"><i style="height:70%"></i><i style="height:80%"></i><i style="height:75%"></i><i style="height:90%"></i><i style="height:85%"></i><i style="height:88%"></i></div>
                       </div>
                     </div>
+                    <div class="rs-flag"><span class="pill pill-attention">Flag</span><span><b>Pain trend reversed.</b> Three check-ins trending up after two weeks of improvement.</span></div>
+                    <div class="rs-flag"><span class="pill pill-watch">Watch</span><span><b>New swelling</b> on day 14, the first mention since discharge.</span></div>
                   </div>
-                  <div class="rs-flag"><span class="pill pill-attention">Flag</span><span><b>Pain trend reversal.</b> Three consecutive check-ins trending upward after two weeks of decline.</span></div>
-                  <div class="rs-flag"><span class="pill pill-watch">Watch</span><span><b>New swelling reported</b> at day 14, first mention since discharge.</span></div>
-                  <div class="rs-flag"><span class="pill pill-neutral">Note</span><span><b>Ready for documentation.</b> Summary exportable to the chart as a progress note.</span></div>
                 </div>
               </div>
             </div>
-            <div class="col-lg-5">
-              <h3 class="fw-bold h4 mb-3">Two weeks of recovery, read in fifteen seconds</h3>
-              <p class="text-muted">Every check-in, trend, and flag becomes a paragraph written for a clinician: what's going well, what changed, and what it might mean. The underlying data is one click away, but nobody has to assemble the story.</p>
-              <ul class="list-unstyled text-muted">
-                <li class="prose-note"><b>Written for the chart.</b> Summaries export as a progress note, cutting documentation time instead of adding to it.</li>
-                <li class="prose-note"><b>Trends, not snapshots.</b> A pain score of 7 means something different on the way up than on the way down.</li>
-                <li class="prose-note"><b>Always cites its source.</b> Every claim links back to the check-in it came from.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
 
-        <!-- Panel: RTM readiness -->
-        <div class="mock-panel" role="tabpanel" id="panel-rtm" aria-labelledby="tab-rtm" hidden>
-          <div class="row g-4 align-items-center">
-            <div class="col-lg-7">
-              <div class="mock-window">
-                <div class="mock-bar">
-                  <div class="mock-dots"><i></i><i></i><i></i></div>
-                  <span class="mock-title">RTM readiness · Maria Alvarez · July cycle</span>
-                  <span class="mock-chip">3 of 4 ready</span>
-                </div>
-                <div class="mock-body mock-scroll">
-                  <div class="row g-3">
-                    <div class="col-6 col-lg-3">
+            <!-- RTM -->
+            <div class="panel" role="tabpanel" id="panel-rtm" aria-labelledby="tab-rtm" tabindex="0" hidden>
+              <div class="panel-copy">
+                <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2Z"/><path d="M9.5 8.5h5M9.5 12.5h5" stroke-linecap="round"/></svg></span>
+                <h3 class="h3">RTM revenue, minus the paperwork</h3>
+                <p class="body">Remote Therapeutic Monitoring is reimbursable, but tracking data days and minutes by hand usually isn't worth it. MedPull counts both automatically, from work your team already does.</p>
+                <ul class="notes">
+                  <li><span><b>Thresholds tracked live.</b> See who has reached 16 days of data and 20 minutes, and who is close.</span></li>
+                  <li><span><b>Documentation attached.</b> Each code exports with the check-ins and clinician time behind it.</span></li>
+                  <li><span><b>Built-in guardrails.</b> A code only shows as ready once its requirements are met.</span></li>
+                </ul>
+                <p class="fineprint">RTM code availability and reimbursement vary by payer and setting. MedPull supports your billing workflow and does not provide billing or legal advice.</p>
+              </div>
+              <div class="panel-visual">
+                <div class="card">
+                  <div class="card-head">
+                    <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
+                    <span class="card-title">RTM readiness, July</span>
+                    <span class="card-chip">3 of 4 ready</span>
+                  </div>
+                  <div class="card-body">
+                    <div class="rtm-grid">
                       <div class="rtm-code">
-                        <div class="d-flex justify-content-between align-items-start mb-1">
-                          <span class="rtm-code-id">98975</span>
-                          <span class="pill pill-ontrack">Ready</span>
-                        </div>
-                        <div class="rtm-code-name">Initial set-up &amp; patient education</div>
+                        <div class="rtm-code-top"><span class="rtm-code-id">98975</span><span class="pill pill-ontrack">Ready</span></div>
+                        <div class="rtm-code-name">Set-up and patient education</div>
                         <div class="rtm-meter"><span style="width:100%"></span></div>
                         <div class="rtm-foot"><span>Completed</span><span>Jul 2</span></div>
                       </div>
-                    </div>
-                    <div class="col-6 col-lg-3">
                       <div class="rtm-code">
-                        <div class="d-flex justify-content-between align-items-start mb-1">
-                          <span class="rtm-code-id">98977</span>
-                          <span class="pill pill-ontrack">Ready</span>
-                        </div>
+                        <div class="rtm-code-top"><span class="rtm-code-id">98977</span><span class="pill pill-ontrack">Ready</span></div>
                         <div class="rtm-code-name">Device supply, 16 days of data</div>
                         <div class="rtm-meter"><span style="width:100%"></span></div>
-                        <div class="rtm-foot"><span>16 / 16 days</span><span>Threshold met</span></div>
+                        <div class="rtm-foot"><span>16 / 16 days</span><span>Met</span></div>
                       </div>
-                    </div>
-                    <div class="col-6 col-lg-3">
                       <div class="rtm-code">
-                        <div class="d-flex justify-content-between align-items-start mb-1">
-                          <span class="rtm-code-id">98980</span>
-                          <span class="pill pill-ontrack">Ready</span>
-                        </div>
-                        <div class="rtm-code-name">First 20 min treatment management</div>
+                        <div class="rtm-code-top"><span class="rtm-code-id">98980</span><span class="pill pill-ontrack">Ready</span></div>
+                        <div class="rtm-code-name">First 20 minutes of management</div>
                         <div class="rtm-meter"><span style="width:100%"></span></div>
-                        <div class="rtm-foot"><span>22 / 20 min</span><span>Threshold met</span></div>
+                        <div class="rtm-foot"><span>22 / 20 min</span><span>Met</span></div>
                       </div>
-                    </div>
-                    <div class="col-6 col-lg-3">
                       <div class="rtm-code">
-                        <div class="d-flex justify-content-between align-items-start mb-1">
-                          <span class="rtm-code-id">98981</span>
-                          <span class="pill pill-watch">In progress</span>
-                        </div>
-                        <div class="rtm-code-name">Each additional 20 min</div>
+                        <div class="rtm-code-top"><span class="rtm-code-id">98981</span><span class="pill pill-watch">12 min left</span></div>
+                        <div class="rtm-code-name">Each additional 20 minutes</div>
                         <div class="rtm-meter is-short"><span style="width:40%"></span></div>
-                        <div class="rtm-foot"><span>8 / 20 min</span><span>12 min to go</span></div>
+                        <div class="rtm-foot"><span>8 / 20 min</span><span>40%</span></div>
                       </div>
                     </div>
                   </div>
-                  <div class="mt-3 pt-3 border-top">
-                    <div class="rs-flag"><span class="pill pill-neutral">Auto-tracked</span><span>Interactive time accrues from check-in review, messages, and calls logged in MedPull. No stopwatch, no manual attestation.</span></div>
-                    <div class="rs-flag"><span class="pill pill-ontrack">Export</span><span>Billing-ready summary with dates, minutes, and supporting documentation for each code.</span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-lg-5">
-              <h3 class="fw-bold h4 mb-3">RTM revenue without the RTM paperwork</h3>
-              <p class="text-muted">Remote Therapeutic Monitoring is reimbursable, but most practices skip it because tracking data days and interactive minutes by hand isn't worth the trouble. MedPull counts both automatically, as a byproduct of work your team already does.</p>
-              <ul class="list-unstyled text-muted">
-                <li class="prose-note"><b>Thresholds tracked live.</b> See which patients hit 16 days of data and 20 interactive minutes, and which are close.</li>
-                <li class="prose-note"><b>Documentation attached.</b> Each code exports with the check-ins and clinician time that substantiate it.</li>
-                <li class="prose-note"><b>Compliance guardrails.</b> Codes surface as ready only once the requirements are met.</li>
-              </ul>
-              <p class="small text-muted mt-3 mb-0">RTM code availability and reimbursement vary by payer and setting. MedPull supports your billing workflow and does not provide billing or legal advice.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS -->
-    <section id="how" class="py-6 bg-body-tertiary">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-lg-8">
-            <h2 class="fw-bold mb-2">How it works</h2>
-            <p class="text-muted">From discharge to a ranked worklist, without anyone chasing patients down.</p>
-          </div>
-        </div>
-        <div class="row g-4">
-          <div class="col-md-4">
-            <div class="card h-100 playful-card">
-              <div class="card-body p-4">
-                <span class="step">1</span>
-                <h5 class="card-title mt-2">The patient checks in</h5>
-                <p class="card-text text-muted">A short check-in arrives by text. No app, no portal login, in the patient's language. Questions adapt to their procedure and their last answers.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 playful-card">
-              <div class="card-body p-4">
-                <span class="step">2</span>
-                <h5 class="card-title mt-2">MedPull interprets it</h5>
-                <p class="card-text text-muted">Answers become structured recovery signals: pain, range of motion, function, adherence. Combined with wearable data and trended against the expected path for that procedure.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card h-100 playful-card">
-              <div class="card-body p-4">
-                <span class="step">3</span>
-                <h5 class="card-title mt-2">Your team sees what matters</h5>
-                <p class="card-text text-muted">One ranked worklist, an AI summary posted back to your EMR, and RTM billing status already computed.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- BUILT ON PROVEN HEALTHCARE AI -->
-    <section id="proof" class="py-6">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-10">
-            <div class="card proof-card">
-              <div class="card-body p-4 p-lg-5">
-                <span class="eyebrow">Built on proven healthcare AI</span>
-                <h2 class="fw-bold mb-3">We didn't start from scratch.</h2>
-                <p class="text-muted mb-4">Before MedPull was a Recovery Copilot, we built an AI conversational intake platform for community health centers: adaptive, multilingual patient conversations designed for real clinical settings. That engine is what the Recovery Copilot runs on. The conversation is the same. What we ask about, and who we hand the answers to, is what changed.</p>
-
-                <div class="row align-items-stretch g-3 mb-4">
-                  <div class="col-md-5">
-                    <div class="proof-step">
-                      <span class="yr">2025</span>
-                      <div class="ttl">Conversational intake</div>
-                      <p class="sub">Adaptive, multilingual patient conversations built for community health centers.</p>
-                    </div>
-                  </div>
-                  <div class="col-md-2 proof-arrow">
-                    <svg width="38" height="18" viewBox="0 0 38 18" fill="none" aria-hidden="true">
-                      <path d="M2 9h30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
-                      <path d="M26 2.5 33 9l-7 6.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                  </div>
-                  <div class="col-md-5">
-                    <div class="proof-step is-now">
-                      <span class="yr">2026</span>
-                      <div class="ttl">AI Recovery Copilot</div>
-                      <p class="sub">The same engine, pointed at post-operative orthopedic recovery.</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row g-3">
-                  <div class="col-md-4">
-                    <div class="proof-stat-card">
-                      <div class="proof-stat">5+</div>
-                      <div class="proof-stat-label">Languages the engine speaks</div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="proof-stat-card">
-                      <div class="proof-stat">0</div>
-                      <div class="proof-stat-label">Apps for patients to install</div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="proof-stat-card">
-                      <div class="proof-stat">24/7</div>
-                      <div class="proof-stat-label">Check-ins on the patient's schedule</div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="py-6 bg-body-tertiary">
-      <div class="container">
-        <div class="row mb-4">
-          <div class="col-lg-8">
-            <h2 class="fw-bold mb-2">Frequently asked questions</h2>
-            <p class="text-muted">Answers about monitoring, workflow, billing, and privacy.</p>
+      <!-- FEATURES -->
+      <section class="band band-alt" id="features" aria-labelledby="features-title">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="h2" id="features-title">Everything between discharge and day 90</h2>
+            <p class="lede">Follow every patient through recovery without adding to anyone's workload.</p>
           </div>
-        </div>
-        <div class="accordion" id="faqAccordion">
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="q1"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a1" aria-expanded="false" aria-controls="a1">How is this different from a remote monitoring dashboard?</button></h2>
-            <div id="a1" class="accordion-collapse collapse" aria-labelledby="q1" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">A dashboard shows you everything and leaves interpretation to your staff. MedPull reads every check-in, compares it to the expected recovery path for that procedure, and produces a short ranked list of patients who need attention, with the reasoning written out. The goal is fewer things to look at, not more.</div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="q2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2" aria-expanded="false" aria-controls="a2">Which procedures do you support?</button></h2>
-            <div id="a2" class="accordion-collapse collapse" aria-labelledby="q2" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">We're starting with the highest-volume orthopedic procedures: total knee and hip arthroplasty, ACL reconstruction, rotator cuff repair, and meniscectomy. Each has its own recovery curve and check-in logic. Tell us what you do most and we'll prioritize it.</div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="q3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a3" aria-expanded="false" aria-controls="a3">Do patients need to download an app?</button></h2>
-            <div id="a3" class="accordion-collapse collapse" aria-labelledby="q3" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">No. Check-ins arrive as a text message and take under two minutes. Nothing to download, no portal password, and available in multiple languages. That is why response rates hold up through week twelve.</div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="q4"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a4" aria-expanded="false" aria-controls="a4">How does RTM billing work?</button></h2>
-            <div id="a4" class="accordion-collapse collapse" aria-labelledby="q4" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">MedPull automatically tracks the two things RTM codes hinge on: days of monitoring data and interactive treatment-management minutes. When a patient crosses a threshold, the code shows as ready with supporting documentation attached. Code availability and reimbursement vary by payer and setting, and MedPull supports your billing workflow rather than providing billing advice.</div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="q5"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a5" aria-expanded="false" aria-controls="a5">How does it integrate with wearables and our EMR?</button></h2>
-            <div id="a5" class="accordion-collapse collapse" aria-labelledby="q5" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">MedPull communicates directly with your EMR: patient and procedure data flow in automatically, and AI recovery summaries post back to the chart as progress notes. On the patient side, we integrate with wearables so activity, step count, and sleep join the same recovery timeline as their check-in answers. Tell us which EMR you run and we'll walk through the setup.</div>
-            </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header" id="q6"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a6" aria-expanded="false" aria-controls="a6">Is patient data private?</button></h2>
-            <div id="a6" class="accordion-collapse collapse" aria-labelledby="q6" data-bs-parent="#faqAccordion">
-              <div class="accordion-body">Patient data is processed securely, and enterprise plans offer HIPAA-aligned options and BAAs. Clinicians stay in the loop on every escalation. MedPull surfaces and summarizes. It does not diagnose or make clinical decisions.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="py-6">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="card shadow-sm">
-              <div class="card-body p-4 p-lg-5">
-                <h2 class="fw-bold mb-3">Talk to us</h2>
-                <p class="text-muted mb-4">We're onboarding a small group of orthopedic practices. If post-op follow-up is eating your team's time, we'd like to hear about it.</p>
-                <div class="text-center">
-                  <a href="demo.html" class="btn btn-gradient btn-lg px-4 mb-3">Book a Demo</a>
-                  <p class="text-muted small mb-0">Or <a href="#" data-interest-open>request early access</a> and we'll reach out to set up a walkthrough.</p>
+          <div class="bento">
+            <article class="tile cell cell-2">
+              <span class="glyph g-indigo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17.5 9.5 12l3.5 3.5L20 8.5"/><path d="M15 8.5h5v5"/></svg></span>
+              <h3 class="title">Measured against the expected curve</h3>
+              <p class="body">Pain, range of motion, function, and adherence are compared to the usual recovery path for that procedure, so a reversal stands out the day it starts.</p>
+              <div class="cell-visual curve" aria-hidden="true">
+                <div class="curve-legend"><span><i></i>Expected for knee arthroplasty</span><span><i class="is-actual"></i>Maria A.</span><span class="curve-note"><b></b>Pain 7 on day 14</span></div>
+                <svg viewBox="0 0 600 150" fill="none">
+                  <path class="curve-grid" d="M0 140.5H600M0 90.5H600M0 40.5H600"/>
+                  <path class="curve-expected" d="M0 12C80 32 150 70 230 95C320 122 440 136 600 142" stroke-width="2.5" stroke-dasharray="4 7" stroke-linecap="round"/>
+                  <defs><linearGradient id="curveGrad" x1="0" x2="1"><stop offset="0" stop-color="#7b87f3"/><stop offset="1" stop-color="#a48af5"/></linearGradient></defs>
+                  <path d="M0 16C70 34 140 66 200 88C250 106 290 108 330 102C370 96 395 78 430 60" stroke="url(#curveGrad)" stroke-width="4" stroke-linecap="round"/>
+                  <circle cx="430" cy="60" r="8" fill="#ff7a6b" opacity=".25"/>
+                  <circle cx="430" cy="60" r="5" fill="#ff7a6b"/>
+                </svg>
+                <div class="curve-axis"><span>Day 1</span><span>Day 90</span></div>
+              </div>
+            </article>
+
+            <article class="tile cell">
+              <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.3 2.4 3.4 5.2 3.4 8.5s-1.1 6.1-3.4 8.5c-2.3-2.4-3.4-5.2-3.4-8.5S9.7 5.9 12 3.5Z"/></svg></span>
+              <h3 class="title">In the patient's language</h3>
+              <p class="body">Check-ins run in the language each patient prefers, so response rates hold up across your whole panel.</p>
+              <div class="cell-visual lang-bubbles" aria-hidden="true">
+                <span class="sms-msg sms-in">Hola María, ¿cómo está su dolor de rodilla hoy, del 0 al 10?</span>
+                <span class="sms-msg sms-out">Como un 3</span>
+                <span class="sms-msg sms-in">¡Qué bien! ¿Pudo hacer sus ejercicios?</span>
+              </div>
+            </article>
+
+            <article class="tile cell">
+              <span class="glyph g-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12.5h4l2-5 4 10 2-5h6"/></svg></span>
+              <h3 class="title">Wearables on the same timeline</h3>
+              <p class="body">Steps, activity, and sleep sit next to what the patient told us, so a mismatch shows up on its own.</p>
+              <div class="cell-visual wear" aria-hidden="true">
+                <span class="sms-msg sms-out">Moving around well this week</span>
+                <div class="wear-bars"><i style="height:78%"></i><i style="height:84%"></i><i style="height:90%"></i><i style="height:86%"></i><i class="is-low" style="height:48%"></i><i class="is-low" style="height:42%"></i><i class="is-low" style="height:40%"></i></div>
+                <div class="wear-caption"><span>Daily steps</span><span>Down 52% since Friday</span></div>
+              </div>
+            </article>
+
+            <article class="tile cell">
+              <span class="glyph g-sky" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M7 3.5h7l4 4v13H7Z"/><path d="M14 3.5v4h4M10 12.5h5M10 16h5" stroke-linecap="round"/></svg></span>
+              <h3 class="title">Connected to your EMR</h3>
+              <p class="body">Patient and procedure data flow in, and summaries post back to the chart. Nobody re-enters anything.</p>
+              <div class="cell-visual" aria-hidden="true">
+                <div class="emr-row">
+                  <span class="glyph g-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6.5 13.5 12 19l5.5-5.5"/></svg></span>
+                  <span><b>Procedure imported</b>Left knee, discharged Jul 1</span>
+                </div>
+                <div class="emr-row">
+                  <span class="glyph g-mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 12.5 4 4 8-9"/></svg></span>
+                  <span><b>Progress note posted</b>Recovery summary, day 14</span>
                 </div>
               </div>
+            </article>
+
+            <article class="tile cell">
+              <span class="glyph g-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6.5 16v-5a5.5 5.5 0 1 1 11 0v5l1.5 2h-14Z"/><path d="M10 20.5a2 2 0 0 0 4 0" stroke-linecap="round"/></svg></span>
+              <h3 class="title">Quiet counts as a signal</h3>
+              <p class="body">A patient who stops replying gets flagged, just like one who reports a problem.</p>
+              <div class="cell-visual" aria-hidden="true">
+                <div class="silence-card">
+                  <div class="silence-row"><span>Maria A.</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <div class="silence-row"><span>James W.</span><i></i><i></i><i></i><i class="is-miss"></i><i class="is-miss"></i><i class="is-miss"></i><i class="is-miss"></i></div>
+                  <div class="silence-row"><span>Sofia N.</span><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                </div>
+                <span class="pill pill-attention" style="align-self:flex-start">James W. quiet for 4 days</span>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="band" id="how" aria-labelledby="how-title">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="h2" id="how-title">From discharge to a short list</h2>
+            <p class="lede">Nobody on your team has to chase patients down.</p>
+          </div>
+          <ol class="steps">
+            <li class="tile step">
+              <span class="step-n">1</span>
+              <h3 class="title">The patient checks in</h3>
+              <p class="body">A short text arrives in the patient's language, with questions that fit their procedure and their last answers.</p>
+            </li>
+            <li class="tile step">
+              <span class="step-n">2</span>
+              <h3 class="title">MedPull makes sense of it</h3>
+              <p class="body">Answers become recovery signals like pain, motion, and adherence, combined with wearable data and compared to the expected path.</p>
+            </li>
+            <li class="tile step">
+              <span class="step-n">3</span>
+              <h3 class="title">Your team sees what matters</h3>
+              <p class="body">One ranked list, an AI summary posted to your EMR, and RTM billing status already worked out.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ORIGIN -->
+      <section class="band" id="proof" aria-labelledby="proof-title" style="padding-top:0">
+        <div class="wrap">
+          <div class="origin">
+            <div>
+              <h2 class="h2" id="proof-title">We didn't start from scratch.</h2>
+              <p class="body">Before MedPull was a Recovery Copilot, we built an AI intake platform for community health centers: adaptive, multilingual conversations designed for real clinical settings. The Recovery Copilot runs on that same engine. What changed is what we ask about, and who gets the answers.</p>
+            </div>
+            <div class="timeline">
+              <div class="tl-item">
+                <div class="tl-year">2025</div>
+                <div class="tl-title">Conversational intake</div>
+                <p class="tl-sub">Adaptive, multilingual patient conversations for community health centers.</p>
+              </div>
+              <div class="tl-item is-now">
+                <div class="tl-year">2026</div>
+                <div class="tl-title">AI Recovery Copilot</div>
+                <p class="tl-sub">The same engine, now caring for orthopedic patients after surgery.</p>
+              </div>
+            </div>
+            <div class="facts">
+              <div class="fact"><b class="grad-num">5+</b><span>Languages the engine speaks</span></div>
+              <div class="fact"><b class="grad-num">0</b><span>Apps for patients to install</span></div>
+              <div class="fact"><b class="grad-num">24/7</b><span>Check-ins on the patient's schedule</span></div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- TRUST -->
+      <section class="band band-alt" id="trust" aria-labelledby="trust-title">
+        <div class="wrap">
+          <div class="section-head">
+            <h2 class="h2" id="trust-title">Built for clinical care</h2>
+            <p class="lede">MedPull surfaces and summarizes. Your clinicians make the calls.</p>
+          </div>
+          <div class="trust">
+            <div class="tile">
+              <span class="glyph g-indigo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 3 5.5 5.5v5c0 4.3 2.8 7.4 6.5 9 3.7-1.6 6.5-4.7 6.5-9v-5Z"/><path d="m9 12 2.2 2.2 4-4.4" stroke-linecap="round"/></svg></span>
+              <h3 class="title">HIPAA-aligned, with BAAs</h3>
+              <p class="body">Patient data is processed securely, and enterprise plans include HIPAA-aligned options and business associate agreements.</p>
+            </div>
+            <div class="tile">
+              <span class="glyph g-peach" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></span>
+              <h3 class="title">A person on every escalation</h3>
+              <p class="body">Concerning answers go to someone on your team, with the full conversation attached.</p>
+            </div>
+            <div class="tile">
+              <span class="glyph g-mint" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 14a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1 1M14 10a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1-1"/></svg></span>
+              <h3 class="title">Every claim shows its source</h3>
+              <p class="body">Each line in a summary links back to the check-in or data point it came from.</p>
+            </div>
+            <div class="tile">
+              <span class="glyph g-violet" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5l3 2"/></svg></span>
+              <h3 class="title">Supports decisions, never makes them</h3>
+              <p class="body">MedPull doesn't diagnose. It tells your team where to look, and why.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="band" id="faq" aria-labelledby="faq-title">
+        <div class="wrap">
+          <div class="faq">
+            <div class="faq-aside">
+              <h2 class="h2" id="faq-title">Questions, answered</h2>
+              <p class="body">Monitoring, workflow, billing, and privacy. Anything else, we're happy to walk through it with you.</p>
+              <a class="btn btn-tinted" href="book-demo.html">Talk with us</a>
+            </div>
+            <div class="faq-list">
+              <details class="faq-item" name="faq">
+                <summary>How is this different from a remote monitoring dashboard?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+                <p>A dashboard shows you everything and leaves interpretation to your staff. MedPull reads every check-in, compares it to the expected recovery path for that procedure, and produces a short ranked list of patients who need attention, with the reasoning written out. The goal is fewer things to look at, not more.</p>
+              </details>
+              <details class="faq-item" name="faq">
+                <summary>Which procedures do you support?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+                <p>We're starting with the highest-volume orthopedic procedures: total knee and hip arthroplasty, ACL reconstruction, rotator cuff repair, and meniscectomy. Each has its own recovery curve and check-in logic. Tell us what you do most and we'll prioritize it.</p>
+              </details>
+              <details class="faq-item" name="faq">
+                <summary>Do patients need to download an app?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+                <p>No. Check-ins arrive as a text message and take under two minutes. There's nothing to download, no portal password, and they're available in multiple languages. That's why response rates hold up through week twelve.</p>
+              </details>
+              <details class="faq-item" name="faq">
+                <summary>How does RTM billing work?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+                <p>MedPull automatically tracks the two things RTM codes hinge on: days of monitoring data and interactive treatment-management minutes. When a patient crosses a threshold, the code shows as ready with supporting documentation attached. Code availability and reimbursement vary by payer and setting, and MedPull supports your billing workflow rather than providing billing advice.</p>
+              </details>
+              <details class="faq-item" name="faq">
+                <summary>How does it work with wearables and our EMR?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+                <p>MedPull connects directly to your EMR: patient and procedure data flow in automatically, and AI recovery summaries post back to the chart as progress notes. On the patient side, we integrate with wearables so activity, step count, and sleep join the same recovery timeline as their check-in answers. Tell us which EMR you run and we'll walk through the setup.</p>
+              </details>
+              <details class="faq-item" name="faq">
+                <summary>Is patient data private?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
+                <p>Patient data is processed securely, and enterprise plans offer HIPAA-aligned options and BAAs. Clinicians stay in the loop on every escalation. MedPull surfaces and summarizes. It does not diagnose or make clinical decisions.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="canvas cta" id="contact" aria-labelledby="cta-title">
+        <span class="app-icon app-icon-xl" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>
+        <h2 class="h2" id="cta-title">See it with your own patients.</h2>
+        <p class="lede">We're onboarding a small group of orthopedic practices. If post-op follow-up is eating your team's time, we'd love to hear about it.</p>
+        <div class="btn-row btn-row-center">
+          <a class="btn btn-lg btn-primary" href="book-demo.html">Book a demo</a>
+          <a class="btn btn-lg btn-secondary" href="#" data-interest-open>Request early access</a>
+        </div>
+      </section>
+    </main>
 
     <!-- FOOTER -->
-    <footer class="py-5 border-top">
-      <div class="container">
-        <div class="row g-4">
-          <div class="col-md-6">
-            <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="#home" style="letter-spacing: -0.02em;">
-              <img src="assets/img/medpull-logo.png" alt="MedPull" style="height: 32px; display: block; background: transparent;" onerror="this.style.display='none';">
-              <span>MedPull</span>
+    <footer class="footer">
+      <div class="wrap" style="padding-inline:0">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="#top">
+              <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+              MedPull
             </a>
-            <p class="text-muted mt-2">The AI Recovery Copilot for orthopedic practices. Adaptive check-ins, ranked worklists, and recovery made legible.</p>
+            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
           </div>
-          <div class="col-6 col-md-3">
-            <h6 class="fw-semibold">Product</h6>
-            <ul class="list-unstyled">
-              <li><a class="link-body-emphasis" href="#features">Features</a></li>
-              <li><a class="link-body-emphasis" href="#product">Inside the product</a></li>
-              <li><a class="link-body-emphasis" href="#faq">FAQ</a></li>
+          <div>
+            <h2>Product</h2>
+            <ul>
+              <li><a href="#product">Inside the product</a></li>
+              <li><a href="#how">How it works</a></li>
+              <li><a href="demo.html">Live demo</a></li>
+              <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
-          <div class="col-6 col-md-3">
-            <h6 class="fw-semibold">Company</h6>
-            <ul class="list-unstyled">
-              <li><a class="link-body-emphasis" href="#proof">Our background</a></li>
-              <li><a class="link-body-emphasis" href="#contact">Contact</a></li>
-              <li><a class="link-body-emphasis" href="#" data-interest-open>Get early access</a></li>
+          <div>
+            <h2>Company</h2>
+            <ul>
+              <li><a href="#proof">Our background</a></li>
+              <li><a href="#trust">Security</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Get started</h2>
+            <ul>
+              <li><a href="book-demo.html">Book a demo</a></li>
+              <li><a href="join-waitlist.html">Join the waitlist</a></li>
+              <li><a href="#" data-interest-open>Request early access</a></li>
             </ul>
           </div>
         </div>
-        <div class="d-flex justify-content-between align-items-center pt-4 mt-4 border-top">
-          <small class="text-muted">© <span id="year"></span> MedPull. All rights reserved.</small>
+        <div class="footer-base">
+          <span>Copyright © <span data-year></span> MedPull. All rights reserved.</span>
+          <span>Made for orthopedic practices</span>
         </div>
       </div>
     </footer>
 
-    <script src="assets/js/cluely.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/interest-popup.js"></script>
+    <script src="assets/js/site.js?v=3"></script>
+    <script src="assets/js/forms.js?v=3"></script>
+    <script src="assets/js/interest-popup.js?v=3"></script>
   </body>
 </html>
