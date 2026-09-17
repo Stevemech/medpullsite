@@ -224,6 +224,11 @@
     return { label: 'On track', cls: 'pill-ontrack', chip: 'All on track' };
   }
 
+  // Lowercase a procedure name for mid-sentence use, keeping acronyms like ACL.
+  function sentenceCase(text) {
+    return text.split(' ').map((w) => (w === w.toUpperCase() ? w : w.toLowerCase())).join(' ');
+  }
+
   function summaryFor(st) {
     const n = scenario.name.split(' ')[0];
     const reasons = notes.length ? notes.join('. ') + '.' : 'No concerning findings reported across any domain.';
@@ -231,7 +236,7 @@
     if (st.label === 'Needs attention') {
       return '<b>' + n + ' reported a pattern that warrants a call.</b> ' + reasons +
         ' Taken together these signals fall outside the expected recovery path for ' +
-        scenario.procedure.toLowerCase() + ' at day ' + scenario.pod +
+        sentenceCase(scenario.procedure) + ' at day ' + scenario.pod +
         '. Recommend clinical outreach within 24 hours to assess in person.';
     }
     if (st.label === 'Watch') {
@@ -239,7 +244,7 @@
         ' Nothing here requires immediate outreach, but the next check-in should confirm the trend is not worsening.';
     }
     return '<b>' + n + ' is recovering as expected.</b> ' + reasons +
-      ' Trajectory is consistent with the expected path for ' + scenario.procedure.toLowerCase() +
+      ' Trajectory is consistent with the expected path for ' + sentenceCase(scenario.procedure) +
       ' at day ' + scenario.pod + '. No action needed. Continue routine check-ins.';
   }
 

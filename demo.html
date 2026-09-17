@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Live demo | MedPull Recovery Copilot</title>
     <meta name="description" content="Walk through an adaptive post-op check-in and watch it turn into a provider worklist entry, an AI recovery summary, and RTM billing status." />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" content="#f3f3ff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#fbfbf9" />
     <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
     <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
+    <script>document.documentElement.classList.add('js')</script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/site.css?v=3" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/site.css?v=4" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -23,7 +23,7 @@
     <header class="nav" data-nav>
       <div class="nav-inner">
         <a class="brand" href="index.html" aria-label="MedPull home">
-          <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+          <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="20" height="20" /></span>
           MedPull
         </a>
         <nav class="nav-links" id="navLinks" aria-label="Primary">
@@ -35,7 +35,7 @@
         </nav>
         <div class="nav-cta">
           <a class="btn btn-sm btn-tinted" href="join-waitlist.html">Join waitlist</a>
-          <a class="btn btn-sm btn-primary" href="book-demo.html">Book a demo</a>
+          <a class="btn btn-sm btn-primary" href="book-demo.html"><span class="dot" aria-hidden="true"></span>Book a demo</a>
         </div>
         <button class="nav-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" data-nav-toggle><span></span></button>
       </div>
@@ -47,7 +47,7 @@
         <p class="lede">Answer a post-op check-in the way a patient would, and watch your team's view update as you go.</p>
       </section>
 
-      <section class="band" style="padding-top:clamp(40px,6vw,64px)" aria-label="Interactive demo">
+      <section class="band fog-a" style="padding-top:clamp(40px,6vw,64px)" aria-label="Interactive demo">
         <div class="wrap">
           <!-- Step 1: pick a patient -->
           <div class="demo-step">
@@ -132,7 +132,7 @@
 
                 <div class="card">
                   <div class="card-head">
-                    <span class="glyph g-violet" style="width:26px;height:26px;border-radius:8px" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
+                    <span class="glyph g-lilac" style="width:26px;height:26px;border-radius:8px" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
                     <span class="card-title">AI recovery summary</span>
                     <span class="card-chip" id="summaryChip">Generating…</span>
                   </div>
@@ -176,12 +176,14 @@
 
       <!-- CTA -->
       <section class="canvas cta" aria-labelledby="cta-title">
-        <span class="app-icon app-icon-xl" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>
-        <h2 class="h2" id="cta-title">Ready to see this with your own patients?</h2>
-        <p class="lede">We'll show how the Recovery Copilot fits your procedure mix and post-op follow-up.</p>
-        <div class="btn-row btn-row-center">
-          <a class="btn btn-lg btn-primary" href="book-demo.html">Book a demo</a>
-          <a class="btn btn-lg btn-secondary" href="join-waitlist.html">Join the waitlist</a>
+        <div class="cta-panel">
+          <span class="app-icon app-icon-xl" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>
+          <h2 class="h2" id="cta-title">Ready to see this with your own patients?</h2>
+          <p class="lede">We'll show how the Recovery Copilot fits your procedure mix and post-op follow-up.</p>
+          <div class="btn-row btn-row-center">
+            <a class="btn btn-lg btn-primary" href="book-demo.html"><span class="dot" aria-hidden="true"></span>Book a demo</a>
+            <a class="btn btn-lg btn-secondary" href="join-waitlist.html">Join the waitlist</a>
+          </div>
         </div>
       </section>
     </main>
@@ -192,7 +194,7 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <a class="brand" href="index.html">
-              <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+              <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="20" height="20" /></span>
               MedPull
             </a>
             <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
@@ -224,14 +226,14 @@
         </div>
         <div class="footer-base">
           <span>Copyright © <span data-year></span> MedPull. All rights reserved.</span>
-          <span>Made for orthopedic practices</span>
+          <span><span class="dot" aria-hidden="true"></span>Made for orthopedic practices</span>
         </div>
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=3"></script>
-    <script src="assets/js/recovery-demo.js?v=3"></script>
-    <script src="assets/js/forms.js?v=3"></script>
-    <script src="assets/js/interest-popup.js?v=3"></script>
+    <script src="assets/js/site.js?v=4"></script>
+    <script src="assets/js/recovery-demo.js?v=4"></script>
+    <script src="assets/js/forms.js?v=4"></script>
+    <script src="assets/js/interest-popup.js?v=4"></script>
   </body>
 </html>
