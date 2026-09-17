@@ -901,12 +901,16 @@ button.quick-reply:active { transform: scale(.96); }
 }
 .backer-list {
   margin-top: 16px; display: flex; flex-wrap: wrap;
-  align-items: center; justify-content: center; gap: 14px clamp(26px, 4.5vw, 48px);
+  align-items: center; justify-content: center; gap: 14px clamp(28px, 4.8vw, 52px);
 }
-.backer { --logo-h: 22px; display: block; }
+/* The three files are cropped to their ink, so this gap is the whole distance
+   between one mark and the next and the row centres on the marks themselves.
+   Re-crop any replacement logo the same way or the spacing goes uneven again. */
+.backer { --logo-h: 21px; display: block; }
 /* One height per mark: a bare wordmark, an oval and a three-line lockup only
-   read at the same weight when each is sized on its own. */
-.backer-md { --logo-h: 44px; }
+   read at the same weight when each is sized on its own. Heights are ink, so
+   21px here is 21px of actual letter. */
+.backer-md { --logo-h: 38px; }
 .backer-lilie { --logo-h: 40px; }
 .backer img {
   display: block; width: auto; height: var(--logo-h); max-width: 100%; object-fit: contain;
@@ -917,10 +921,10 @@ button.quick-reply:active { transform: scale(.96); }
 
 @media (max-width: 720px) {
   /* Three across would shrink the lockups past reading; one per row instead. */
-  .backer-list { flex-direction: column; gap: 20px; }
-  .backer { --logo-h: 21px; }
-  .backer-md { --logo-h: 42px; }
-  .backer-lilie { --logo-h: 38px; }
+  .backer-list { flex-direction: column; gap: 22px; }
+  .backer { --logo-h: 19px; }
+  .backer-md { --logo-h: 34px; }
+  .backer-lilie { --logo-h: 36px; }
   /* no hover on touch, so lift the marks a little instead of colouring them */
   .backer img { opacity: .68; }
 }
