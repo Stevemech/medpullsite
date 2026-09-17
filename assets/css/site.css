@@ -171,7 +171,7 @@ a, button, summary, input, select, textarea, label { touch-action: manipulation;
 .glass,
 .nav-inner, .badge, .btn-secondary, .tabs, .dash-search, .dash-btn, .dash-row, .dash-live, .mt-ai, .dash-toast, .card, .tile,
 .gtile-cap, .tl-item, .fact, .checklist li, .form-card,
-.scenario-card, .faq-item, .person, .procedure-list li, .backer, .cta-panel {
+.scenario-card, .faq-item, .person, .procedure-list li, .cta-panel {
   position: relative;
   background: var(--glass);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -889,39 +889,40 @@ button.quick-reply:active { transform: scale(.96); }
 /* ---------------------------------------------------------------------------
    Backers
    --------------------------------------------------------------------------- */
-.backers { margin-top: clamp(28px, 4vw, 44px); text-align: center; }
+/* ---------------------------------------------------------------------------
+   Backers (hero)
+   --------------------------------------------------------------------------- */
+/* Bare marks, no pills: the hero already carries the badge and two buttons,
+   and the showcase sits right below. */
+.backers { margin-top: clamp(30px, 4vw, 42px); }
 .backers-title {
-  font-size: 12.5px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
+  font-size: 12px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase;
   color: var(--ink-3);
 }
 .backer-list {
-  margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px;
+  margin-top: 16px; display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: center; gap: 14px clamp(26px, 4.5vw, 48px);
 }
-.backer {
-  --logo-h: 28px;
-  display: grid; place-items: center; height: 100%; min-height: 118px;
-  padding: 22px 28px; border-radius: var(--r-md);
-}
-.backer-md { --logo-h: 58px; }
-.backer-lilie { --logo-h: 52px; }
-/* One fixed height per logo so the marks read at the same optical weight;
-   object-fit keeps the aspect when a narrow column caps the width. */
+.backer { --logo-h: 22px; display: block; }
+/* One height per mark: a bare wordmark, an oval and a three-line lockup only
+   read at the same weight when each is sized on its own. */
+.backer-md { --logo-h: 44px; }
+.backer-lilie { --logo-h: 40px; }
 .backer img {
-  display: block; width: 100%; height: var(--logo-h); object-fit: contain;
-  filter: grayscale(1); opacity: .62;
+  display: block; width: auto; height: var(--logo-h); max-width: 100%; object-fit: contain;
+  filter: grayscale(1); opacity: .55;
   transition: filter .3s var(--ease), opacity .3s var(--ease);
 }
 .backer:hover img, .backer:focus-visible img { filter: none; opacity: 1; }
 
-/* Three narrow columns shrink the marks to nothing, so stack at the same width
-   the origin card goes to one column. */
-@media (max-width: 860px) {
-  .backer-list { grid-template-columns: 1fr; gap: 8px; }
-  .backer { --logo-h: 26px; min-height: 0; padding: 20px 24px; border-radius: var(--r-sm); }
-  .backer-md { --logo-h: 54px; }
-  .backer-lilie { --logo-h: 48px; }
+@media (max-width: 720px) {
+  /* Three across would shrink the lockups past reading; one per row instead. */
+  .backer-list { flex-direction: column; gap: 20px; }
+  .backer { --logo-h: 21px; }
+  .backer-md { --logo-h: 42px; }
+  .backer-lilie { --logo-h: 38px; }
   /* no hover on touch, so lift the marks a little instead of colouring them */
-  .backer img { opacity: .72; }
+  .backer img { opacity: .68; }
 }
 
 /* ---------------------------------------------------------------------------
@@ -1108,7 +1109,7 @@ select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='ht
 .ea-fine { margin-top: 14px; text-align: center; font-size: 12.5px; color: var(--ink-3); }
 
 /* Blur needs something to blur: skip it over flat or opaque backgrounds (saves GPU, avoids flicker). */
-.tile, .faq-item, .procedure-list li, .backer, .checklist li, .scenario-card,
+.tile, .faq-item, .procedure-list li, .checklist li, .scenario-card,
 .dash :is(.dash-search, .dash-btn, .dash-row, .dash-live, .mt-ai) { -webkit-backdrop-filter: none; backdrop-filter: none; }
 
 /* ---------------------------------------------------------------------------
@@ -1340,6 +1341,7 @@ select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='ht
 .hero-copy > :nth-child(3) { animation-delay: .12s; }
 .hero-copy .btn-row > :nth-child(1) { animation-delay: .18s; }
 .hero-copy .btn-row > :nth-child(2) { animation-delay: .24s; }
+.hero-copy > .backers { animation-delay: .32s; }
 .showcase { animation: riseBig 1s var(--ease) .2s backwards; }
 .js:not(.is-ready) :is(.hero-copy > *, .hero-copy .btn-row > *, .showcase) { animation-play-state: paused; }
 
@@ -1355,11 +1357,11 @@ select.form-control { background-image: url("data:image/svg+xml,%3Csvg xmlns='ht
 
 @media (prefers-reduced-motion: no-preference) {
   /* scroll reveal — keep this selector list in sync with REVEAL in site.js */
-  .js :is(.section-head, .procedures > p, .procedure-list > li, .backers-title, .backer-list > li, .compare > *, .tabs, .stage-tile, .bento > *, .steps > *, .origin, .trust > *, .faq-aside, .faq-list > *, .cta-panel, .page-top > *, .split-intro > :not(.checklist), .checklist > li, .split > .form-card, .scenarios > *, .demo-step, .demo-grid .card, .demo-note, .footer-grid > *) {
+  .js :is(.section-head, .procedures > p, .procedure-list > li, .compare > *, .tabs, .stage-tile, .bento > *, .steps > *, .origin, .trust > *, .faq-aside, .faq-list > *, .cta-panel, .page-top > *, .split-intro > :not(.checklist), .checklist > li, .split > .form-card, .scenarios > *, .demo-step, .demo-grid .card, .demo-note, .footer-grid > *) {
     transition: opacity .6s var(--ease), translate .7s var(--ease), transform .25s var(--spring), box-shadow .2s ease;
     transition-delay: calc(var(--d, 0) * 60ms), calc(var(--d, 0) * 60ms), 0s, 0s;
   }
-  .js :is(.section-head, .procedures > p, .procedure-list > li, .backers-title, .backer-list > li, .compare > *, .tabs, .stage-tile, .bento > *, .steps > *, .origin, .trust > *, .faq-aside, .faq-list > *, .cta-panel, .page-top > *, .split-intro > :not(.checklist), .checklist > li, .split > .form-card, .scenarios > *, .demo-step, .demo-grid .card, .demo-note, .footer-grid > *):not(.is-shown) {
+  .js :is(.section-head, .procedures > p, .procedure-list > li, .compare > *, .tabs, .stage-tile, .bento > *, .steps > *, .origin, .trust > *, .faq-aside, .faq-list > *, .cta-panel, .page-top > *, .split-intro > :not(.checklist), .checklist > li, .split > .form-card, .scenarios > *, .demo-step, .demo-grid .card, .demo-note, .footer-grid > *):not(.is-shown) {
     opacity: 0; translate: 0 22px;
   }
 

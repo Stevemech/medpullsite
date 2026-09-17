@@ -109,8 +109,7 @@
   /* --- Scroll reveal ------------------------------------------------------ */
   // Keep in sync with the matching selector list in site.css.
   const REVEAL = [
-    '.section-head', '.procedures > p', '.procedure-list > li', '.backers-title', '.backer-list > li',
-    '.compare > *', '.tabs', '.stage-tile',
+    '.section-head', '.procedures > p', '.procedure-list > li', '.compare > *', '.tabs', '.stage-tile',
     '.bento > *', '.steps > *', '.origin', '.trust > *', '.faq-aside', '.faq-list > *', '.cta-panel',
     '.page-top > *', '.split-intro > :not(.checklist)', '.checklist > li', '.split > .form-card',
     '.scenarios > *', '.demo-step', '.demo-grid .card', '.demo-note', '.footer-grid > *',
