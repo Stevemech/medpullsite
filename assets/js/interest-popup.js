@@ -40,15 +40,15 @@
     '    <div class="form-grid">',
     '      <div class="field-full">',
     '        <label for="ip_clinic" class="form-label">Practice name</label>',
-    '        <input type="text" class="form-control" id="ip_clinic" name="clinic_name" autocomplete="organization" required />',
+    '        <input type="text" class="form-control" id="ip_clinic" name="clinic_name" autocomplete="organization" required data-error="Enter your practice name." />',
     '      </div>',
     '      <div>',
     '        <label for="ip_contact" class="form-label">Your name</label>',
-    '        <input type="text" class="form-control" id="ip_contact" name="contact_name" autocomplete="name" required />',
+    '        <input type="text" class="form-control" id="ip_contact" name="contact_name" autocomplete="name" required data-error="Enter your name." />',
     '      </div>',
     '      <div>',
     '        <label for="ip_email" class="form-label">Work email</label>',
-    '        <input type="email" class="form-control" id="ip_email" name="email" autocomplete="email" required />',
+    '        <input type="email" class="form-control" id="ip_email" name="email" autocomplete="email" required data-error="Enter your work email." />',
     '      </div>',
     '      <div class="field-full">',
     '        <label for="ip_phone" class="form-label">Phone <span class="opt">(optional)</span></label>',
@@ -59,7 +59,7 @@
     '        <textarea class="form-control" id="ip_comments" name="comments" rows="2"></textarea>',
     '      </div>',
     '      <label class="form-check field-full">',
-    '        <input type="checkbox" id="ip_tcpa" name="tcpa_consent" required />',
+    '        <input type="checkbox" id="ip_tcpa" name="tcpa_consent" required data-error="Check the box to agree to calls and texts." />',
     '        <span>By checking this box, I agree to receive calls and text messages from MedPull at the phone number provided, including via automated technology. Consent is not a condition of purchase. Message and data rates may apply.</span>',
     '      </label>',
     '      <div class="field-full form-feedback" id="interestFeedback" role="status"></div>',
@@ -75,6 +75,7 @@
 
   var form = dialog.querySelector('#interestForm');
   var feedback = dialog.querySelector('#interestFeedback');
+  var checker = window.MEDPULL_FORMS ? window.MEDPULL_FORMS.wire(form) : null;
 
   function openModal() {
     if (dialog.open) return;
@@ -128,20 +129,13 @@
     feedback.textContent = '';
     feedback.className = 'field-full form-feedback';
 
-    if (!form.checkValidity()) {
-      form.classList.add('was-validated');
-      feedback.textContent = 'Fill in the highlighted fields to continue.';
-      feedback.classList.add('is-error');
-      var firstInvalid = form.querySelector(':invalid');
-      if (firstInvalid) firstInvalid.focus();
-      return;
-    }
-
-    if (!window.MEDPULL_FORMS) {
+    if (!window.MEDPULL_FORMS || !checker) {
       feedback.textContent = 'This form didn\'t finish loading. Refresh the page and try again.';
       feedback.classList.add('is-error');
       return;
     }
+
+    if (!checker.validate()) return;
 
     var btn = form.querySelector('button[type="submit"]');
     var originalLabel = btn.textContent;
