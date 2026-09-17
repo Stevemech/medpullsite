@@ -1,293 +1,237 @@
 <!doctype html>
-<html lang="en" data-bs-theme="light">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>MedPull Demo | See the Recovery Copilot work</title>
+    <title>Live demo | MedPull Recovery Copilot</title>
     <meta name="description" content="Walk through an adaptive post-op check-in and watch it turn into a provider worklist entry, an AI recovery summary, and RTM billing status." />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f3f3ff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
+    <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=EB+Garamond:wght@500;600&display=swap" rel="stylesheet" />
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/cluely.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/site.css?v=3" />
   </head>
-  <body class="with-fixed-nav">
-    <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg site-nav fixed-top">
-      <div class="container">
-        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html" style="letter-spacing: -0.02em;">
-          <img src="assets/img/medpull-logo.png" alt="MedPull" style="height: 32px; display: block; background: transparent;" onerror="this.style.display='none';">
-          <span>MedPull</span>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- NAV -->
+    <header class="nav" data-nav>
+      <div class="nav-inner">
+        <a class="brand" href="index.html" aria-label="MedPull home">
+          <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+          MedPull
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="index.html#features">Features</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#product">Product</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#how">How it works</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#faq">FAQ</a></li>
-            <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact Us</a></li>
-          </ul>
-          <div class="d-flex gap-2 align-items-center">
-            <a class="btn btn-link btn-sm text-decoration-none px-2 d-none d-lg-inline" href="#" data-interest-open>Get early access</a>
-            <a class="btn btn-gradient btn-sm" href="join-waitlist.html">Join Waitlist</a>
-          </div>
+        <nav class="nav-links" id="navLinks" aria-label="Primary">
+          <a href="index.html#product">Product</a>
+          <a href="index.html#how">How it works</a>
+          <a href="index.html#trust">Security</a>
+          <a href="index.html#faq">FAQ</a>
+          <a href="demo.html" aria-current="page">Live demo</a>
+        </nav>
+        <div class="nav-cta">
+          <a class="btn btn-sm btn-tinted" href="join-waitlist.html">Join waitlist</a>
+          <a class="btn btn-sm btn-primary" href="book-demo.html">Book a demo</a>
         </div>
+        <button class="nav-toggle" type="button" aria-controls="navLinks" aria-expanded="false" aria-label="Open menu" data-nav-toggle><span></span></button>
       </div>
-    </nav>
+    </header>
 
-    <main class="py-6">
-      <div class="container">
-        <div class="mb-5 text-center">
-          <span class="eyebrow">Interactive demo</span>
-          <h1 class="hero-title mb-3" style="font-size: clamp(36px,5vw,52px);">See the Recovery Copilot work</h1>
-          <p class="text-muted mb-4" style="max-width: 640px; margin: 0 auto;">Answer a post-op check-in the way a patient would. Watch it become a worklist entry, an AI summary, and RTM billing progress, live on the right.</p>
-          <div class="d-flex flex-column flex-sm-row gap-3 justify-content-center">
-            <a href="#booking" class="btn btn-gradient btn-lg px-4">Book a Demo</a>
-            <a href="join-waitlist.html" class="btn btn-outline-primary btn-lg px-4">Join Waitlist</a>
-          </div>
-        </div>
+    <main id="main">
+      <section class="canvas page-top">
+        <h1 class="display">Try it yourself</h1>
+        <p class="lede">Answer a post-op check-in the way a patient would, and watch your team's view update as you go.</p>
+      </section>
 
-        <!-- STEP 1: pick a patient -->
-        <div class="mb-4">
-          <div class="d-flex align-items-center gap-2 mb-3">
-            <span class="step">1</span>
-            <h5 class="mb-0 fw-semibold">Pick a patient</h5>
+      <section class="band" style="padding-top:clamp(40px,6vw,64px)" aria-label="Interactive demo">
+        <div class="wrap">
+          <!-- Step 1: pick a patient -->
+          <div class="demo-step">
+            <span class="step-n">1</span>
+            <h2>Pick a patient</h2>
           </div>
-          <div class="row g-3" id="scenarioPicker">
-            <div class="col-md-4">
-              <button class="scenario-card h-100" data-scenario="tka" type="button" aria-pressed="true">
-                <div class="p-4">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="wl-name">Maria Alvarez</span>
-                    <span class="pill pill-neutral">POD 14</span>
-                  </div>
-                  <div class="wl-sub">Total knee arthroplasty</div>
-                  <p class="text-muted small mb-0 mt-2">Two weeks out. Range of motion improving, but something changed this week.</p>
-                </div>
-              </button>
-            </div>
-            <div class="col-md-4">
-              <button class="scenario-card h-100" data-scenario="acl" type="button" aria-pressed="false">
-                <div class="p-4">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="wl-name">James Whitfield</span>
-                    <span class="pill pill-neutral">POD 21</span>
-                  </div>
-                  <div class="wl-sub">ACL reconstruction</div>
-                  <p class="text-muted small mb-0 mt-2">Young, active, and quietly skipping physical therapy sessions.</p>
-                </div>
-              </button>
-            </div>
-            <div class="col-md-4">
-              <button class="scenario-card h-100" data-scenario="rcr" type="button" aria-pressed="false">
-                <div class="p-4">
-                  <div class="d-flex justify-content-between align-items-start mb-1">
-                    <span class="wl-name">Rachel Okafor</span>
-                    <span class="pill pill-neutral">POD 9</span>
-                  </div>
-                  <div class="wl-sub">Rotator cuff repair</div>
-                  <p class="text-muted small mb-0 mt-2">Early days. Sleep is the thing that usually goes wrong first.</p>
-                </div>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- STEP 2 + 3 -->
-        <div class="row g-4">
-          <!-- Patient side -->
-          <div class="col-lg-6">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <span class="step">2</span>
-              <h5 class="mb-0 fw-semibold">Answer as the patient</h5>
-            </div>
-            <div class="mock-window">
-              <div class="mock-bar">
-                <div class="mock-dots"><i></i><i></i><i></i></div>
-                <span class="mock-title" id="chatTitle">Recovery check-in</span>
-                <span class="mock-chip">Adaptive</span>
-              </div>
-              <div class="mock-body">
-                <div class="chat-meta" id="chatMeta">Day 14 · Total knee arthroplasty</div>
-                <div id="demoChatLog" class="chat-log" style="height: 250px; max-height: 250px;"></div>
-                <div class="quick-replies mt-3" id="demoReplies"></div>
-                <div class="d-flex justify-content-between align-items-center mt-3 pt-3 border-top">
-                  <span class="wl-sub" id="chatProgress">Question 1 of 4</span>
-                  <button class="btn-quiet" id="demoReset" type="button">Start over</button>
-                </div>
-              </div>
-            </div>
-            <p class="small text-muted mt-3 mb-0">In production this arrives as a text message. No app, no portal login, in the patient's language.</p>
+          <div class="scenarios" id="scenarioPicker">
+            <button class="scenario-card" data-scenario="tka" type="button" aria-pressed="true">
+              <span class="avatar av-1">MA</span>
+              <span class="scenario-body">
+                <span class="scenario-top"><span class="wl-name">Maria Alvarez</span><span class="pill pill-neutral">Day 14</span></span>
+                <span class="wl-sub">Total knee arthroplasty</span>
+                <span class="scenario-desc">Two weeks out. Her range of motion is improving, but something changed this week.</span>
+              </span>
+            </button>
+            <button class="scenario-card" data-scenario="acl" type="button" aria-pressed="false">
+              <span class="avatar av-2">JW</span>
+              <span class="scenario-body">
+                <span class="scenario-top"><span class="wl-name">James Whitfield</span><span class="pill pill-neutral">Day 21</span></span>
+                <span class="wl-sub">ACL reconstruction</span>
+                <span class="scenario-desc">Young, active, and quietly skipping physical therapy.</span>
+              </span>
+            </button>
+            <button class="scenario-card" data-scenario="rcr" type="button" aria-pressed="false">
+              <span class="avatar av-3">RO</span>
+              <span class="scenario-body">
+                <span class="scenario-top"><span class="wl-name">Rachel Okafor</span><span class="pill pill-neutral">Day 9</span></span>
+                <span class="wl-sub">Rotator cuff repair</span>
+                <span class="scenario-desc">Early days. Sleep is usually the first thing to go wrong.</span>
+              </span>
+            </button>
           </div>
 
-          <!-- Provider side -->
-          <div class="col-lg-6">
-            <div class="d-flex align-items-center gap-2 mb-3">
-              <span class="step">3</span>
-              <h5 class="mb-0 fw-semibold">Watch what your team sees</h5>
-            </div>
-
-            <div class="mock-window mb-3">
-              <div class="mock-bar">
-                <div class="mock-dots"><i></i><i></i><i></i></div>
-                <span class="mock-title">Provider worklist</span>
-                <span class="mock-chip" id="worklistChip">Awaiting check-in</span>
+          <div class="demo-grid">
+            <!-- Step 2: patient side -->
+            <div>
+              <div class="demo-step">
+                <span class="step-n">2</span>
+                <h2>Answer as the patient</h2>
               </div>
-              <div class="mock-body mock-scroll">
-                <div>
-                  <div class="wl-head">
-                    <div>Patient</div><div>Why it surfaced</div><div>POD</div><div>Status</div><div>Last</div>
-                  </div>
-                  <div class="wl-row" id="worklistRow">
-                    <div><div class="wl-name" id="wlName">Maria Alvarez</div><div class="wl-sub" id="wlProc">Total knee arthroplasty</div></div>
-                    <div class="wl-cell" id="wlReason">No check-in yet today</div>
-                    <div class="wl-pod" id="wlPod">14</div>
-                    <div><span class="pill pill-neutral" id="wlStatus">Pending</span></div>
-                    <div class="wl-cell" id="wlLast">Not yet</div>
+              <div class="card">
+                <div class="card-head">
+                  <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
+                  <span class="card-title" id="chatTitle">Recovery check-in</span>
+                  <span class="card-chip">Adaptive</span>
+                </div>
+                <div class="card-body">
+                  <div class="chat-meta" id="chatMeta">Day 14 · Total knee arthroplasty</div>
+                  <div id="demoChatLog" class="chat-log chat-log-scroll" aria-live="polite"></div>
+                  <div class="quick-replies" id="demoReplies" aria-label="Choose a reply"></div>
+                  <div class="card-foot">
+                    <span class="wl-sub" id="chatProgress">Question 1 of 4</span>
+                    <button class="btn-quiet" id="demoReset" type="button">Start over</button>
                   </div>
                 </div>
               </div>
+              <p class="demo-note">In practice this arrives as a text message in the patient's language. No app, no portal login.</p>
             </div>
 
-            <div class="mock-window mb-3">
-              <div class="mock-bar">
-                <div class="mock-dots"><i></i><i></i><i></i></div>
-                <span class="mock-title">AI recovery summary</span>
-                <span class="mock-chip" id="summaryChip">Generating…</span>
+            <!-- Step 3: provider side -->
+            <div>
+              <div class="demo-step">
+                <span class="step-n">3</span>
+                <h2>See what your team sees</h2>
               </div>
-              <div class="mock-body">
-                <div class="rs-summary">
-                  <p id="summaryText" class="text-muted">The summary writes itself once the check-in is complete. Answer the questions on the left to see it build.</p>
-                </div>
-                <div id="summaryFlags" class="mt-2"></div>
-              </div>
-            </div>
-
-            <div class="mock-window">
-              <div class="mock-bar">
-                <div class="mock-dots"><i></i><i></i><i></i></div>
-                <span class="mock-title">RTM readiness</span>
-                <span class="mock-chip" id="rtmChip">In progress</span>
-              </div>
-              <div class="mock-body">
-                <div class="row g-3">
-                  <div class="col-6">
-                    <div class="rtm-code">
-                      <div class="d-flex justify-content-between align-items-start mb-1">
-                        <span class="rtm-code-id">98977</span>
-                        <span class="pill pill-watch" id="rtmDaysPill">In progress</span>
-                      </div>
-                      <div class="rtm-code-name">Device supply, 16 days of data</div>
-                      <div class="rtm-meter is-short"><span id="rtmDaysBar" style="width:56%"></span></div>
-                      <div class="rtm-foot"><span id="rtmDaysText">9 / 16 days</span><span>Auto-tracked</span></div>
-                    </div>
+              <div class="demo-stack">
+                <div class="card">
+                  <div class="card-head">
+                    <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
+                    <span class="card-title">Today</span>
+                    <span class="card-chip" id="worklistChip">Awaiting check-in</span>
                   </div>
-                  <div class="col-6">
-                    <div class="rtm-code">
-                      <div class="d-flex justify-content-between align-items-start mb-1">
-                        <span class="rtm-code-id">98980</span>
-                        <span class="pill pill-watch" id="rtmMinsPill">In progress</span>
-                      </div>
-                      <div class="rtm-code-name">First 20 min treatment management</div>
-                      <div class="rtm-meter is-short"><span id="rtmMinsBar" style="width:60%"></span></div>
-                      <div class="rtm-foot"><span id="rtmMinsText">12 / 20 min</span><span>Auto-tracked</span></div>
+                  <div class="card-body">
+                    <div class="wl-row" id="worklistRow">
+                      <span class="avatar av-1" id="wlAvatar">MA</span>
+                      <div><div class="wl-name" id="wlName">Maria Alvarez</div><div class="wl-sub"><span id="wlProc">Total knee arthroplasty</span>, day <span id="wlPod">14</span></div></div>
+                      <div class="wl-cell" id="wlReason">No check-in yet today</div>
+                      <div class="wl-status"><span class="pill pill-neutral" id="wlStatus">Pending</span><span class="wl-when" id="wlLast">Not yet</span></div>
                     </div>
                   </div>
                 </div>
-                <p class="small text-muted mt-3 mb-0">Illustrative only. RTM code availability and reimbursement vary by payer and setting.</p>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Book a Demo Section -->
-        <div class="row justify-content-center mt-5" id="booking">
-          <div class="col-lg-8">
-            <div class="card shadow-sm border-0">
-              <div class="card-body p-4 p-lg-5">
-                <div class="text-center mb-4">
-                  <h3 class="fw-bold mb-2">Ready to see this on your own patients?</h3>
-                  <p class="text-muted">See how the Recovery Copilot fits your procedure mix and post-op follow-up workflow.</p>
-                </div>
-
-                <!-- Google Calendar Appointment Scheduling -->
-                <div class="calendar-embed-container mb-4" style="border-radius: 12px; overflow: hidden; border: 1px solid var(--bs-border-color); background: var(--bs-body-bg); max-width: 700px; margin: 0 auto;">
-                  <div style="transform: scale(0.9); transform-origin: top center; width: 111.11%; margin-left: -5.56%;">
-                    <iframe
-                      src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ0hlwi0d3-kQiDVDw-j8PEkXoX_q5sN3CF5C9dOphTBJY66m5puOAVyOD8nXVPsgtyIZWFJsUi6?gv=true"
-                      style="border: 0; width: 100%; height: 600px; display: block;"
-                      frameborder="0"
-                      title="Book a Demo - Google Calendar">
-                    </iframe>
+                <div class="card">
+                  <div class="card-head">
+                    <span class="glyph g-violet" style="width:26px;height:26px;border-radius:8px" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" style="width:15px;height:15px"><path d="M12 3.5 13.9 9 19.5 11 13.9 13 12 18.5 10.1 13 4.5 11 10.1 9Z"/></svg></span>
+                    <span class="card-title">AI recovery summary</span>
+                    <span class="card-chip" id="summaryChip">Generating…</span>
+                  </div>
+                  <div class="card-body" aria-live="polite">
+                    <div class="rs-summary">
+                      <p id="summaryText" class="text-muted">The summary writes itself once the check-in is done. Answer the questions to watch it come together.</p>
+                    </div>
+                    <div id="summaryFlags" style="margin-top:6px"></div>
                   </div>
                 </div>
 
-                <div class="row g-4 mt-2">
-                  <div class="col-md-4">
-                    <div class="text-center">
-                      <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 48px; height: 48px;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #1f2a44;">
-                          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                          <line x1="8" y1="21" x2="16" y2="21"></line>
-                          <line x1="12" y1="17" x2="12" y2="21"></line>
-                        </svg>
-                      </div>
-                      <h6 class="fw-semibold mb-1">Live Walkthrough</h6>
-                      <p class="text-muted small mb-0">See the platform in action</p>
-                    </div>
+                <div class="card">
+                  <div class="card-head">
+                    <span class="glyph g-mint" style="width:26px;height:26px;border-radius:8px" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" style="width:15px;height:15px"><path d="M6 3.5h12v17l-3-2-3 2-3-2-3 2Z"/></svg></span>
+                    <span class="card-title">RTM readiness</span>
+                    <span class="card-chip" id="rtmChip">In progress</span>
                   </div>
-                  <div class="col-md-4">
-                    <div class="text-center">
-                      <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 48px; height: 48px;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #1f2a44;">
-                          <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                          <circle cx="9" cy="7" r="4"></circle>
-                          <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                          <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg>
+                  <div class="card-body">
+                    <div class="rtm-grid">
+                      <div class="rtm-code">
+                        <div class="rtm-code-top"><span class="rtm-code-id">98977</span><span class="pill pill-watch" id="rtmDaysPill">In progress</span></div>
+                        <div class="rtm-code-name">Device supply, 16 days of data</div>
+                        <div class="rtm-meter is-short"><span id="rtmDaysBar" style="width:56%"></span></div>
+                        <div class="rtm-foot"><span id="rtmDaysText">9 / 16 days</span><span>Auto-tracked</span></div>
                       </div>
-                      <h6 class="fw-semibold mb-1">Custom Discussion</h6>
-                      <p class="text-muted small mb-0">Tailored to your procedure mix</p>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="text-center">
-                      <div class="bg-primary bg-opacity-10 rounded-circle d-inline-flex align-items-center justify-content-center mb-2" style="width: 48px; height: 48px;">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: #1f2a44;">
-                          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                          <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                        </svg>
+                      <div class="rtm-code">
+                        <div class="rtm-code-top"><span class="rtm-code-id">98980</span><span class="pill pill-watch" id="rtmMinsPill">In progress</span></div>
+                        <div class="rtm-code-name">First 20 minutes of management</div>
+                        <div class="rtm-meter is-short"><span id="rtmMinsBar" style="width:60%"></span></div>
+                        <div class="rtm-foot"><span id="rtmMinsText">12 / 20 min</span><span>Auto-tracked</span></div>
                       </div>
-                      <h6 class="fw-semibold mb-1">Q&A Session</h6>
-                      <p class="text-muted small mb-0">Integration, RTM, and pricing</p>
                     </div>
+                    <p class="fineprint">Illustrative only. RTM code availability and reimbursement vary by payer and setting.</p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="canvas cta" aria-labelledby="cta-title">
+        <span class="app-icon app-icon-xl" aria-hidden="true"><img src="assets/img/medpull-mark.png" alt="" /></span>
+        <h2 class="h2" id="cta-title">Ready to see this with your own patients?</h2>
+        <p class="lede">We'll show how the Recovery Copilot fits your procedure mix and post-op follow-up.</p>
+        <div class="btn-row btn-row-center">
+          <a class="btn btn-lg btn-primary" href="book-demo.html">Book a demo</a>
+          <a class="btn btn-lg btn-secondary" href="join-waitlist.html">Join the waitlist</a>
+        </div>
+      </section>
     </main>
 
-    <footer class="py-5 border-top">
-      <div class="container d-flex justify-content-between align-items-center">
-        <small class="text-muted">© <span id="year"></span> MedPull</small>
-        <span class="d-flex gap-3">
-          <a class="link-secondary" href="#" data-interest-open>Get early access</a>
-          <a class="link-secondary" href="index.html#contact">Get in touch</a>
-        </span>
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="wrap" style="padding-inline:0">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a class="brand" href="index.html">
+              <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" width="21" height="21" /></span>
+              MedPull
+            </a>
+            <p class="footer-blurb">The AI Recovery Copilot for orthopedic practices. Friendly check-ins, a short daily list, and RTM made simple.</p>
+          </div>
+          <div>
+            <h2>Product</h2>
+            <ul>
+              <li><a href="index.html#product">Inside the product</a></li>
+              <li><a href="index.html#how">How it works</a></li>
+              <li><a href="demo.html">Live demo</a></li>
+              <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Company</h2>
+            <ul>
+              <li><a href="index.html#proof">Our background</a></li>
+              <li><a href="index.html#trust">Security</a></li>
+            </ul>
+          </div>
+          <div>
+            <h2>Get started</h2>
+            <ul>
+              <li><a href="book-demo.html">Book a demo</a></li>
+              <li><a href="join-waitlist.html">Join the waitlist</a></li>
+              <li><a href="#" data-interest-open>Request early access</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-base">
+          <span>Copyright © <span data-year></span> MedPull. All rights reserved.</span>
+          <span>Made for orthopedic practices</span>
+        </div>
       </div>
     </footer>
 
-    <script src="assets/js/cluely.js"></script>
-    <script src="assets/js/recovery-demo.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/interest-popup.js"></script>
+    <script src="assets/js/site.js?v=3"></script>
+    <script src="assets/js/recovery-demo.js?v=3"></script>
+    <script src="assets/js/forms.js?v=3"></script>
+    <script src="assets/js/interest-popup.js?v=3"></script>
   </body>
 </html>

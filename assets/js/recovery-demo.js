@@ -316,6 +316,11 @@
     $('#chatTitle').textContent = 'Recovery check-in';
 
     $('#wlName').textContent = scenario.name;
+    const avatar = $('#wlAvatar');
+    if (avatar) {
+      avatar.textContent = scenario.initials;
+      avatar.className = 'avatar ' + ({ tka: 'av-1', acl: 'av-2', rcr: 'av-3' }[key] || 'av-1');
+    }
     $('#wlProc').textContent = scenario.procedure;
     $('#wlPod').textContent = scenario.pod;
     $('#wlReason').textContent = 'No check-in yet today';
