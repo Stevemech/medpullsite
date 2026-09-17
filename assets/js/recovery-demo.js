@@ -16,7 +16,7 @@
      --------------------------------------------------------------------- */
   const QUESTIONS = [
     (s) => ({
-      q: 'Hi ' + s.first + ', quick recovery check-in from Riverside Ortho. Pain right now, 0 to 10?',
+      q: 'Hi ' + s.first + ', quick recovery check\u2011in from Riverside Ortho. Pain right now, 0\u00a0to\u00a010?',
       replies: s.pain,
     }),
     () => ({
@@ -280,7 +280,7 @@
 
     $('#summaryChip').textContent = 'Waiting';
     $('#summaryText').className = 'text-muted';
-    $('#summaryText').textContent = 'The summary is written once the check-in is done. Answer the questions to see it.';
+    $('#summaryText').textContent = 'The summary is written once the check\u2011in is done. Answer the questions to see it.';
     $('#summaryFlags').innerHTML = '';
 
     updateMetrics();
