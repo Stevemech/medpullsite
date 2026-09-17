@@ -277,7 +277,7 @@
         row.setAttribute('data-maria', '');
         row.innerHTML =
           '<span class="avatar av-1">MA</span>' +
-          '<span><b>Maria Alvarez</b><span class="sub">Knee · resting HR rising vs baseline</span></span>' +
+          '<span><b>Maria Alvarez</b><span class="sub">Knee · heart rate above her normal</span></span>' +
           '<span class="pill pill-attention">High risk</span>';
         list.prepend(row);
       }
@@ -328,14 +328,37 @@
   }
 
   /* --- Compare: an endless table vs. the same patients, sorted ------------- */
-  const scanCount = $('[data-scan]');
-  if (scanCount && !reduceMotion) {
-    let n = 1;
-    setInterval(() => {
-      if (!scanCount.closest('.is-live')) return;
-      n = n >= 240 ? 1 : n + 1;
-      scanCount.textContent = n;
-    }, 1800);
+  const mdash = $('[data-mdash]');
+  if (mdash) {
+    const tiles = $$('.md-tile', mdash);
+    const cursor = $('.md-cursor', mdash);
+    const count = $('[data-reviewed]', mdash);
+    let i = 0;
+    let reviewed = 0;
+    const step = () => {
+      if (!mdash.closest('.is-live') || !mdash.closest('.is-shown')) return;
+      const visible = tiles.filter((t) => t.offsetParent !== null);
+      if (i >= visible.length) {
+        // Next page of patients.
+        i = 0;
+        mdash.classList.add('is-flipping');
+        setTimeout(() => {
+          tiles.forEach((t) => t.classList.remove('is-seen', 'is-looking'));
+          mdash.classList.remove('is-flipping');
+        }, 320);
+        return;
+      }
+      visible.forEach((t) => t.classList.remove('is-looking'));
+      if (i > 0) visible[i - 1].classList.add('is-seen');
+      const t = visible[i];
+      t.classList.add('is-looking');
+      cursor.style.transform = 'translate(' + (t.offsetLeft + t.offsetWidth * 0.62) + 'px, ' + (t.offsetTop + t.offsetHeight * 0.55) + 'px)';
+      reviewed = reviewed >= 240 ? 1 : reviewed + 1;
+      count.textContent = reviewed;
+      i += 1;
+    };
+    if (reduceMotion) count.textContent = '9';
+    else setInterval(step, 1100);
   }
 
   const sorter = $('[data-sorter]');

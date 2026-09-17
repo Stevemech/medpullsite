@@ -4,18 +4,18 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>MedPull | AI Recovery Copilot for orthopedic practices</title>
-    <meta name="description" content="MedPull reads post-op patients' wearable data and check-ins, compares them with their own baseline, and tells your team who needs attention today, and why." />
+    <meta name="description" content="MedPull reads post-op patients' wearable data and check-ins, compares them with each patient's normal, and tells your team who needs attention today, and why." />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#fbfbf9" />
     <meta property="og:title" content="MedPull | AI Recovery Copilot for orthopedic practices" />
-    <meta property="og:description" content="Wearable monitoring, quick check-ins, 24 care metrics, and a ranked daily worklist for orthopedic practices." />
+    <meta property="og:description" content="Wearable monitoring, quick check-ins, 24 recovery metrics, and a ranked daily patient list for orthopedic practices." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://medpull.org/" />
     <meta property="og:site_name" content="MedPull" />
     <meta property="og:image" content="https://medpull.org/assets/img/medpull-logo.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="MedPull | AI Recovery Copilot for orthopedic practices" />
-    <meta name="twitter:description" content="Wearable monitoring, quick check-ins, 24 care metrics, and a ranked daily worklist for orthopedic practices." />
+    <meta name="twitter:description" content="Wearable monitoring, quick check-ins, 24 recovery metrics, and a ranked daily patient list for orthopedic practices." />
     <meta name="twitter:image" content="https://medpull.org/assets/img/medpull-logo.png" />
     <link rel="icon" type="image/png" href="assets/img/medpull-mark.png" />
     <link rel="apple-touch-icon" href="assets/img/medpull-mark.png" />
@@ -27,7 +27,7 @@
       document.documentElement.classList.add('js');
       setTimeout(function () { if (!window.MEDPULL_SITE) document.documentElement.classList.remove('js'); }, 3500);
     </script>
-    <link rel="stylesheet" href="assets/css/site.css?v=6" />
+    <link rel="stylesheet" href="assets/css/site.css?v=7" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -64,14 +64,14 @@
             <svg class="badge-chev" width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m4.5 2.5 3.5 3.5-3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <h1 class="display">Know which post-op patients need you today.</h1>
-          <p class="lede">MedPull reads every patient's wearable data and check-ins, compares them with their own baseline, and tells your team who needs attention, and why.</p>
+          <p class="lede">MedPull reads every patient's wearable data and check-ins, compares them with each patient's normal, and tells your team who needs attention, and why.</p>
           <div class="btn-row">
             <a class="btn btn-lg btn-primary" href="book-demo.html"><span class="dot" aria-hidden="true"></span>Book a demo</a>
             <a class="btn btn-lg btn-secondary" href="demo.html">Try the live demo</a>
           </div>
         </div>
 
-        <div class="showcase" role="img" aria-label="The MedPull worklist on a desktop display. A patient answers a check-in by text, and MedPull moves her to High risk.">
+        <div class="showcase" role="img" aria-label="The MedPull patient list on a desktop display. A patient answers a check-in by text, and MedPull moves her to High risk.">
           <div class="xdr" data-tilt>
             <div class="xdr-screen" data-screen>
               <div class="dash" aria-hidden="true">
@@ -86,7 +86,7 @@
                 <div class="dash-main">
                   <header class="dash-top">
                     <div>
-                      <div class="dash-org">Riverside Orthopedics · Worklist</div>
+                      <div class="dash-org">Riverside Orthopedics · Patient list</div>
                       <div class="dash-title">Good morning, Dr. Reyes</div>
                     </div>
                     <div class="dash-tools">
@@ -104,12 +104,12 @@
                       <div class="dash-list" data-hero-list>
                         <div class="dash-row">
                           <span class="avatar av-2">JW</span>
-                          <span><b>James Whitfield</b><span class="sub">ACL · device data on 20% of recent days</span></span>
+                          <span><b>James Whitfield</b><span class="sub">ACL · wearable synced 2 of 10 days</span></span>
                           <span class="pill pill-missing">Missing data</span>
                         </div>
                         <div class="dash-row">
                           <span class="avatar av-3">RO</span>
-                          <span><b>Rachel Okafor</b><span class="sub">Rotator cuff · behind expected curve (−15%)</span></span>
+                          <span><b>Rachel Okafor</b><span class="sub">Rotator cuff · walking 15% less than expected</span></span>
                           <span class="pill pill-watch">Needs review</span>
                         </div>
                         <div class="dash-row is-quiet">
@@ -127,8 +127,8 @@
                     <section class="dash-right">
                       <article class="gtile g-sage mt-curve">
                         <div class="gtile-top">
-                          <div><span class="gtile-kicker">Recovery trajectory · Maria A.</span><span class="gtile-num big-num">−15%</span></div>
-                          <div class="gtile-side"><b>Behind</b>expected curve</div>
+                          <div><span class="gtile-kicker">Daily steps · Maria A.</span><span class="gtile-num big-num">−15%</span></div>
+                          <div class="gtile-side"><b>Behind</b>typical recovery</div>
                         </div>
                         <div class="gtile-art curve-art">
                           <svg class="curve-svg" viewBox="0 0 600 220" fill="none">
@@ -139,18 +139,18 @@
                             <path class="curve-comet" pathLength="1" d="M0 202C60 186 120 158 180 140C230 126 270 122 310 126C350 130 390 136 430 138"/>
                             <g class="curve-mark"><circle class="ring" cx="430" cy="138" r="10" fill="none" stroke="#d4f14a" stroke-width="2"/><circle cx="430" cy="138" r="14" fill="rgba(212,241,74,.25)"/><circle class="art-dot" cx="430" cy="138" r="6.5"/></g>
                           </svg>
-                          <div class="curve-legend"><span><i></i>Expected steps</span><span><i class="is-actual"></i>Maria A.</span></div>
+                          <div class="curve-legend"><span><i></i>Typical recovery</span><span><i class="is-actual"></i>Maria A.</span></div>
                         </div>
                       </article>
 
                       <article class="gtile g-amber">
                         <div class="gtile-top">
-                          <div><span class="gtile-kicker">Data coverage</span><span class="gtile-num big-num">86<small>%</small></span></div>
-                          <div class="gtile-side"><b>High</b>confidence</div>
+                          <div><span class="gtile-kicker">Wearable data</span><span class="gtile-num big-num">86<small>%</small></span></div>
+                          <div class="gtile-side"><b>Synced</b>on most days</div>
                         </div>
                         <div class="mt-bar">
                           <div class="meter meter-light"><span class="meter-fill" style="width:86%"></span></div>
-                          <div class="timeline-ticks"><span>6 key signals</span><span>last 7 days</span></div>
+                          <div class="timeline-ticks"><span>Heart, steps, sleep</span><span>last 7 days</span></div>
                         </div>
                       </article>
 
@@ -171,7 +171,7 @@
 
                       <article class="gtile g-lilac mt-quiet">
                         <div class="gtile-top">
-                          <div><span class="gtile-kicker">Missing data</span><span class="gtile-num big-num">1</span></div>
+                          <div><span class="gtile-kicker">No wearable data</span><span class="gtile-num big-num">1</span></div>
                           <div class="gtile-side"><b>4 days</b>James W.</div>
                         </div>
                         <div class="silence-art">
@@ -183,7 +183,7 @@
 
                       <article class="mt-ai">
                         <span class="gtile-kicker">Recovery summary · Written by AI</span>
-                        <p><b>Sofia N. is on track.</b> Steps and walking speed are ahead of the expected curve for hip replacement.</p>
+                        <p><b>Sofia N. is on track.</b> Steps and walking speed are ahead of a typical hip replacement recovery.</p>
                         <div class="spark"><i style="height:40%"></i><i style="height:52%"></i><i style="height:60%"></i><i style="height:68%"></i><i style="height:80%"></i><i style="height:92%"></i></div>
                       </article>
                     </section>
@@ -195,7 +195,7 @@
                   <div>
                     <div class="dash-toast-top"><span>MedPull</span><span>now</span></div>
                     <b>Maria A. is now High risk</b>
-                    <p>Resting HR rising vs baseline. Pain 7/10 with new swelling.</p>
+                    <p>Resting heart rate above her normal. Pain 7/10, new swelling.</p>
                   </div>
                 </div>
               </div>
@@ -207,7 +207,7 @@
 
       <!-- PROCEDURES -->
       <div class="procedures">
-        <p>Recovery pathways for the procedures you do most</p>
+        <p>Built for the surgeries you do most</p>
         <ul class="procedure-list">
           <li><span class="dot" aria-hidden="true"></span>Total knee replacement</li>
           <li><span class="dot" aria-hidden="true"></span>Total hip replacement</li>
@@ -215,7 +215,7 @@
           <li><span class="dot" aria-hidden="true"></span>Meniscus repair</li>
           <li><span class="dot" aria-hidden="true"></span>Rotator cuff repair</li>
           <li><span class="dot" aria-hidden="true"></span>Lumbar decompression</li>
-          <li><span class="dot" aria-hidden="true"></span>Ankle fracture ORIF</li>
+          <li><span class="dot" aria-hidden="true"></span>Ankle fracture repair</li>
         </ul>
       </div>
 
@@ -231,15 +231,25 @@
             <figure class="tile compare-card">
               <div class="compare-top">
                 <div><span class="compare-kicker">A monitoring dashboard</span><span class="compare-num big-num" data-count="240">240</span></div>
-                <span class="compare-note">rows to read, one by one</span>
+                <span class="compare-note"><b>to review</b>one chart at a time</span>
               </div>
-              <div class="feed" aria-hidden="true">
-                <div class="feed-head"><span>Patient</span><span>Steps</span><span>Rest HR</span><span>Pain</span><span>Seen</span></div>
-                <div class="feed-window"><div class="feed-rows"><div class="feed-row"><span><i></i>S. Nguyen</span><span>6,120</span><span>61</span><span>2</span><span>1h</span></div><div class="feed-row"><span><i></i>M. Alvarez</span><span>2,480</span><span>78</span><span>7</span><span>2h</span></div><div class="feed-row"><span><i></i>D. Cohen</span><span>5,410</span><span>58</span><span>2</span><span>3h</span></div><div class="feed-row"><span><i></i>L. Park</span><span>4,380</span><span>64</span><span>3</span><span>1h</span></div><div class="feed-row"><span><i></i>J. Whitfield</span><span>–</span><span>–</span><span>–</span><span>4d</span></div><div class="feed-row"><span><i></i>T. Brooks</span><span>3,950</span><span>66</span><span>4</span><span>5h</span></div><div class="feed-row"><span><i></i>R. Okafor</span><span>2,210</span><span>70</span><span>5</span><span>1h</span></div><div class="feed-row"><span><i></i>A. Patel</span><span>5,010</span><span>60</span><span>3</span><span>2h</span></div><div class="feed-row"><span><i></i>K. Moore</span><span>6,600</span><span>57</span><span>2</span><span>1h</span></div><div class="feed-row"><span><i></i>E. Rossi</span><span>4,120</span><span>63</span><span>4</span><span>4h</span></div><div class="feed-row"><span><i></i>S. Nguyen</span><span>6,120</span><span>61</span><span>2</span><span>1h</span></div><div class="feed-row"><span><i></i>M. Alvarez</span><span>2,480</span><span>78</span><span>7</span><span>2h</span></div><div class="feed-row"><span><i></i>D. Cohen</span><span>5,410</span><span>58</span><span>2</span><span>3h</span></div><div class="feed-row"><span><i></i>L. Park</span><span>4,380</span><span>64</span><span>3</span><span>1h</span></div><div class="feed-row"><span><i></i>J. Whitfield</span><span>–</span><span>–</span><span>–</span><span>4d</span></div><div class="feed-row"><span><i></i>T. Brooks</span><span>3,950</span><span>66</span><span>4</span><span>5h</span></div><div class="feed-row"><span><i></i>R. Okafor</span><span>2,210</span><span>70</span><span>5</span><span>1h</span></div><div class="feed-row"><span><i></i>A. Patel</span><span>5,010</span><span>60</span><span>3</span><span>2h</span></div><div class="feed-row"><span><i></i>K. Moore</span><span>6,600</span><span>57</span><span>2</span><span>1h</span></div><div class="feed-row"><span><i></i>E. Rossi</span><span>4,120</span><span>63</span><span>4</span><span>4h</span></div></div></div>
-                <div class="feed-scan"></div>
-                <span class="feed-status"><span class="spinner"></span>Reading <b data-scan>1</b> of 240</span>
+              <p class="compare-lede">Every patient gets a wall of charts, and someone on your team has to look through all of them.</p>
+              <div class="mdash" data-mdash aria-hidden="true">
+                <div class="md-bar"><span class="md-tab is-on">All patients · 240</span><span class="md-tab">Vitals</span><span class="md-tab">Activity</span><span class="md-sort">Sort: A–Z</span></div>
+                <div class="md-grid">
+                  <div class="md-tile"><div class="md-name"><i></i>S. Nguyen</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,11 9,13 18,8 27,9 36,7 45,4 55,4 64,4 73,4 82,4 91,4 100,4"/></svg><div class="md-vals"><span>HR<b>61</b></span><span>Steps<b>6.1k</b></span><span>Sleep<b>7.2h</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>M. Alvarez</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,15 9,12 18,13 27,18 36,19 45,18 55,22 64,18 73,21 82,19 91,16 100,12"/></svg><div class="md-vals"><span>HR<b>78</b></span><span>Steps<b>2.5k</b></span><span>Sleep<b>5.1h</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>D. Cohen</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,18 9,14 18,15 27,17 36,15 45,16 55,11 64,7 73,4 82,6 91,5 100,4"/></svg><div class="md-vals"><span>HR<b>58</b></span><span>Steps<b>5.4k</b></span><span>Sleep<b>7.6h</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>L. Park</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,16 9,14 18,17 27,19 36,17 45,17 55,18 64,21 73,24 82,22 91,26 100,22"/></svg><div class="md-vals"><span>HR<b>64</b></span><span>Steps<b>4.4k</b></span><span>Sleep<b>6.8h</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>J. Whitfield</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,18 9,14 18,14 27,10 36,11 45,14 55,15 64,19 73,17 82,19 91,20 100,20"/></svg><div class="md-vals"><span>HR<b>–</b></span><span>Steps<b>–</b></span><span>Sleep<b>–</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>T. Brooks</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,19 9,23 18,23 27,25 36,20 45,23 55,24 64,26 73,26 82,24 91,23 100,24"/></svg><div class="md-vals"><span>HR<b>66</b></span><span>Steps<b>3.9k</b></span><span>Sleep<b>6.2h</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>R. Okafor</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,12 9,8 18,5 27,4 36,7 45,4 55,4 64,4 73,8 82,4 91,4 100,4"/></svg><div class="md-vals"><span>HR<b>70</b></span><span>Steps<b>2.2k</b></span><span>Sleep<b>6.5h</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>A. Patel</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,22 9,26 18,24 27,23 36,21 45,25 55,26 64,23 73,19 82,17 91,14 100,14"/></svg><div class="md-vals"><span>HR<b>60</b></span><span>Steps<b>5.0k</b></span><span>Sleep<b>7.0h</b></span></div></div>
+                  <div class="md-tile"><div class="md-name"><i></i>K. Moore</div><svg class="md-spark" viewBox="0 0 100 30" preserveAspectRatio="none"><polyline points="0,14 9,9 18,9 27,7 36,8 45,12 55,14 64,15 73,16 82,17 91,13 100,17"/></svg><div class="md-vals"><span>HR<b>57</b></span><span>Steps<b>6.6k</b></span><span>Sleep<b>7.4h</b></span></div></div>
+                </div>
+                <svg class="md-cursor" viewBox="0 0 24 24"><path d="M5 3.5 18.5 12 12 13.4 9 19.5Z" fill="#141414" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <span class="md-status"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="2.8"/></svg>Reviewed <b data-reviewed>0</b> of 240</span>
               </div>
-              <figcaption class="compare-foot">Every row looks alike. Someone has to read each one to find what changed.</figcaption>
             </figure>
 
             <figure class="gtile g-sage compare-card">
@@ -247,21 +257,19 @@
                 <div><span class="gtile-kicker">MedPull</span><span class="gtile-num big-num">3</span></div>
                 <div class="gtile-side"><b>need you today</b>sorted, with the reason</div>
               </div>
+              <p class="compare-lede">MedPull checks each patient against their own normal and puts the three who need you on top.</p>
               <div class="sorter-status" data-sorter-status aria-hidden="true">
-                <span class="st st-a">Checking 240 patients</span><span class="meter"><span></span></span>
+                <span class="st st-a">Reviewing all 240 patients</span><span class="meter"><span></span></span>
                 <span class="st st-b">Sorted by risk</span>
               </div>
               <div class="sorter" data-sorter aria-hidden="true">
-                <div class="srow" style="--a:0;--b:3"><span class="avatar av-4">SN</span><span><b>Sofia Nguyen</b><span class="sub"><span class="when-reading">Hip, day 33</span><span class="when-sorted">Recovery tracking as expected</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-ontrack when-sorted">On track</span></span></div>
-                <div class="srow" style="--a:1;--b:0"><span class="avatar av-1">MA</span><span><b>Maria Alvarez</b><span class="sub"><span class="when-reading">Knee, day 14</span><span class="when-sorted">Resting HR rising vs baseline</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-attention when-sorted">High risk</span></span></div>
-                <div class="srow is-ok" style="--a:2;--b:4"><span class="avatar av-5">DC</span><span><b>Daniel Cohen</b><span class="sub"><span class="when-reading">Meniscus, day 6</span><span class="when-sorted">Recovery tracking as expected</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-ontrack when-sorted">On track</span></span></div>
-                <div class="srow" style="--a:3;--b:1"><span class="avatar av-2">JW</span><span><b>James Whitfield</b><span class="sub"><span class="when-reading">ACL, day 21</span><span class="when-sorted">Device data on 20% of days</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-missing when-sorted">Missing data</span></span></div>
-                <div class="srow" style="--a:4;--b:2"><span class="avatar av-3">RO</span><span><b>Rachel Okafor</b><span class="sub"><span class="when-reading">Rotator cuff, day 9</span><span class="when-sorted">Behind expected curve (−15%)</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-watch when-sorted">Needs review</span></span></div>
+                <div class="srow" style="--a:0;--b:3"><span class="avatar av-4">SN</span><span><b>Sofia Nguyen</b><span class="sub"><span class="when-reading">Hip, day 33</span><span class="when-sorted">Recovering as expected</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-ontrack when-sorted">On track</span></span></div>
+                <div class="srow" style="--a:1;--b:0"><span class="avatar av-1">MA</span><span><b>Maria Alvarez</b><span class="sub"><span class="when-reading">Knee, day 14</span><span class="when-sorted">Resting heart rate above her normal</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-attention when-sorted">High risk</span></span></div>
+                <div class="srow is-ok" style="--a:2;--b:4"><span class="avatar av-5">DC</span><span><b>Daniel Cohen</b><span class="sub"><span class="when-reading">Meniscus, day 6</span><span class="when-sorted">Recovering as expected</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-ontrack when-sorted">On track</span></span></div>
+                <div class="srow" style="--a:3;--b:1"><span class="avatar av-2">JW</span><span><b>James Whitfield</b><span class="sub"><span class="when-reading">ACL, day 21</span><span class="when-sorted">Wearable synced only 2 of 10 days</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-missing when-sorted">Missing data</span></span></div>
+                <div class="srow" style="--a:4;--b:2"><span class="avatar av-3">RO</span><span><b>Rachel Okafor</b><span class="sub"><span class="when-reading">Rotator cuff, day 9</span><span class="when-sorted">Walking 15% less than expected</span></span></span><span class="tag"><span class="pill pill-reading when-reading">Checking</span><span class="pill pill-watch when-sorted">Needs review</span></span></div>
                 <div class="srow is-rest" style="--a:4;--b:4"><span class="stack"><span class="avatar av-4"></span><span class="avatar av-5"></span><span class="avatar av-1"></span></span><span><b>236 others</b><span class="sub"><span class="when-sorted">Nothing to do today</span></span></span><span class="tag"><span class="pill pill-ontrack when-sorted">On track</span></span></div>
               </div>
-              <figcaption class="gtile-cap">
-                <p class="body">Same 240 patients. MedPull checks each one against their own baseline and puts the three who need you on top.</p>
-              </figcaption>
             </figure>
           </div>
         </div>
@@ -277,9 +285,9 @@
 
           <div class="tabs" role="tablist" aria-label="Product views">
             <button class="tab" role="tab" id="tab-chat" aria-controls="panel-chat" aria-selected="true" type="button">Check-in</button>
-            <button class="tab" role="tab" id="tab-worklist" aria-controls="panel-worklist" aria-selected="false" tabindex="-1" type="button">Worklist</button>
+            <button class="tab" role="tab" id="tab-worklist" aria-controls="panel-worklist" aria-selected="false" tabindex="-1" type="button">Patient list</button>
             <button class="tab" role="tab" id="tab-summary" aria-controls="panel-summary" aria-selected="false" tabindex="-1" type="button">Summary</button>
-            <button class="tab" role="tab" id="tab-metrics" aria-controls="panel-metrics" aria-selected="false" tabindex="-1" type="button">Care metrics</button>
+            <button class="tab" role="tab" id="tab-metrics" aria-controls="panel-metrics" aria-selected="false" tabindex="-1" type="button">Metrics</button>
           </div>
 
           <div class="stage-tile">
@@ -317,7 +325,7 @@
                     </div>
                     <div class="card-foot">
                       <span class="pill pill-attention">High risk</span>
-                      <span class="wl-sub">Pain 7 + resting HR rising vs baseline</span>
+                      <span class="wl-sub">Pain 7, heart rate above her normal</span>
                     </div>
                   </div>
                 </div>
@@ -331,16 +339,16 @@
                 <h3 class="h3">Who needs you today, and why</h3>
                 <p class="body">Patients are grouped by risk with the reason written out. An AI briefing tells you where to start.</p>
                 <ul class="notes">
-                  <li><span><b>Four clear tiers.</b> High risk, Needs review, Missing data, On track.</span></li>
+                  <li><span><b>Four clear groups.</b> High risk, Needs review, Missing data, On track.</span></li>
                   <li><span><b>Ask anything.</b> Type a question about your patients and get an answer.</span></li>
-                  <li><span><b>Act from the list.</b> Message, assign tasks, or escalate.</span></li>
+                  <li><span><b>Act from the list.</b> Message, assign recovery tasks, or escalate.</span></li>
                 </ul>
               </div>
               <div class="panel-visual">
                 <div class="card">
                   <div class="card-head">
                     <span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>
-                    <span class="card-title">Worklist</span>
+                    <span class="card-title">Patient list</span>
                     <span class="card-chip">3 need you</span>
                   </div>
                   <div class="card-body">
@@ -349,25 +357,25 @@
                       <div class="wl-row is-flagged">
                         <span class="avatar av-1">MA</span>
                         <div><div class="wl-name">Maria Alvarez</div><div class="wl-sub">Knee replacement, day 14</div></div>
-                        <div class="wl-cell">Resting HR rising vs baseline</div>
+                        <div class="wl-cell">Resting heart rate above her normal</div>
                         <div class="wl-status"><span class="pill pill-attention">High risk</span><span class="wl-when">Today</span></div>
                       </div>
                       <div class="wl-row">
                         <span class="avatar av-2">JW</span>
                         <div><div class="wl-name">James Whitfield</div><div class="wl-sub">ACL reconstruction, day 21</div></div>
-                        <div class="wl-cell">Device data on only 20% of recent days</div>
+                        <div class="wl-cell">Wearable synced only 2 of the last 10 days</div>
                         <div class="wl-status"><span class="pill pill-missing">Missing data</span><span class="wl-when">Today</span></div>
                       </div>
                       <div class="wl-row">
                         <span class="avatar av-3">RO</span>
                         <div><div class="wl-name">Rachel Okafor</div><div class="wl-sub">Rotator cuff repair, day 9</div></div>
-                        <div class="wl-cell">Behind expected recovery curve (−15%)</div>
+                        <div class="wl-cell">Walking 15% less than expected</div>
                         <div class="wl-status"><span class="pill pill-watch">Needs review</span><span class="wl-when">This week</span></div>
                       </div>
                       <div class="wl-row">
                         <span class="avatar av-4">SN</span>
                         <div><div class="wl-name">Sofia Nguyen</div><div class="wl-sub">Hip replacement, day 33</div></div>
-                        <div class="wl-cell">Recovery tracking as expected</div>
+                        <div class="wl-cell">Recovering as expected</div>
                         <div class="wl-status"><span class="pill pill-ontrack">On track</span><span class="wl-when">Routine</span></div>
                       </div>
                     </div>
@@ -383,9 +391,9 @@
                 <h3 class="h3">Two weeks of recovery, read in seconds</h3>
                 <p class="body">Each patient page opens with an AI recovery summary, next steps, and three headline metrics picked for their procedure.</p>
                 <ul class="notes">
-                  <li><span><b>Numbers come from rules.</b> The AI writes the summary. It never makes the numbers.</span></li>
-                  <li><span><b>Their own baseline.</b> Vitals are compared with the patient's pre-op normal.</span></li>
-                  <li><span><b>Not a diagnosis.</b> Signals are for clinician review.</span></li>
+                  <li><span><b>Scores follow set rules.</b> The AI writes the summary. It never sets scores.</span></li>
+                  <li><span><b>Their own normal.</b> Vitals are compared with the patient's pre-surgery levels.</span></li>
+                  <li><span><b>Not a diagnosis.</b> Everything is for your clinicians to review.</span></li>
                 </ul>
               </div>
               <div class="panel-visual">
@@ -397,27 +405,27 @@
                   </div>
                   <div class="card-body">
                     <div class="rs-summary">
-                      <p><b>Recovery has stalled this week.</b> Daily steps are 15% behind the expected curve for knee replacement, and resting heart rate has been above her pre-op baseline for three nights. Pain is up to 7 with new swelling. Worth a call today.</p>
+                      <p><b>Recovery has stalled this week.</b> Daily steps are 15% behind a typical knee replacement recovery, and her resting heart rate has been above her normal for three nights. Pain is up to 7 with new swelling. Worth a call today.</p>
                     </div>
                     <div class="rs-metrics">
                       <div class="rs-metric">
-                        <div class="rs-metric-label">Load ratio</div>
+                        <div class="rs-metric-label">Steps vs. usual</div>
                         <div class="rs-metric-value">0.7× <span class="rs-delta down">Stalled</span></div>
                         <div class="spark is-alert"><i style="height:90%"></i><i style="height:84%"></i><i style="height:70%"></i><i style="height:62%"></i><i style="height:55%"></i><i style="height:50%"></i></div>
                       </div>
                       <div class="rs-metric">
-                        <div class="rs-metric-label">Autonomic trend</div>
-                        <div class="rs-metric-value">1.7σ <span class="rs-delta down">Flag</span></div>
+                        <div class="rs-metric-label">Resting heart rate</div>
+                        <div class="rs-metric-value">+9 <span class="rs-delta down">bpm</span></div>
                         <div class="spark is-alert"><i style="height:30%"></i><i style="height:38%"></i><i style="height:45%"></i><i style="height:60%"></i><i style="height:78%"></i><i style="height:95%"></i></div>
                       </div>
                       <div class="rs-metric">
-                        <div class="rs-metric-label">Adherence</div>
+                        <div class="rs-metric-label">Exercises done</div>
                         <div class="rs-metric-value">86% <span class="rs-delta up">OK</span></div>
                         <div class="spark"><i style="height:70%"></i><i style="height:80%"></i><i style="height:75%"></i><i style="height:90%"></i><i style="height:85%"></i><i style="height:88%"></i></div>
                       </div>
                     </div>
-                    <div class="rs-flag"><span class="pill pill-attention">Flag</span><span><b>Resting HR rising vs baseline</b>, HRV down for three nights.</span></div>
-                    <div class="rs-flag"><span class="pill pill-watch">Watch</span><span><b>Stalled progression.</b> This week's steps are 0.7× her 4-week average.</span></div>
+                    <div class="rs-flag"><span class="pill pill-attention">Flag</span><span><b>Resting heart rate above her normal</b> for three nights.</span></div>
+                    <div class="rs-flag"><span class="pill pill-watch">Watch</span><span><b>Progress has stalled.</b> This week's steps are 30% below her usual.</span></div>
                     <p class="fineprint">Monitoring signals for clinician review — not a diagnosis.</p>
                   </div>
                 </div>
@@ -428,43 +436,43 @@
             <div class="panel" role="tabpanel" id="panel-metrics" aria-labelledby="tab-metrics" tabindex="0" hidden>
               <div class="panel-copy">
                 <span class="glyph g-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 20h16M7 16v-4M12 16V7M17 16v-6"/></svg></span>
-                <h3 class="h3">24 care metrics, built for recovery</h3>
-                <p class="body">Beyond steps and heart rate: load tolerance, walking symmetry, sleep disruption, adherence, and more.</p>
+                <h3 class="h3">24 recovery metrics, in plain terms</h3>
+                <p class="body">Beyond steps and heart rate: overdoing it, limping, poor sleep, skipped exercises, and more.</p>
                 <ul class="notes">
-                  <li><span><b>Clear thresholds.</b> Each metric reads Flag, Watch, OK, or Needs data.</span></li>
-                  <li><span><b>Picked per patient.</b> Three headline metrics fit the procedure and what changed.</span></li>
-                  <li><span><b>Signals combined.</b> Heart rate, HRV, temperature, and breathing roll into one deviation index.</span></li>
+                  <li><span><b>Plain statuses.</b> Each metric shows Flag, Watch, OK, or Needs data.</span></li>
+                  <li><span><b>Picked per patient.</b> The three most relevant metrics show first.</span></li>
+                  <li><span><b>One warning score.</b> Heart rate, temperature, breathing, and more, combined.</span></li>
                 </ul>
               </div>
               <div class="panel-visual">
                 <div class="card">
                   <div class="card-head">
                     <span class="avatar av-1" style="width:28px;height:28px;font-size:11px">MA</span>
-                    <span class="card-title">Care metrics · Maria A.</span>
+                    <span class="card-title">Recovery metrics · Maria A.</span>
                     <span class="card-chip">Knee, day 14</span>
                   </div>
                   <div class="card-body">
                     <div class="metric-list">
                       <div class="metric-row">
-                        <div class="metric-top"><span>Acute:chronic load ratio</span><b>0.7×</b><span class="pill pill-watch">Watch</span></div>
+                        <div class="metric-top"><span>Steps: this week vs. usual</span><b>0.7×</b><span class="pill pill-watch">Watch</span></div>
                         <div class="meter"><span class="meter-fill is-watch" style="width:47%"></span></div>
                       </div>
                       <div class="metric-row">
-                        <div class="metric-top"><span>Loading asymmetry</span><b>12%</b><span class="pill pill-attention">Flag</span></div>
+                        <div class="metric-top"><span>Uneven walking (limp)</span><b>12%</b><span class="pill pill-attention">Flag</span></div>
                         <div class="meter"><span class="meter-fill is-flag" style="width:72%"></span></div>
                       </div>
                       <div class="metric-row">
-                        <div class="metric-top"><span>Nocturnal disruption</span><b>1.6×</b><span class="pill pill-attention">Flag</span></div>
+                        <div class="metric-top"><span>Time awake at night</span><b>1.6×</b><span class="pill pill-attention">Flag</span></div>
                         <div class="meter"><span class="meter-fill is-flag" style="width:80%"></span></div>
                       </div>
                       <div class="metric-row">
-                        <div class="metric-top"><span>Verified adherence</span><b>86%</b><span class="pill pill-ontrack">OK</span></div>
+                        <div class="metric-top"><span>Exercises done</span><b>86%</b><span class="pill pill-ontrack">OK</span></div>
                         <div class="meter"><span class="meter-fill" style="width:86%"></span></div>
                       </div>
                     </div>
                     <div class="sig-block">
-                      <div class="sig-head"><b>Multi-signal deviation</b><span class="pill pill-watch">Elevated</span></div>
-                      <div class="sig-list sig-dark"><div class="sig"><span>Resting HR</span><span class="meter"><span class="meter-fill" style="width:100%"></span></span><b>38%</b></div><div class="sig"><span>Skin temp</span><span class="meter"><span class="meter-fill" style="width:63%"></span></span><b>24%</b></div><div class="sig"><span>HRV</span><span class="meter"><span class="meter-fill" style="width:53%"></span></span><b>20%</b></div><div class="sig"><span>Breathing</span><span class="meter"><span class="meter-fill" style="width:26%"></span></span><b>10%</b></div><div class="sig"><span>Steps</span><span class="meter"><span class="meter-fill" style="width:21%"></span></span><b>8%</b></div></div>
+                      <div class="sig-head"><b>Change from her normal</b><span class="pill pill-watch">Elevated</span></div>
+                      <div class="sig-list sig-dark"><div class="sig sig-cap"><span>Signal</span><span>How much it drives the change</span><b>Share</b></div><div class="sig"><span>Heart rate</span><span class="meter"><span class="meter-fill" style="width:100%"></span></span><b>38%</b></div><div class="sig"><span>Skin temp</span><span class="meter"><span class="meter-fill" style="width:63%"></span></span><b>24%</b></div><div class="sig"><span>HR variability</span><span class="meter"><span class="meter-fill" style="width:53%"></span></span><b>20%</b></div><div class="sig"><span>Breathing</span><span class="meter"><span class="meter-fill" style="width:26%"></span></span><b>10%</b></div><div class="sig"><span>Steps</span><span class="meter"><span class="meter-fill" style="width:21%"></span></span><b>8%</b></div></div>
                     </div>
                   </div>
                 </div>
@@ -478,15 +486,15 @@
       <section class="band fog-b" id="features" aria-labelledby="features-title">
         <div class="wrap">
           <div class="section-head">
-            <h2 class="h2" id="features-title">From pre-op baseline to full recovery</h2>
+            <h2 class="h2" id="features-title">From before surgery to full recovery</h2>
             <p class="lede">Wearable signals and check-ins, read the way a clinician would.</p>
           </div>
 
           <div class="bento">
             <article class="gtile g-meadow span-2">
               <div class="gtile-top">
-                <div><span class="gtile-kicker">Recovery trajectory · Maria A.</span><span class="gtile-num big-num">−15%</span></div>
-                <div class="gtile-side"><b>Behind</b>expected curve</div>
+                <div><span class="gtile-kicker">Daily steps · Maria A.</span><span class="gtile-num big-num">−15%</span></div>
+                <div class="gtile-side"><b>Behind</b>typical recovery</div>
               </div>
               <div class="gtile-art curve-art" aria-hidden="true">
                           <svg class="curve-svg" viewBox="0 0 600 220" fill="none">
@@ -497,24 +505,24 @@
                             <path class="curve-comet" pathLength="1" d="M0 202C60 186 120 158 180 140C230 126 270 122 310 126C350 130 390 136 430 138"/>
                             <g class="curve-mark"><circle class="ring" cx="430" cy="138" r="10" fill="none" stroke="#d4f14a" stroke-width="2"/><circle cx="430" cy="138" r="14" fill="rgba(212,241,74,.25)"/><circle class="art-dot" cx="430" cy="138" r="6.5"/></g>
                           </svg>
-                <div class="curve-legend"><span><i></i>Expected steps for knee replacement</span><span><i class="is-actual"></i>Maria A.</span></div>
+                <div class="curve-legend"><span><i></i>Typical knee replacement recovery</span><span><i class="is-actual"></i>Maria A.</span></div>
               </div>
               <div class="gtile-cap">
-                <h3 class="title">Measured against the expected curve</h3>
-                <p class="body">Steps and walking speed are compared with the usual path for that procedure, so a stall shows up the day it starts.</p>
+                <h3 class="title">Compared with a typical recovery</h3>
+                <p class="body">Steps and walking speed are compared with how that surgery usually goes, so a stall shows up the day it starts.</p>
               </div>
             </article>
 
             <article class="gtile g-amber">
               <div class="gtile-top">
-                <div><span class="gtile-kicker">Wearable sources</span><span class="gtile-num big-num">8</span></div>
+                <div><span class="gtile-kicker">Supported wearables</span><span class="gtile-num big-num">8</span></div>
               </div>
               <div class="gtile-art" aria-hidden="true">
                 <div class="flow">
                   <div class="flow-node"><span class="flow-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="6.5" y="6" width="11" height="12" rx="3.5"/><path d="M9 6 9.6 3h4.8l.6 3M9 18l.6 3h4.8l.6-3" stroke-linecap="round"/><path d="M9.5 12h1.4l.9-1.8 1.2 3.6.9-1.8h.6" stroke-linecap="round"/></svg></span>Wearable</div>
                   <div class="flow-rails">
                     <div class="rail"><span>Steps · sleep</span><i></i><i></i></div>
-                    <div class="rail is-late"><span>Heart rate · HRV</span><i></i><i></i></div>
+                    <div class="rail is-late"><span>Heart rate · breathing</span><i></i><i></i></div>
                   </div>
                   <div class="flow-node"><span class="app-icon"><img src="assets/img/medpull-mark.png" alt="" /></span>MedPull</div>
                 </div>
@@ -527,8 +535,8 @@
 
             <article class="gtile g-clay">
               <div class="gtile-top">
-                <div><span class="gtile-kicker">Load ratio · this week</span><span class="gtile-num big-num">1.6×</span></div>
-                <div class="gtile-side"><b>Overreaching</b>vs last 4 weeks</div>
+                <div><span class="gtile-kicker">Steps this week vs. usual</span><span class="gtile-num big-num">1.6×</span></div>
+                <div class="gtile-side"><b>Too much</b>vs. last 4 weeks</div>
               </div>
               <div class="gtile-art" aria-hidden="true">
                 <div class="bars">
@@ -544,20 +552,20 @@
 
             <article class="gtile g-dusk">
               <div class="gtile-top">
-                <div><span class="gtile-kicker">Multi-signal deviation</span><span class="gtile-num big-num gtile-word">Elevated</span></div>
+                <div><span class="gtile-kicker">Change from normal</span><span class="gtile-num big-num gtile-word">Elevated</span></div>
               </div>
               <div class="gtile-art" aria-hidden="true">
-                <div class="sig-list"><div class="sig"><span>Resting HR</span><span class="meter"><span class="meter-fill" style="width:100%"></span></span><b>38%</b></div><div class="sig"><span>Skin temp</span><span class="meter"><span class="meter-fill" style="width:63%"></span></span><b>24%</b></div><div class="sig"><span>HRV</span><span class="meter"><span class="meter-fill" style="width:53%"></span></span><b>20%</b></div><div class="sig"><span>Breathing</span><span class="meter"><span class="meter-fill" style="width:26%"></span></span><b>10%</b></div><div class="sig"><span>Steps</span><span class="meter"><span class="meter-fill" style="width:21%"></span></span><b>8%</b></div></div>
+                <div class="sig-list"><div class="sig sig-cap"><span>Signal</span><span>How much it drives the change</span><b>Share</b></div><div class="sig"><span>Heart rate</span><span class="meter"><span class="meter-fill" style="width:100%"></span></span><b>38%</b></div><div class="sig"><span>Skin temp</span><span class="meter"><span class="meter-fill" style="width:63%"></span></span><b>24%</b></div><div class="sig"><span>HR variability</span><span class="meter"><span class="meter-fill" style="width:53%"></span></span><b>20%</b></div><div class="sig"><span>Breathing</span><span class="meter"><span class="meter-fill" style="width:26%"></span></span><b>10%</b></div><div class="sig"><span>Steps</span><span class="meter"><span class="meter-fill" style="width:21%"></span></span><b>8%</b></div></div>
               </div>
               <div class="gtile-cap">
-                <h3 class="title">Measured against their own baseline</h3>
-                <p class="body">Resting heart rate, HRV, skin temperature, and breathing rate are compared with each patient's pre-op normal.</p>
+                <h3 class="title">Compared with their own normal</h3>
+                <p class="body">Resting heart rate, heart rate variability, skin temperature, and breathing are compared with each patient's pre-surgery levels.</p>
               </div>
             </article>
 
             <article class="gtile g-lilac">
               <div class="gtile-top">
-                <div><span class="gtile-kicker">No device data · James W.</span><span class="gtile-num big-num">4<small>days</small></span></div>
+                <div><span class="gtile-kicker">No wearable data · James W.</span><span class="gtile-num big-num">4<small>days</small></span></div>
               </div>
               <div class="gtile-art" aria-hidden="true">
                 <div class="silence-art">
@@ -580,24 +588,24 @@
       <section class="band fog-c" id="how" aria-labelledby="how-title">
         <div class="wrap">
           <div class="section-head">
-            <h2 class="h2" id="how-title">From baseline to a short list</h2>
+            <h2 class="h2" id="how-title">From their wearable to your short list</h2>
             <p class="lede">No one on your team has to chase data down.</p>
           </div>
           <ol class="steps">
             <li class="tile step">
               <div class="step-top"><span class="step-n">1</span><span class="glyph g-sage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="6.5" y="6" width="11" height="12" rx="3.5"/><path d="M9 6 9.6 3h4.8l.6 3M9 18l.6 3h4.8l.6-3" stroke-linecap="round"/></svg></span></div>
               <h3 class="title">Patients connect</h3>
-              <p class="body">They link Apple Health or their wearable. Pre-op data becomes their baseline.</p>
+              <p class="body">They link Apple Health or their wearable. Pre-surgery data sets their normal.</p>
             </li>
             <li class="tile step">
               <div class="step-top"><span class="step-n">2</span><span class="glyph g-amber" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17.5 9.5 12l3.5 3.5L20 8.5"/><path d="M15 8.5h5v5"/></svg></span></div>
               <h3 class="title">MedPull compares</h3>
-              <p class="body">Vitals against their baseline, steps against the expected curve, plus check-ins and 24 care metrics.</p>
+              <p class="body">Vitals against their normal, steps against a typical recovery, plus check-ins and 24 recovery metrics.</p>
             </li>
             <li class="tile step">
               <div class="step-top"><span class="step-n">3</span><span class="glyph g-clay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M9 6.5h10M9 12h10M9 17.5h10"/><circle cx="4.8" cy="6.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.8" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.8" cy="17.5" r="1.2" fill="currentColor" stroke="none"/></svg></span></div>
               <h3 class="title">Your team acts</h3>
-              <p class="body">A ranked worklist and an AI briefing. Message, assign tasks, or escalate from one screen.</p>
+              <p class="body">A ranked patient list and an AI briefing. Message, assign tasks, or escalate from one screen.</p>
             </li>
           </ol>
         </div>
@@ -625,9 +633,9 @@
               </div>
             </div>
             <div class="facts">
-              <div class="fact"><b data-count="24">24</b><span>Care metrics</span></div>
-              <div class="fact"><b data-count="8">8</b><span>Wearable sources</span></div>
-              <div class="fact"><b data-count="7">7</b><span>Surgical pathways</span></div>
+              <div class="fact"><b data-count="24">24</b><span>Recovery metrics</span></div>
+              <div class="fact"><b data-count="8">8</b><span>Supported wearables</span></div>
+              <div class="fact"><b data-count="7">7</b><span>Surgeries supported</span></div>
             </div>
           </div>
         </div>
@@ -644,7 +652,7 @@
             <div class="tile">
               <span class="glyph g-sage" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 20h16M7 16v-4M12 16V7M17 16v-6"/></svg></span>
               <h3 class="title">Numbers from rules, not AI</h3>
-              <p class="body">Every score and risk tier comes from fixed clinical rules. The AI only writes summaries and drafts.</p>
+              <p class="body">Every score and risk group comes from fixed clinical rules. The AI only writes summaries and drafts.</p>
             </div>
             <div class="tile">
               <span class="glyph g-clay" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M6.5 16v-5a5.5 5.5 0 1 1 11 0v5l1.5 2h-14Z"/><path d="M10 20.5a2 2 0 0 0 4 0" stroke-linecap="round"/></svg></span>
@@ -654,7 +662,7 @@
             <div class="tile">
               <span class="glyph g-dusk" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v5M12 16v.5"/></svg></span>
               <h3 class="title">No data, no guess</h3>
-              <p class="body">When device data is thin, MedPull shows Missing data instead of a verdict.</p>
+              <p class="body">When wearable data is sparse, MedPull says Missing data instead of guessing.</p>
             </div>
             <div class="tile">
               <span class="glyph g-lilac" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 3 5.5 5.5v5c0 4.3 2.8 7.4 6.5 9 3.7-1.6 6.5-4.7 6.5-9v-5Z"/><path d="m9 12 2.2 2.2 4-4.4" stroke-linecap="round"/></svg></span>
@@ -677,11 +685,11 @@
             <div class="faq-list">
               <details class="faq-item" name="faq">
                 <summary>How is this different from a remote monitoring dashboard?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
-                <p>A dashboard shows everything and leaves the reading to your staff. MedPull checks every patient's wearable data and check-ins against their own baseline and the expected recovery curve, then gives you a short list grouped by risk, with the reason written out.</p>
+                <p>A dashboard shows everything and leaves the reading to your staff. MedPull checks every patient's wearable data and check-ins against their own normal and a typical recovery, then gives you a short list grouped by risk, with the reason written out.</p>
               </details>
               <details class="faq-item" name="faq">
                 <summary>Which procedures do you support?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
-                <p>Total knee and hip replacement, ACL reconstruction, meniscus repair, rotator cuff repair, lumbar decompression, and ankle fracture ORIF, plus a general care pathway. Each has its own expected recovery curve.</p>
+                <p>Total knee and hip replacement, ACL reconstruction, meniscus repair, rotator cuff repair, lumbar decompression, and ankle fracture repair, plus a general recovery plan. Each has its own typical recovery path.</p>
               </details>
               <details class="faq-item" name="faq">
                 <summary>Do patients need an app?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
@@ -689,7 +697,7 @@
               </details>
               <details class="faq-item" name="faq">
                 <summary>Which wearables work?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
-                <p>Apple Health (through the iPhone app), Oura, Fitbit, Garmin, WHOOP, Withings, Polar, and Dexcom. MedPull uses steps, walking speed and symmetry, heart rate, HRV, sleep, skin temperature, blood oxygen, and breathing rate.</p>
+                <p>Apple Health (through the iPhone app), Oura, Fitbit, Garmin, WHOOP, Withings, Polar, and Dexcom. MedPull uses steps, walking speed and evenness, heart rate, heart rate variability, sleep, skin temperature, blood oxygen, and breathing rate.</p>
               </details>
               <details class="faq-item" name="faq">
                 <summary>Does it connect to our EMR?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
@@ -697,7 +705,7 @@
               </details>
               <details class="faq-item" name="faq">
                 <summary>Does the AI make clinical decisions?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
-                <p>No. Scores and risk tiers come from fixed clinical rules. The AI writes summaries and message drafts for your team to review. Everything is for clinician review, not a diagnosis.</p>
+                <p>No. Scores and risk groups come from fixed clinical rules. The AI writes summaries and message drafts for your team to review. Everything is for clinician review, not a diagnosis.</p>
               </details>
               <details class="faq-item" name="faq">
                 <summary>Is patient data secure?<span class="faq-chev" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="m3.5 5.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></summary>
@@ -765,8 +773,8 @@
       </div>
     </footer>
 
-    <script src="assets/js/site.js?v=6"></script>
-    <script src="assets/js/forms.js?v=6"></script>
-    <script src="assets/js/interest-popup.js?v=6"></script>
+    <script src="assets/js/site.js?v=7"></script>
+    <script src="assets/js/forms.js?v=7"></script>
+    <script src="assets/js/interest-popup.js?v=7"></script>
   </body>
 </html>
