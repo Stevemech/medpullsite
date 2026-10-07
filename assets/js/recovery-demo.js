@@ -22,8 +22,8 @@
     () => ({
       q: 'Any swelling, redness, or drainage at the incision?',
       replies: [
-        { label: 'Some swelling', risk: 1, note: 'New swelling reported' },
-        { label: 'Drainage', risk: 3, alert: true, note: 'Incision drainage reported, care team alerted' },
+        { label: 'Some swelling', risk: 1, note: 'New swelling reported', clause: 'noticed some new swelling' },
+        { label: 'Drainage', risk: 3, alert: true, note: 'Incision drainage reported, care team alerted', clause: 'reported drainage from the incision' },
         { label: 'None', risk: 0 },
       ],
     }),
@@ -31,13 +31,13 @@
       q: 'Any fever or chills?',
       replies: [
         { label: 'No', risk: 0 },
-        { label: 'Yes', risk: 3, alert: true, note: 'Fever or chills reported, care team alerted' },
+        { label: 'Yes', risk: 3, alert: true, note: 'Fever or chills reported, care team alerted', clause: 'has had a fever or chills' },
       ],
     }),
     () => ({
       q: 'How did you sleep last night?',
       replies: [
-        { label: 'Pain woke me up', risk: 1, note: 'Sleep disrupted by pain' },
+        { label: 'Pain woke me up', risk: 1, note: 'Sleep disrupted by pain', clause: 'was woken by pain overnight' },
         { label: 'Okay', risk: 0 },
         { label: 'Well', risk: -1 },
       ],
@@ -46,8 +46,8 @@
       q: 'Did you do your exercises today?',
       replies: [
         { label: 'All of them', adherence: 92, risk: -1 },
-        { label: 'Some', adherence: 64, risk: 1, note: 'Exercises only partly done' },
-        { label: 'Not today', adherence: 38, risk: 2, note: 'Exercises skipped' },
+        { label: 'Some', adherence: 64, risk: 1, note: 'Exercises only partly done', clause: 'only got through some of the exercises' },
+        { label: 'Not today', adherence: 38, risk: 2, note: 'Exercises skipped', clause: 'skipped the exercises today' },
       ],
     }),
   ];
@@ -57,8 +57,9 @@
       name: 'Maria Alvarez', first: 'Maria', initials: 'MA', av: 'av-1',
       procedure: 'Total knee replacement', pod: 14,
       signal: 'Resting heart rate above her normal', signalRisk: 2, coverage: 86,
+      pronoun: ['she', 'her'], signalClause: 'Her resting heart rate is running above her normal.',
       pain: [
-        { label: '7', pain: 7, risk: 2, note: 'Pain 7/10 in today’s check-in' },
+        { label: '7', pain: 7, risk: 2, note: 'Pain 7/10 in today’s check-in', clause: 'rated the pain 7 out of 10 today' },
         { label: '4', pain: 4, risk: 0 },
         { label: '2', pain: 2, risk: -1 },
       ],
@@ -67,18 +68,20 @@
       name: 'James Whitfield', first: 'James', initials: 'JW', av: 'av-2',
       procedure: 'ACL reconstruction', pod: 21,
       signal: 'Wearable synced only 2 of the last 10 days', signalRisk: 0, coverage: 20,
+      pronoun: ['he', 'his'], signalClause: 'His wearable has synced on only 2 of the last 10 days, so the device side is thin.',
       pain: [
         { label: '3', pain: 3, risk: 0 },
-        { label: '5', pain: 5, risk: 1, note: 'Pain 5/10, higher than last week' },
-        { label: '8', pain: 8, risk: 3, alert: true, note: 'Pain 8/10, care team alerted' },
+        { label: '5', pain: 5, risk: 1, note: 'Pain 5/10, higher than last week', clause: 'rated the pain 5 out of 10, up from last week' },
+        { label: '8', pain: 8, risk: 3, alert: true, note: 'Pain 8/10, care team alerted', clause: 'rated the pain 8 out of 10' },
       ],
     },
     rcr: {
       name: 'Rachel Okafor', first: 'Rachel', initials: 'RO', av: 'av-3',
       procedure: 'Rotator cuff repair', pod: 9,
       signal: 'Walking 15% less than expected', signalRisk: 2, coverage: 71,
+      pronoun: ['she', 'her'], signalClause: 'She is walking about 15% less than expected at this point.',
       pain: [
-        { label: '6', pain: 6, risk: 1, note: 'Pain 6/10' },
+        { label: '6', pain: 6, risk: 1, note: 'Pain 6/10', clause: 'rated the pain 6 out of 10' },
         { label: '3', pain: 3, risk: 0 },
         { label: '1', pain: 1, risk: -1 },
       ],
@@ -90,6 +93,7 @@
   let step = 0;
   let answers = {};
   let notes = [];
+  let clauses = [];
   let risk = 0;
   let alerted = false;
   let busy = false;
@@ -148,6 +152,7 @@
     risk += reply.risk || 0;
     if (reply.alert) alerted = true;
     if (reply.note) notes.push(reply.note);
+    if (reply.clause) clauses.push({ text: reply.clause, alert: !!reply.alert });
     updateMetrics();
 
     step++;
@@ -172,20 +177,48 @@
     return { label: 'On track', cls: 'pill-ontrack', chip: 'All on track' };
   }
 
+  // Joins clauses the way a person would: "a, b and c".
+  function listOf(items) {
+    if (items.length <= 1) return items[0] || '';
+    return items.slice(0, -1).join(', ') + ' and ' + items[items.length - 1];
+  }
+
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  // The check-in woven into one or two sentences, the way a colleague would
+  // say it at handoff — never one note per line. Alerted answers lead and
+  // say the team already knows; the rest follow as "She also …".
+  function checkinSentences() {
+    const [subj] = scenario.pronoun;
+    const alerted = clauses.filter((c) => c.alert).map((c) => c.text);
+    const rest = clauses.filter((c) => !c.alert).map((c) => c.text);
+    const out = [];
+    if (alerted.length) {
+      out.push(cap(subj) + ' ' + listOf(alerted) + ', so the care team has already been alerted.');
+      if (rest.length) out.push(cap(subj) + ' also ' + listOf(rest) + '.');
+    } else if (rest.length) {
+      out.push(cap(subj) + ' ' + listOf(rest) + '.');
+    } else {
+      out.push('Nothing in today’s check-in stood out.');
+    }
+    return out.join(' ');
+  }
+
   function summaryFor(tier) {
     const n = scenario.first;
-    const found = notes.length ? notes.join('. ') + '.' : 'Nothing concerning in today’s check-in.';
-    const signal = scenario.signal + '.';
+    const [, pos] = scenario.pronoun;
+    const said = checkinSentences();
+    const signal = scenario.signalClause;
     if (tier.label === 'High risk') {
-      return '<b>' + n + ' needs a call today.</b> ' + found + ' Wearable: ' + signal + ' Worth reaching out within 24 hours.';
+      return '<b>' + n + ' needs a call today.</b> ' + said + ' ' + signal + ' Worth reaching out within 24 hours.';
     }
     if (tier.label === 'Missing data') {
-      return '<b>Not enough wearable data to judge ' + n + '’s recovery.</b> ' + signal + ' ' + found + ' Ask ' + n + ' to reconnect their wearable.';
+      return '<b>' + n + '’s wearable hasn’t sent enough to judge ' + pos + ' recovery.</b> ' + signal + ' ' + said + ' Worth asking ' + n + ' to reconnect it.';
     }
     if (tier.label === 'Needs review') {
-      return '<b>' + n + ' is progressing, with something to review.</b> ' + found + ' Wearable: ' + signal + ' The next check-in should confirm the trend.';
+      return '<b>' + n + ' is progressing, with something to review.</b> ' + said + ' ' + signal + ' The next check-in should confirm the trend.';
     }
-    return '<b>' + n + ' is recovering as expected.</b> ' + found + ' No action needed.';
+    return '<b>' + n + ' is recovering as expected.</b> ' + said + ' Nothing needs doing today.';
   }
 
   const LEVEL_LABEL = { flag: 'Flag', watch: 'Watch', ok: 'OK', none: 'Needs data' };
@@ -256,6 +289,7 @@
     step = 0;
     answers = {};
     notes = [];
+    clauses = [];
     risk = 0;
     alerted = false;
     busy = false;
